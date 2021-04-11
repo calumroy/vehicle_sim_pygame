@@ -7,6 +7,7 @@
 import pygame
 import random
 from collections import deque
+import model_integrator as mi
  
 # Define some colors
 BLACK = (0, 0, 0)
@@ -30,23 +31,8 @@ clock = pygame.time.Clock()
 
 tick_count=0
 
-# Vehicle
-class Vehicle: 
-    """A simple class defining a vehicle."""
-    start_pos = (size[0]/2.0,size[1]/2.0)
-    width = 50
-    length = 100
-
-    state = {
-            "x": start_pos[0],
-            "y": start_pos[1],
-            "phi": 0.0,
-            "vx": 0.0,
-            "vy": 0.0,
-            "r": 0.0
-            }
-
-car = Vehicle() 
+start_pos = (float(size[0]/2.0),float(size[1]/2.0))
+car = mi.Vehicle(start_pos) 
 
 def update():
     global done
