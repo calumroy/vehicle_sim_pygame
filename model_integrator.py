@@ -15,12 +15,15 @@ class Vehicle:
         self.start_pos = (start_pos[0], start_pos[1])
         self.width = 50
         self.length = 100
-        self.mass = 2000 # Mass of the vehicle [kg]
-        self.Iz = 5200.0 # The rotation inertia in the z axis (yaw) [kg*m^2]
         # Number of state variables.
         self.NX = 6
         # Number of input variables
         self.NU = 2
+
+        self.control_input = {
+                        "Fx": 0.0,
+                        "delta": 0.0
+                    }
 
         self.state = {
                         "x": self.start_pos[0],
@@ -30,6 +33,18 @@ class Vehicle:
                         "vy": 0.0,
                         "r": 0.0
                      }
+
+        self.params = {
+                        "mass" 	: 2000.0, # Mass of the vehicle [kg]
+                        "Iz" 	: 5200.0, # The rotation inertia in the z axis (yaw) [kg*m^2]
+                        "lf" 	: 0.029,
+                        "lr" 	: 0.033,
+
+                        "car_l": 0.06,
+                        "car_w": 0.03,
+
+                        "g"   : 9.81
+                    }
     def stateToVector(x):
         xk = np.array(0 for i in range(self.NX))
         xk[0] = x.X
@@ -72,12 +87,12 @@ class Vehicle:
         # state_vector
         f = np.array(0 for i in range(self.NX))
 
-        f(0) = x.vx*math.cos(x.phi) - x.vy*math.sin(x.phi)
-        f(1) = x.vy*math.cos(x.phi) + x.vx*math.sin(x.phi)
-        f(2) = x.r
-        f(3) = 1.0/self.mass*(tire_forces_rear.F_x + friction_force - tire_forces_front.F_y*math.sin(delta) + self.mass*vy*r);
-        f(4) = 1.0/self.mass*(tire_forces_rear.F_y + tire_forces_front.F_y*math.cos(delta) - self.mass*vx*r);
-        f(5) = 1.0/self.Iz*(tire_forces_front.F_y*param_.lf*math.cos(delta) - tire_forces_rear.F_y*param_.lr);
+        f[0] = x.vx*math.cos(x.phi) - x.vy*math.sin(x.phi)
+        f[1] = x.vy*math.cos(x.phi) + x.vx*math.sin(x.phi)
+        f[2] = x.r
+        f[3] = 1.0/self.mass*(tire_forces_rear.F_x + friction_force - tire_forces_front.F_y*math.sin(u.delta) + self.mass*x.vy*x.r)
+        f[4] = 1.0/self.mass*(tire_forces_rear.F_y + tire_forces_front.F_y*math.cos(u.delta) - self.mass*x.vx*x.r)
+        f[5] = 1.0/self.Iz*(tire_forces_front.F_y*param_.lf*math.cos(u.delta) - tire_forces_rear.F_y*param_.lr)
         # f(6) = vs
         # f(7) = dD
         # f(8) = dDelta
@@ -105,4 +120,3 @@ class Vehicle:
         # combining to give output
         x_next = x_vec + ts*(k1/6.+k2/3.+k3/3.+k4/6.)
         return vectorToState(x_next)
-}
