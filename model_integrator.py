@@ -19,6 +19,15 @@ class Vehicle:
         self.NX = 6
         # Number of input variables
         self.NU = 2
+        # The amont of time to step through each timestep. 
+        # Thsi is used in the model integrator when progating the state space forward.
+        self.fine_time_step_ = 0.001  # [secs]
+
+        # Used internally to convert from vec to state dict.
+        # These save us from having to create new arrays each time. 
+        self.xk_ = np.array([0.0 for i in range(self.NX)])
+        self.uk_ = np.array([0.0 for i in range(self.NU)])
+        self.f_ = np.array([0.0 for i in range(self.NX)])
 
         self.control_input = {
                         "Fx": 0.0,
@@ -37,31 +46,42 @@ class Vehicle:
         self.params = {
                         "mass" 	: 2000.0, # Mass of the vehicle [kg]
                         "Iz" 	: 5200.0, # The rotation inertia in the z axis (yaw) [kg*m^2]
-                        "lf" 	: 0.029,
-                        "lr" 	: 0.033,
+                        "lf" 	: 1.463,  # Distance from rear axel to COG along vehicle center line. 
+                        "lr" 	: 1.757,  # Distance from front axel to COG along vehicle center line. 
 
-                        "car_l": 0.06,
-                        "car_w": 0.03,
+                        "car_l": 5.426,   # The vehicles length [m]
+                        "car_w": 2.163,   # The vehicles width [m]
 
                         "g"   : 9.81
                     }
-    def stateToVector(x):
-        xk = np.array(0 for i in range(self.NX))
-        xk[0] = x.X
-        xk[1] = x.Y
-        xk[2] = x.phi
-        xk[3] = x.vx
-        xk[4] = x.vy
-        xk[5] = x.r
-        return xk
+    def stateToVector(self, x):
+        
+        self.xk_[0] = x["x"]
+        self.xk_[1] = x["y"]
+        self.xk_[2] = x["phi"]
+        self.xk_[3] = x["vx"]
+        self.xk_[4] = x["vy"]
+        self.xk_[5] = x["r"]
+        return self.xk_
+    
+    def vectorToState(self, x_vec):
+        new_state = {
+                    "x": x_vec[0],
+                    "y": x_vec[1],
+                    "phi": x_vec[2],
+                    "vx": x_vec[3],
+                    "vy": x_vec[4],
+                    "r": x_vec[5]
+        }
+        return new_state
 
-    def inputToVector(u):
-        uk = np.array(0 for i in range(self.NU))
-        uk[0] = u.Fx
-        uk[1] = u.delta
-        return uk
+    def inputToVector(self, u):
+        
+        self.uk_[0] = u["Fx"]
+        self.uk_[1] = u["delta"]
+        return self.uk_
 
-    def getForceFront(x):
+    def getForceFront(self, x):
 
         # const double alpha_f = getSlipAngleFront(x);
         # const double F_y = param_.Df * std::sin(param_.Cf * std::atan(param_.Bf * alpha_f ));
@@ -70,7 +90,11 @@ class Vehicle:
         f_tire = TireForces(1.0, 1.0)
         return f_tire
 
-    def getF(self, x, u):
+    def getForceFriction(self, x):
+        #return -param_.Cr0 - param_.Cr2*std::pow(x.vx,2.0);
+        return 1.0
+
+    def getF(self, x, u, param):
         """Return the next state vector based on the state space equation of the model
 
         Args:
@@ -80,27 +104,25 @@ class Vehicle:
         # tire_forces_front = getForceFront(x)
         # tire_forces_rear  = getForceRear(x)
         # friction_force = getForceFriction(x)
-        tire_forces_front = getForceFront(x)
-        tire_forces_rear  = getForceFront(x)
-        friction_force = getForceFront(x)
+        tire_forces_front = self.getForceFront(x)
+        tire_forces_rear  = self.getForceFront(x)
+        friction_force = self.getForceFriction(x)
 
         # state_vector
-        f = np.array(0 for i in range(self.NX))
-
-        f[0] = x.vx*math.cos(x.phi) - x.vy*math.sin(x.phi)
-        f[1] = x.vy*math.cos(x.phi) + x.vx*math.sin(x.phi)
-        f[2] = x.r
-        f[3] = 1.0/self.mass*(tire_forces_rear.F_x + friction_force - tire_forces_front.F_y*math.sin(u.delta) + self.mass*x.vy*x.r)
-        f[4] = 1.0/self.mass*(tire_forces_rear.F_y + tire_forces_front.F_y*math.cos(u.delta) - self.mass*x.vx*x.r)
-        f[5] = 1.0/self.Iz*(tire_forces_front.F_y*param_.lf*math.cos(u.delta) - tire_forces_rear.F_y*param_.lr)
+        self.f_[0] = x["vx"]*math.cos(x["phi"]) - x["vy"]*math.sin(x["phi"])
+        self.f_[1] = x["vy"]*math.cos(x["phi"]) + x["vx"]*math.sin(x["phi"])
+        self.f_[2] = x["r"]
+        self.f_[3] = 1.0/float(param["mass"]*(tire_forces_rear.F_x + friction_force - tire_forces_front.F_y*math.sin(u["delta"]) + param["mass"]*x["vy"]*x["r"]))
+        self.f_[4] = 1.0/float(param["mass"]*(tire_forces_rear.F_y + tire_forces_front.F_y*math.cos(u["delta"]) - param["mass"]*x["vx"]*x["r"]))
+        self.f_[5] = 1.0/float(param["Iz"]*(tire_forces_front.F_y*param["lf"]*math.cos(u["delta"]) - tire_forces_rear.F_y*param["lr"]))
         # f(6) = vs
         # f(7) = dD
         # f(8) = dDelta
         # f(9) = dVs
 
-        return f
+        return self.f_
 
-    def RK4(x, u, ts):
+    def RK4(self, x, u, ts):
         """4th order Runge Kutta (RK4) implementation
            4 evaluation points of continuous dynamics
         Args:
@@ -110,13 +132,33 @@ class Vehicle:
         """
         # 4th order Runge Kutta (RK4) implementation
         # 4 evaluation points of continuous dynamics
-        x_vec = stateToVector(x)
-        u_vec = inputToVector(u)
+        x_vec = self.stateToVector(x)
+        u_vec = self.inputToVector(u)
+        #import ipdb; ipdb.set_trace()
         # evaluating the 4 points
-        k1 = self.getF(vectorToState(x_vec),u)
-        k2 = self.getF(vectorToState(x_vec+ts/2.*k1),u)
-        k3 = self.getF(vectorToState(x_vec+ts/2.*k2),u)
-        k4 = self.getF(vectorToState(x_vec+ts*k3),u)
+        k1 = self.getF(self.vectorToState(x_vec),u,self.params)
+        k2 = self.getF(self.vectorToState(x_vec+ts/2.*k1),u,self.params)
+        k3 = self.getF(self.vectorToState(x_vec+ts/2.*k2),u,self.params)
+        k4 = self.getF(self.vectorToState(x_vec+ts*k3),u,self.params)
         # combining to give output
         x_next = x_vec + ts*(k1/6.+k2/3.+k3/3.+k4/6.)
-        return vectorToState(x_next)
+        return self.vectorToState(x_next)
+
+    def simTimeStep(self, x, u, ts):
+        """Simulate the vehicle continuous dynamics
+        Args:
+            x(dict vehicle state): The input state space structure.
+            u(dict vehicle controls): The control input structure
+            ts (int): The time step length [seconds]
+        """
+        print(" before sim car.state[x] = {0}".format(x["x"]))
+        x_next = x
+        integration_steps = (int)(ts/self.fine_time_step_)   
+        if(ts/self.fine_time_step_ != integration_steps):
+            print("Warning")
+        for i in range(0,integration_steps):
+            x_next = self.RK4(x_next,u,self.fine_time_step_)
+        print(" after sim car.state[x] = {0}".format(x_next["x"]))
+        return x_next
+
+    

@@ -17,14 +17,30 @@ RED = (255, 0, 0)
  
 pygame.init()
  
+FRAMES_PER_SEC = 60
+UPDATE_SIM_HZ = 5
+update_sim_period = 1.0 / float(UPDATE_SIM_HZ)
+frames_per_sim_update = int((1.0 / float(UPDATE_SIM_HZ)) * FRAMES_PER_SEC)
+print("frames_per_sim_update = {0}".format(frames_per_sim_update))
+
 # Set the width and height of the screen [width, height]
 size = (700, 500)
 screen = pygame.display.set_mode(size)
+pixel_to_meters_scale = 50.0  # The number of pixels per simulated meter. 
+newtons_per_key_press = 10000.0
+rads_per_key_press = 0.04
  
 pygame.display.set_caption("Vehicle Sim")
  
 # Loop until the user clicks the close button.
 done = False
+# keep track of which keyboard keys are pressed.
+keys = {
+    "left": 0.0,
+    "right": 0.0,
+    "up": 0.0,
+    "down": 0.0
+}
  
 # Used to manage how fast the screen updates
 clock = pygame.time.Clock()
@@ -34,16 +50,14 @@ tick_count=0
 start_pos = (float(size[0]/2.0),float(size[1]/2.0))
 car = mi.Vehicle(start_pos) 
 
-def update():
+def update(car, update_sim_period):
     global done
     global point
-    d = {
-        "left": (-1, 0),
-        "right": (1, 0),
-        "up": (0, -1),
-        "down": (0, 1)
-    }
-    
+    car.control_input["Fx"]= (keys["up"] - keys["down"]) * newtons_per_key_press
+    car.control_input["delta"] = (keys["left"] - keys["right"]) * rads_per_key_press
+    print("  Vehicle input controls: \n\t\t Fx = {0} \n\t\t delta = {1}".format(car.control_input["Fx"], car.control_input["delta"]))
+    car.state = car.simTimeStep(car.state, car.control_input, update_sim_period)
+    print(" car.state[x] = {0}".format(car.state["x"]))
     done = False
 
 def rectRotated( surface, color, pos, fill, border_radius, rotation_angle, rotation_offset_center = (0,0), nAntialiasingRatio = 1 ):
@@ -82,14 +96,18 @@ while not done:
         if event.type == pygame.QUIT:
             done = True
         if event.type == pygame.KEYDOWN:
-            if event.key == pygame.K_UP and direction != "down":
-                direction = "up"
-            elif event.key == pygame.K_DOWN and direction != "up":
-                direction = "down"
+            if event.key == pygame.K_UP:
+                keys["up"] += 1.0
+                keys["down"] = 0.0
+            elif event.key == pygame.K_DOWN:
+                keys["down"] += 1.0
+                keys["up"] = 0.0
             elif event.key == pygame.K_LEFT:
-                car.state["phi"] += 1.0
+                keys["left"] += 1.0
+                keys["right"] = 0.0
             elif event.key == pygame.K_RIGHT:
-                car.state["phi"] -= 1.0
+                keys["right"] += 1.0
+                keys["left"] = 0.0
             elif event.key == pygame.K_q:
                 done = True
 
@@ -109,19 +127,21 @@ while not done:
     fill = True
     border_radius = 2
     rotation_angle = car.state["phi"]
-    rect_state = (car.state["x"],car.state["y"],car.width,car.length)
+    rect_state = (car.state["x"],car.state["y"],
+                  car.params["car_w"]*pixel_to_meters_scale,
+                  car.params["car_l"]*pixel_to_meters_scale)
     angle_offset = (0.0, 0.0)
     rectRotated( screen, RED, rect_state, fill, border_radius, rotation_angle, angle_offset, 2)
     
     tick_count += 1
-    if tick_count > 30:
+    if tick_count > frames_per_sim_update:
         tick_count = 0
-        update()
+        update(car, update_sim_period)
     # --- Go ahead and update the screen with what we've drawn.
     pygame.display.flip()
  
-    # --- Limit to 60 frames per second
-    clock.tick(60)
+    # --- Limit to FRAMES_PER_SEC frames per second
+    clock.tick(FRAMES_PER_SEC)
  
 # Close the window and quit.
 pygame.quit()
