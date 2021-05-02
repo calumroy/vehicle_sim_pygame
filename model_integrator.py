@@ -13,13 +13,11 @@ class Vehicle:
     def __init__(self, start_pos):
 
         self.start_pos = (start_pos[0], start_pos[1])
-        self.width = 50
-        self.length = 100
         # Number of state variables.
         self.NX = 6
         # Number of input variables
         self.NU = 2
-        # The amont of time to step through each timestep. 
+        # The amount of time to step through each timestep. 
         # Thsi is used in the model integrator when progating the state space forward.
         self.fine_time_step_ = 0.001  # [secs]
 
@@ -52,7 +50,12 @@ class Vehicle:
                         "car_l": 5.426,   # The vehicles length [m]
                         "car_w": 2.163,   # The vehicles width [m]
 
-                        "g"   : 9.81
+                        "g"   : 9.81,      # Gravity acceleration.
+                        
+                        # Tire parameters
+                        "Bf"	: 2.579, 
+                        "Cf" 	: 1.2,
+                        "Df" 	: 0.192,
                     }
     def stateToVector(self, x):
         
@@ -81,17 +84,23 @@ class Vehicle:
         self.uk_[1] = u["delta"]
         return self.uk_
 
-    def getForceFront(self, x):
+    def getSlipAngleFront(self, x, u):
+        # compute slip angels given current state
+        slip_ang_f = -math.atan2(x["vy"]+x["r"]*self.params["lf"],x["vx"]) + u["delta"]
+        return slip_ang_f
 
-        # const double alpha_f = getSlipAngleFront(x);
-        # const double F_y = param_.Df * std::sin(param_.Cf * std::atan(param_.Bf * alpha_f ));
-        # const double F_x = 0.0;
+    def getForceFront(self, x, u):
 
-        f_tire = TireForces(1.0, 1.0)
+        alpha_f = self.getSlipAngleFront(x, u)
+        F_y = self.params["Df"] * math.sin(self.params["Cf"] * math.atan(self.params["Bf"] * alpha_f ))
+        # Rear wheel drive vehicle so no forwards force on the front tires.
+        F_x = 0.0
+
+        f_tire = TireForces(F_x, F_y)
         return f_tire
 
     def getForceFriction(self, x):
-        #return -param_.Cr0 - param_.Cr2*std::pow(x.vx,2.0);
+        #return -params.Cr0 - params.Cr2*std::pow(x.vx,2.0);
         return 1.0
 
     def getF(self, x, u, param):
@@ -104,17 +113,17 @@ class Vehicle:
         # tire_forces_front = getForceFront(x)
         # tire_forces_rear  = getForceRear(x)
         # friction_force = getForceFriction(x)
-        tire_forces_front = self.getForceFront(x)
-        tire_forces_rear  = self.getForceFront(x)
+        tire_forces_front = self.getForceFront(x,u)
+        tire_forces_rear  = self.getForceFront(x,u)
         friction_force = self.getForceFriction(x)
 
         # state_vector
         self.f_[0] = x["vx"]*math.cos(x["phi"]) - x["vy"]*math.sin(x["phi"])
         self.f_[1] = x["vy"]*math.cos(x["phi"]) + x["vx"]*math.sin(x["phi"])
         self.f_[2] = x["r"]
-        self.f_[3] = 1.0/float(param["mass"]*(tire_forces_rear.F_x + friction_force - tire_forces_front.F_y*math.sin(u["delta"]) + param["mass"]*x["vy"]*x["r"]))
-        self.f_[4] = 1.0/float(param["mass"]*(tire_forces_rear.F_y + tire_forces_front.F_y*math.cos(u["delta"]) - param["mass"]*x["vx"]*x["r"]))
-        self.f_[5] = 1.0/float(param["Iz"]*(tire_forces_front.F_y*param["lf"]*math.cos(u["delta"]) - tire_forces_rear.F_y*param["lr"]))
+        self.f_[3] = 1.0/float(param["mass"]) * (tire_forces_rear.F_x + friction_force - tire_forces_front.F_y*math.sin(u["delta"]) + param["mass"]*x["vy"]*x["r"])
+        self.f_[4] = 1.0/float(param["mass"]) * (tire_forces_rear.F_y + tire_forces_front.F_y*math.cos(u["delta"]) - param["mass"]*x["vx"]*x["r"])
+        self.f_[5] = 1.0/float(param["Iz"]) * (tire_forces_front.F_y*param["lf"]*math.cos(u["delta"]) - tire_forces_rear.F_y*param["lr"])
         # f(6) = vs
         # f(7) = dD
         # f(8) = dDelta
