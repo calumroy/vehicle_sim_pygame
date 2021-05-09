@@ -15,6 +15,14 @@ The environment was created with
 ## Alternative virtualenv with pyenv virtualenv
 mkvirtualenv -p $(pyenv which python) vehicle_sim
 
+# Best solution
+use virtaulenv wrapper
+  `pyenv global 3.7.3`      # Switch to python version 3.7.3
+  `sudo pip install virtualenvwrapper` # install virtualenv wrapper
+  `mkvirtualenv vehicle_sim`  # make the python virtual environment   
+  `workon vehicle_sim`  # enter the virtual env
+  `pip freeze > requirements.txt` # Create a text file of all the python libs
+  `pip install -r requirements.txt` # install from that list
 
 ## Docker container
 build with
