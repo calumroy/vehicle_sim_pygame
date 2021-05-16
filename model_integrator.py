@@ -2,9 +2,9 @@ import math
 import numpy as np
 
 class TireForces:
-    def __init__(self, F_y, F_x):
-        self.F_y = F_y
+    def __init__(self, F_x, F_y):
         self.F_x = F_x
+        self.F_y = F_y
 
 # Vehicle
 class Vehicle:
@@ -28,17 +28,17 @@ class Vehicle:
         self.f_ = np.array([0.0 for i in range(self.NX)])
 
         self.control_input = {
-                        "Fx": 0.0,
-                        "delta": 0.0
+                        "Fx": 0.0,  # Force in the longitudinal direction on rear wheels
+                        "delta": 0.0 # Front steering tire angle. 
                     }
 
         self.state = {
-                        "x": self.start_pos[0],
-                        "y": self.start_pos[1],
-                        "phi": 0.0,
-                        "vx": 0.0,
-                        "vy": 0.0,
-                        "r": 0.0
+                        "x": self.start_pos[0], # X position of the center of gravity of the vehicle.
+                        "y": self.start_pos[1], # Y position of the center of gravity of the vehicle.
+                        "phi": 0.0,             # The heading angle of the vehicle
+                        "vx": 0.0,              # The forwards velocity in vehicle frame of references.
+                        "vy": 0.0,              # The lateral velocity in vehicle frame of references.
+                        "r": 0.0                # Yaw rate of the vehicle, this is the rate of phi.
                      }
 
         self.params = {
@@ -52,10 +52,17 @@ class Vehicle:
 
                         "g"   : 9.81,      # Gravity acceleration.
                         
-                        # Tire parameters
-                        "Bf"	: 2.579, 
-                        "Cf" 	: 1.2,
-                        "Df" 	: 0.192,
+                        # Tire parameters (front)
+                        "Bf"	: 11.0, 
+                        "Cf" 	: 1.4,
+                        "Df" 	: 0.45,
+                        # Tire parameters (rear)
+                        "Br" 	: 11.0,
+                        "Cr" 	: 1.4,
+                        "Dr" 	: 0.5,  
+                        # Friction characteritic params
+                        "Cr0" : 0.0518,  # Zero offset friciton force. 
+                        "Cr2" : 0.00035, # quadratic friciton multiplier on the vehicle velocity. 
                     }
     def stateToVector(self, x):
         
@@ -87,7 +94,13 @@ class Vehicle:
     def getSlipAngleFront(self, x, u):
         # compute slip angels given current state
         slip_ang_f = -math.atan2(x["vy"]+x["r"]*self.params["lf"],x["vx"]) + u["delta"]
+        #print("SlipAngleRear = ", slip_ang_r)
         return slip_ang_f
+
+    def getSlipAngleRear(self, x, u):
+        # compute slip angels given current state
+        slip_ang_r = -math.atan2(x["vy"]-x["r"]*self.params["lr"],x["vx"])
+        return slip_ang_r
 
     def getForceFront(self, x, u):
 
@@ -98,10 +111,22 @@ class Vehicle:
 
         f_tire = TireForces(F_x, F_y)
         return f_tire
+    
+    def getForceRear(self, x, u):
+
+        alpha_r = self.getSlipAngleRear(x, u)
+        F_y = self.params["Dr"] * math.sin(self.params["Cr"] * math.atan(self.params["Br"] * alpha_r ))
+        # Rear wheel drive vehicle with a force related to the control input force on rear wheels u["Fx"]
+        #F_x = self.params["Cm1"]*u["Fx"] - self.params["Cm2"]*u["Fx"]*x["vx"]  # - param_.Cr0 - param_.Cr2*std::pow(x.vx,2.0);
+        F_x = u["Fx"]  # Perfect control simulated. The exact rear wheel desired force is acheived.
+        
+        r_tire = TireForces(F_x, F_y)
+        return r_tire
 
     def getForceFriction(self, x):
         #return -params.Cr0 - params.Cr2*std::pow(x.vx,2.0);
-        return 1.0
+        F_f = -self.params["Cr0"] - self.params["Cr2"]*math.pow(x["vx"],2.0)
+        return F_f
 
     def getF(self, x, u, param):
         """Return the next state vector based on the state space equation of the model
@@ -110,11 +135,8 @@ class Vehicle:
             x(dict vehicle state): The input state space structure.
             u(dict vehicle controls): The control input structure
         """
-        # tire_forces_front = getForceFront(x)
-        # tire_forces_rear  = getForceRear(x)
-        # friction_force = getForceFriction(x)
         tire_forces_front = self.getForceFront(x,u)
-        tire_forces_rear  = self.getForceFront(x,u)
+        tire_forces_rear  = self.getForceRear(x,u)
         friction_force = self.getForceFriction(x)
 
         # state_vector
@@ -144,6 +166,8 @@ class Vehicle:
         x_vec = self.stateToVector(x)
         u_vec = self.inputToVector(u)
         #import ipdb; ipdb.set_trace()
+        # if (x["r"] < -1e-9):
+        #     import ipdb; ipdb.set_trace()
         # evaluating the 4 points
         k1 = self.getF(self.vectorToState(x_vec),u,self.params)
         k2 = self.getF(self.vectorToState(x_vec+ts/2.*k1),u,self.params)
@@ -160,7 +184,8 @@ class Vehicle:
             u(dict vehicle controls): The control input structure
             ts (int): The time step length [seconds]
         """
-        print(" before sim car.state[x] = {0}".format(x["x"]))
+        print(" before sim car.state[phi] = {0}".format(x["phi"]))
+        print(" before sim car.state[r] = {0}".format(x["r"]))
         x_next = x
         integration_steps = (int)(ts/self.fine_time_step_)   
         if(ts/self.fine_time_step_ != integration_steps):

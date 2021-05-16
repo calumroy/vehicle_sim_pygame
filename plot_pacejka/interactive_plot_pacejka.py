@@ -28,9 +28,9 @@ lf = 1.463  # Distance from rear axel to COG along vehicle center line.
 
 # Pacejka magic values determined through system identification tests.
 # Driving of the real vehicle.
-Br = 3.3852
-Cr = 1.2691
-Dr = 0.1737
+Br = 11.0
+Cr = 1.4
+Dr = 0.45
 
 Bf = 2.579
 Cf = 1.2
@@ -142,7 +142,7 @@ def update_plot(slider_input_Br, slider_input_Cr, slider_input_Dr, text_input):
                                 mode='lines+markers',
                                 name='Fry')
                       ],
-              'layout': go.Layout(title='Pacejka magic formula tire stifness', 
+              'layout': go.Layout(title='Pacejka magic formula tire stiffness', 
                                 autosize=False,
                                 width=600, height=600
                                 )

@@ -27,7 +27,7 @@ print("frames_per_sim_update = {0}".format(frames_per_sim_update))
 size = (700, 500)
 screen = pygame.display.set_mode(size)
 pixel_to_meters_scale = 50.0  # The number of pixels per simulated meter. 
-newtons_per_key_press = 10000.0
+newtons_per_key_press = 1000.0
 rads_per_key_press = 0.04
  
 pygame.display.set_caption("Vehicle Sim")
@@ -47,7 +47,8 @@ clock = pygame.time.Clock()
 
 tick_count=0
 
-start_pos = (float(size[0]/2.0),float(size[1]/2.0))
+# Start at a negative y position since the screens top left pos is (0,0)
+start_pos = (float(size[0]/2.0),-1.0*float(size[1]/2.0))
 car = mi.Vehicle(start_pos) 
 
 def update(car, update_sim_period):
@@ -58,6 +59,11 @@ def update(car, update_sim_period):
     print("  Vehicle input controls: \n\t\t Fx = {0} \n\t\t delta = {1}".format(car.control_input["Fx"], car.control_input["delta"]))
     car.state = car.simTimeStep(car.state, car.control_input, update_sim_period)
     print(" car.state[x] = {0}".format(car.state["x"]))
+    print(" car.state[y] = {0}".format(car.state["y"]))
+    print(" car.state[phi] = {0}".format(car.state["phi"]))
+    print(" car.state[vx] = {0}".format(car.state["vx"]))
+    print(" car.state[vy] = {0}".format(car.state["vy"]))
+    print(" car.state[r] = {0}".format(car.state["r"]))
     done = False
 
 def rectRotated( surface, color, pos, fill, border_radius, rotation_angle, rotation_offset_center = (0,0), nAntialiasingRatio = 1 ):
@@ -98,10 +104,10 @@ while not done:
         if event.type == pygame.KEYDOWN:
             if event.key == pygame.K_UP:
                 keys["up"] += 1.0
-                keys["down"] = 0.0
+                keys["down"] -= 1.0
             elif event.key == pygame.K_DOWN:
                 keys["down"] += 1.0
-                keys["up"] = 0.0
+                keys["up"] -= 1.0
             elif event.key == pygame.K_LEFT:
                 keys["left"] += 1.0
                 keys["right"] = 0.0
@@ -127,9 +133,10 @@ while not done:
     fill = True
     border_radius = 2
     rotation_angle = car.state["phi"]
-    rect_state = (car.state["x"],car.state["y"],
-                  car.params["car_w"]*pixel_to_meters_scale,
-                  car.params["car_l"]*pixel_to_meters_scale)
+    # Negate the y posiitons since pygame uses downwards as positive y direction.
+    rect_state = (car.state["x"],-1.0*car.state["y"],
+                  car.params["car_l"]*pixel_to_meters_scale,
+                  car.params["car_w"]*pixel_to_meters_scale)
     angle_offset = (0.0, 0.0)
     rectRotated( screen, RED, rect_state, fill, border_radius, rotation_angle, angle_offset, 2)
     
