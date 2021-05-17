@@ -15,7 +15,7 @@ The environment was created with
 ## Alternative virtualenv with pyenv virtualenv
 mkvirtualenv -p $(pyenv which python) vehicle_sim
 
-# Best solution
+# Best virtual environment solution
 use virtaulenv wrapper
   `pyenv global 3.7.3`      # Switch to python version 3.7.3
   `sudo pip install virtualenvwrapper` # install virtualenv wrapper

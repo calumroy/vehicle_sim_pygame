@@ -106,9 +106,10 @@ class Vehicle:
 
         alpha_f = self.getSlipAngleFront(x, u)
         F_y = self.params["Df"] * math.sin(self.params["Cf"] * math.atan(self.params["Bf"] * alpha_f ))
+        F_y = F_y * self.params["mass"]
         # Rear wheel drive vehicle so no forwards force on the front tires.
         F_x = 0.0
-
+        #print(" getForceFront fx,fy = {0}, {1}  alpha_f = {2}".format(F_x,F_y,alpha_f))
         f_tire = TireForces(F_x, F_y)
         return f_tire
     
@@ -116,6 +117,7 @@ class Vehicle:
 
         alpha_r = self.getSlipAngleRear(x, u)
         F_y = self.params["Dr"] * math.sin(self.params["Cr"] * math.atan(self.params["Br"] * alpha_r ))
+        F_y = F_y * self.params["mass"]
         # Rear wheel drive vehicle with a force related to the control input force on rear wheels u["Fx"]
         #F_x = self.params["Cm1"]*u["Fx"] - self.params["Cm2"]*u["Fx"]*x["vx"]  # - param_.Cr0 - param_.Cr2*std::pow(x.vx,2.0);
         F_x = u["Fx"]  # Perfect control simulated. The exact rear wheel desired force is acheived.
@@ -184,15 +186,15 @@ class Vehicle:
             u(dict vehicle controls): The control input structure
             ts (int): The time step length [seconds]
         """
-        print(" before sim car.state[phi] = {0}".format(x["phi"]))
-        print(" before sim car.state[r] = {0}".format(x["r"]))
+        #print(" before sim car.state[phi] = {0}".format(x["phi"]))
+        #print(" before sim car.state[r] = {0}".format(x["r"]))
         x_next = x
         integration_steps = (int)(ts/self.fine_time_step_)   
         if(ts/self.fine_time_step_ != integration_steps):
-            print("Warning")
+            print("Warning ts/self.fine_time_step_{0} integration_steps = {1}".format(ts/self.fine_time_step_,integration_steps))
         for i in range(0,integration_steps):
             x_next = self.RK4(x_next,u,self.fine_time_step_)
-        print(" after sim car.state[x] = {0}".format(x_next["x"]))
+        #print(" after sim car.state[x] = {0}".format(x_next["x"]))
         return x_next
 
     

@@ -30,7 +30,7 @@ lf = 1.463  # Distance from rear axel to COG along vehicle center line.
 # Driving of the real vehicle.
 Br = 11.0
 Cr = 1.4
-Dr = 0.45
+Dr = 0.5
 
 Bf = 2.579
 Cf = 1.2
@@ -47,7 +47,7 @@ alpha_r = np.arctan(np.divide((vy - lr*r),vx))
 alpha_f = np.arctan(np.divide((vy - lf*r),vx) - delta)
 
 # JUST PLOT THE LATERAL FORCE VS SLIP ANGLE
-max_alpha_r = 0.79  # radians 0.79 rads = 45 degs
+max_alpha_r = 5*0.79  # radians 0.79 rads = 45 degs
 max_alpha_f = 2*0.79  # radians 
 alpha_r = np.linspace(-max_alpha_r, max_alpha_r, num_steps)
 alpha_f = np.linspace(-max_alpha_f, max_alpha_f, num_steps)
@@ -65,19 +65,19 @@ app.layout = html.Div(
 
                     dcc.Slider(id='slider_input_Br',
                                 min=0,
-                                max=10,
+                                max=15,
                                 step=0.005,
                                 value=Br,
                     ),
                     dcc.Slider(id='slider_input_Cr',
                                 min=0,
-                                max=10,
+                                max=3,
                                 step=0.005,
                                 value=Cr,
                     ),
                     dcc.Slider(id='slider_input_Dr',
                                 min=0,
-                                max=10,
+                                max=3,
                                 step=0.005,
                                 value=Cr,
                     )

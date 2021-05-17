@@ -8,6 +8,7 @@ import pygame
 import random
 from collections import deque
 import model_integrator as mi
+import math
  
 # Define some colors
 BLACK = (0, 0, 0)
@@ -24,11 +25,11 @@ frames_per_sim_update = int((1.0 / float(UPDATE_SIM_HZ)) * FRAMES_PER_SEC)
 print("frames_per_sim_update = {0}".format(frames_per_sim_update))
 
 # Set the width and height of the screen [width, height]
-size = (700, 500)
+size = (2*700, 2*500)
 screen = pygame.display.set_mode(size)
-pixel_to_meters_scale = 50.0  # The number of pixels per simulated meter. 
-newtons_per_key_press = 1000.0
-rads_per_key_press = 0.04
+pixel_to_meters_scale = 40.0  # The number of pixels per simulated meter. 
+newtons_per_key_press = 200.0
+rads_per_key_press = 0.02
  
 pygame.display.set_caption("Vehicle Sim")
  
@@ -49,6 +50,8 @@ tick_count=0
 
 # Start at a negative y position since the screens top left pos is (0,0)
 start_pos = (float(size[0]/2.0),-1.0*float(size[1]/2.0))
+# Convert the start pos to coordinates for the vehicle
+start_pos = (start_pos[0] / pixel_to_meters_scale, start_pos[1] / pixel_to_meters_scale)
 car = mi.Vehicle(start_pos) 
 
 def update(car, update_sim_period):
@@ -110,10 +113,10 @@ while not done:
                 keys["up"] -= 1.0
             elif event.key == pygame.K_LEFT:
                 keys["left"] += 1.0
-                keys["right"] = 0.0
+                keys["right"] -= 1.0
             elif event.key == pygame.K_RIGHT:
                 keys["right"] += 1.0
-                keys["left"] = 0.0
+                keys["left"] -= 1.0
             elif event.key == pygame.K_q:
                 done = True
 
@@ -132,9 +135,9 @@ while not done:
     # --- Drawing code should go here
     fill = True
     border_radius = 2
-    rotation_angle = car.state["phi"]
-    # Negate the y posiitons since pygame uses downwards as positive y direction.
-    rect_state = (car.state["x"],-1.0*car.state["y"],
+    rotation_angle = car.state["phi"] * 180.0 / math.pi  # Convert from radians to degrees.
+    # Negate the y positions since pygame uses downwards as positive y direction.
+    rect_state = (car.state["x"] * pixel_to_meters_scale,-1.0*car.state["y"] * pixel_to_meters_scale,
                   car.params["car_l"]*pixel_to_meters_scale,
                   car.params["car_w"]*pixel_to_meters_scale)
     angle_offset = (0.0, 0.0)
