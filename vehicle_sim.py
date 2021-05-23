@@ -7,8 +7,10 @@
 import pygame
 import random
 from collections import deque
-import model_integrator as mi
 import math
+import time
+import model_integrator as mi
+import sim_timer as simtimer
  
 # Define some colors
 BLACK = (0, 0, 0)
@@ -19,7 +21,7 @@ RED = (255, 0, 0)
 pygame.init()
  
 FRAMES_PER_SEC = 60
-UPDATE_SIM_HZ = 5
+UPDATE_SIM_HZ = 20
 update_sim_period = 1.0 / float(UPDATE_SIM_HZ)
 frames_per_sim_update = int((1.0 / float(UPDATE_SIM_HZ)) * FRAMES_PER_SEC)
 print("frames_per_sim_update = {0}".format(frames_per_sim_update))
@@ -45,8 +47,12 @@ keys = {
  
 # Used to manage how fast the screen updates
 clock = pygame.time.Clock()
+tick_count = 0
 
-tick_count=0
+# Timers
+last_print_time = time.time()
+print_time_period = 1.0 / 2.0
+game_timer = simtimer.SimTimer()
 
 # Start at a negative y position since the screens top left pos is (0,0)
 start_pos = (float(size[0]/2.0),-1.0*float(size[1]/2.0))
@@ -54,19 +60,21 @@ start_pos = (float(size[0]/2.0),-1.0*float(size[1]/2.0))
 start_pos = (start_pos[0] / pixel_to_meters_scale, start_pos[1] / pixel_to_meters_scale)
 car = mi.Vehicle(start_pos) 
 
-def update(car, update_sim_period):
-    global done
-    global point
+def print_car_state(car):
     car.control_input["Fx"]= (keys["up"] - keys["down"]) * newtons_per_key_press
     car.control_input["delta"] = (keys["left"] - keys["right"]) * rads_per_key_press
     print("  Vehicle input controls: \n\t\t Fx = {0} \n\t\t delta = {1}".format(car.control_input["Fx"], car.control_input["delta"]))
-    car.state = car.simTimeStep(car.state, car.control_input, update_sim_period)
     print(" car.state[x] = {0}".format(car.state["x"]))
     print(" car.state[y] = {0}".format(car.state["y"]))
     print(" car.state[phi] = {0}".format(car.state["phi"]))
     print(" car.state[vx] = {0}".format(car.state["vx"]))
     print(" car.state[vy] = {0}".format(car.state["vy"]))
     print(" car.state[r] = {0}".format(car.state["r"]))
+
+def update(car, update_sim_period):
+    global done
+    global point
+    car.state = car.simTimeStep(car.state, car.control_input, update_sim_period)
     done = False
 
 def rectRotated( surface, color, pos, fill, border_radius, rotation_angle, rotation_offset_center = (0,0), nAntialiasingRatio = 1 ):
@@ -150,8 +158,17 @@ while not done:
     # --- Go ahead and update the screen with what we've drawn.
     pygame.display.flip()
  
+    # Print out functions.
+    time_now = time.time()
+    time_diff = (time_now - last_print_time)
+    if ( time_diff > print_time_period):
+        print_car_state(car)
+        last_print_time = time_now
+
     # --- Limit to FRAMES_PER_SEC frames per second
     clock.tick(FRAMES_PER_SEC)
+
+    game_timer.update()
  
 # Close the window and quit.
 pygame.quit()
