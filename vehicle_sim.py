@@ -32,11 +32,14 @@ screen = pygame.display.set_mode(display_size)
 # The number of pixels per simulated meter. 
 orig_pixel_to_meters_scale = 40.0
 pixel_to_meters_scale = orig_pixel_to_meters_scale  
-newtons_per_key_press = 200.0
-rads_per_key_press = 0.02
+newtons_per_key_press = 1600.0
+rads_per_sec_press = 0.6
 zoom = 1
 zoom_factor = 0.05
-# Vehcile drawing params
+# These offsets center the car to the display when zooming in or out.
+car_to_pixel_offset_x = 0.0
+car_to_pixel_offset_y = 0.0
+# Vehicle drawing params
 n_anti_aliasing_ratio = 2
 border_radius = 10
 fill_vehicle_box = True
@@ -59,7 +62,7 @@ tick_count = 0
 
 # Timers
 last_print_time = time.time()
-print_time_period = 1.0 / 2.0
+print_time_period = 2.0
 game_timer = simtimer.SimTimer()
 
 # Start at a negative y position since the screens top left pos is (0,0)
@@ -69,14 +72,13 @@ start_pos = (start_pos[0] / pixel_to_meters_scale, start_pos[1] / pixel_to_meter
 car = mi.Vehicle(start_pos) 
 
 def print_car_state(car):
-    pass
-    # print("  Vehicle input controls: \n\t\t Fx = {0} \n\t\t delta = {1}".format(car.control_input["Fx"], car.control_input["delta"]))
-    # print(" car.state[x] = {0}".format(car.state["x"]))
-    # print(" car.state[y] = {0}".format(car.state["y"]))
-    # print(" car.state[phi] = {0}".format(car.state["phi"]))
-    # print(" car.state[vx] = {0}".format(car.state["vx"]))
-    # print(" car.state[vy] = {0}".format(car.state["vy"]))
-    # print(" car.state[r] = {0}".format(car.state["r"]))
+    print("  Vehicle input controls: \n\t\t Fx = {0} \n\t\t delta = {1}".format(car.control_input["Fx"], car.control_input["delta"]))
+    print(" car.state[x] = {0}".format(car.state["x"]))
+    print(" car.state[y] = {0}".format(car.state["y"]))
+    print(" car.state[phi] = {0}".format(car.state["phi"]))
+    print(" car.state[vx] = {0}".format(car.state["vx"]))
+    print(" car.state[vy] = {0}".format(car.state["vy"]))
+    print(" car.state[r] = {0}".format(car.state["r"]))
 
 def update(car, update_sim_period):
     global done
@@ -121,38 +123,51 @@ while not done:
             done = True
         if event.type == pygame.KEYDOWN:
             if event.key == pygame.K_UP:
-                keys["up"] += 1.0
-                keys["down"] -= 1.0
+                keys["up"] = 1.0
             elif event.key == pygame.K_DOWN:
-                keys["down"] += 1.0
-                keys["up"] -= 1.0
+                keys["down"] = 1.0
             elif event.key == pygame.K_LEFT:
-                keys["left"] += 1.0
-                keys["right"] -= 1.0
+                keys["left"] = 1.0
             elif event.key == pygame.K_RIGHT:
-                keys["right"] += 1.0
-                keys["left"] -= 1.0
+                keys["right"] = 1.0
             elif event.key == pygame.K_q:
                 done = True
             elif event.key == pygame.K_0:
-                zoom = 2
+                zoom = 1
                 print('RESET')
+            elif event.key == pygame.K_c:
+                car_to_pixel_offset_x = -car.state["x"] * pixel_to_meters_scale + float(display_size[0]/2.0)
+                car_to_pixel_offset_y = car.state["y"] * pixel_to_meters_scale + float(display_size[1]/2.0)
+                print('RECENTERED')
+        if event.type == pygame.KEYUP:
+            if event.key == pygame.K_UP:
+                keys["up"] = 0.0
+            elif event.key == pygame.K_DOWN:
+                keys["down"] = 0.0
+            elif event.key == pygame.K_LEFT:
+                keys["left"] = 0.0
+            elif event.key == pygame.K_RIGHT:
+                keys["right"] = 0.0
         # Zoom in out functions
         if event.type == pygame.MOUSEBUTTONDOWN and event.button == 4: # wheel rolled up
             zoom += zoom_factor
             pixel_to_meters_scale = orig_pixel_to_meters_scale * zoom
             print('ZOOMING IN, pixel_to_meters_scale = ', pixel_to_meters_scale)
+            car_to_pixel_offset_x = -car.state["x"] * pixel_to_meters_scale + float(display_size[0]/2.0)
+            car_to_pixel_offset_y = car.state["y"] * pixel_to_meters_scale + float(display_size[1]/2.0)
         elif event.type == pygame.MOUSEBUTTONDOWN and event.button == 5: # wheel rolled down
-            zoom -= zoom_factor
-            pixel_to_meters_scale = orig_pixel_to_meters_scale * zoom
-            print('ZOOMING OUT, pixel_to_meters_scale = ', pixel_to_meters_scale)
-
+            if (zoom - zoom_factor > 0):
+                zoom -= zoom_factor
+                pixel_to_meters_scale = orig_pixel_to_meters_scale * zoom
+                print('ZOOMING OUT, pixel_to_meters_scale = ', pixel_to_meters_scale)
+                car_to_pixel_offset_x = -car.state["x"] * pixel_to_meters_scale + float(display_size[0]/2.0)
+                car_to_pixel_offset_y = car.state["y"] * pixel_to_meters_scale + float(display_size[1]/2.0)
  
     # --- Game logic should go here
 
     # Update control inputs
-    car.control_input["Fx"]= (keys["up"] - keys["down"]) * newtons_per_key_press
-    car.control_input["delta"] = (keys["left"] - keys["right"]) * rads_per_key_press
+    car.control_input["Fx"] = (keys["up"] - keys["down"]) * newtons_per_key_press
+    car.control_input["delta"] += (keys["left"] - keys["right"]) * rads_per_sec_press / FRAMES_PER_SEC
     
     # Run simulation code
     tick_count += 1
@@ -166,7 +181,7 @@ while not done:
     time_now = time.time()
     time_diff = (time_now - last_print_time)
     if ( time_diff > print_time_period):
-        print_car_state(car)
+        #print_car_state(car)
         last_print_time = time_now
  
     # --- Screen-clearing code goes here
@@ -181,15 +196,20 @@ while not done:
     # --- Drawing code should go here
     rotation_angle = car.state["phi"] * 180.0 / math.pi  # Convert from radians to degrees.
     # Negate the y positions since pygame uses downwards as positive y direction.
-    rect_x = car.state["x"] * pixel_to_meters_scale
-    rect_y = -1.0*car.state["y"] * pixel_to_meters_scale
+    # Add a car to pixel offset (this centers the car when zooming in or out of the display).
+    rect_x = car.state["x"] * pixel_to_meters_scale + car_to_pixel_offset_x
+    rect_y = -1.0*car.state["y"] * pixel_to_meters_scale + car_to_pixel_offset_y
     rect_l = car.params["car_l"] * pixel_to_meters_scale
     rect_w = car.params["car_w"] * pixel_to_meters_scale
     rect_state = (rect_x, rect_y,
                   rect_l, rect_w)
     angle_offset = (0.0, 0.0)
     rectRotated( screen, RED, rect_state, fill_vehicle_box, border_radius, rotation_angle, angle_offset, n_anti_aliasing_ratio)
-    
+    # Draw the Car wheels with steering angle
+    wheel_state = (rect_x, rect_y, rect_l / 4.0, rect_w / 4.0)
+    wheel_angle = rotation_angle + car.control_input["delta"] * 180.0 / math.pi  # Convert from radians to degrees.
+    rectRotated( screen, BLACK, wheel_state, fill_vehicle_box, border_radius, wheel_angle, angle_offset, n_anti_aliasing_ratio)
+
     # --- Go ahead and update the screen with what we've drawn.
     pygame.display.flip()
  
