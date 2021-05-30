@@ -11,6 +11,8 @@ class SimTimer:
         self.averaging_const = 0.05
         self.print_time_period = 1.0
         self.last_print_time = time_now
+        self.reset_period = 10.0
+        self.last_reset_time = time_now
 
     def update(self):
         time_now = time.time()
@@ -28,4 +30,11 @@ class SimTimer:
         if ( time_diff > self.print_time_period):
             print("min = {0} max = {1} average hz = {2}".format(self.min_time, self.max_time, self.average_loop_rate_hz))
             self.last_print_time = time_now
+        # Reset timer.
+        reset_diff = (time_now - self.last_reset_time)
+        if ( reset_diff > self.reset_period):
+            self.max_time = time_diff
+            self.min_time = time_diff
+            self.last_reset_time = time_now
+
         self.last_update_time = time_now
