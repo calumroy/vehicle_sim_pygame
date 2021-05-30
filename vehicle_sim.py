@@ -21,7 +21,7 @@ RED = (255, 0, 0)
 pygame.init()
  
 FRAMES_PER_SEC = 60
-UPDATE_SIM_HZ = 5
+UPDATE_SIM_HZ = 20
 update_sim_period = 1.0 / float(UPDATE_SIM_HZ)
 frames_per_sim_update = int((1.0 / float(UPDATE_SIM_HZ)) * FRAMES_PER_SEC)
 print("frames_per_sim_update = {0}".format(frames_per_sim_update))
@@ -29,13 +29,17 @@ print("frames_per_sim_update = {0}".format(frames_per_sim_update))
 # Set the width and height of the screen [width, height]
 display_size = (800, 600)
 screen = pygame.display.set_mode(display_size)
-pixel_to_meters_scale = 40.0  # The number of pixels per simulated meter. 
+# The number of pixels per simulated meter. 
+orig_pixel_to_meters_scale = 40.0
+pixel_to_meters_scale = orig_pixel_to_meters_scale  
 newtons_per_key_press = 200.0
 rads_per_key_press = 0.02
 zoom = 1
 zoom_factor = 0.05
+# Vehcile drawing params
 n_anti_aliasing_ratio = 2
 border_radius = 10
+fill_vehicle_box = True
  
 pygame.display.set_caption("Vehicle Sim")
  
@@ -136,10 +140,12 @@ while not done:
         # Zoom in out functions
         if event.type == pygame.MOUSEBUTTONDOWN and event.button == 4: # wheel rolled up
             zoom += zoom_factor
-            print('ZOOMING IN')
+            pixel_to_meters_scale = orig_pixel_to_meters_scale * zoom
+            print('ZOOMING IN, pixel_to_meters_scale = ', pixel_to_meters_scale)
         elif event.type == pygame.MOUSEBUTTONDOWN and event.button == 5: # wheel rolled down
             zoom -= zoom_factor
-            print('ZOOMING OUT')
+            pixel_to_meters_scale = orig_pixel_to_meters_scale * zoom
+            print('ZOOMING OUT, pixel_to_meters_scale = ', pixel_to_meters_scale)
 
  
     # --- Game logic should go here
@@ -170,25 +176,21 @@ while not done:
  
     # If you want a background image, replace this clear with blit'ing the
     # background image.
-    #screen.fill(WHITE)
+    screen.fill(WHITE)
 
     # --- Drawing code should go here
-    display = pygame.Surface((int(display_size[0] / zoom), int(display_size[1] / zoom)))
-    display.fill(WHITE)
-
-    fill = True
     rotation_angle = car.state["phi"] * 180.0 / math.pi  # Convert from radians to degrees.
     # Negate the y positions since pygame uses downwards as positive y direction.
     rect_x = car.state["x"] * pixel_to_meters_scale
     rect_y = -1.0*car.state["y"] * pixel_to_meters_scale
+    rect_l = car.params["car_l"] * pixel_to_meters_scale
+    rect_w = car.params["car_w"] * pixel_to_meters_scale
     rect_state = (rect_x, rect_y,
-                  car.params["car_l"]*pixel_to_meters_scale,
-                  car.params["car_w"]*pixel_to_meters_scale)
+                  rect_l, rect_w)
     angle_offset = (0.0, 0.0)
-    rectRotated( display, RED, rect_state, fill, border_radius, rotation_angle, angle_offset, n_anti_aliasing_ratio)
+    rectRotated( screen, RED, rect_state, fill_vehicle_box, border_radius, rotation_angle, angle_offset, n_anti_aliasing_ratio)
     
     # --- Go ahead and update the screen with what we've drawn.
-    screen.blit(pygame.transform.scale(display,display_size),(0,0))
     pygame.display.flip()
  
  
