@@ -33,7 +33,7 @@ screen = pygame.display.set_mode(display_size)
 orig_pixel_to_meters_scale = 40.0
 pixel_to_meters_scale = orig_pixel_to_meters_scale  
 newtons_per_key_press = 1600.0
-rads_per_sec_press = 0.6
+rads_per_sec_press = 1.9
 zoom = 1
 zoom_factor = 0.05
 # These offsets center the car to the display when zooming in or out.
@@ -114,6 +114,11 @@ def rectRotated( surface, color, pos, fill, border_radius, rotation_angle, rotat
     incfromroth = (s.get_height()-sh)//2
     surface.blit( s, (pos[0]-surfcenterx+rotation_offset_center[0]+rw2-incfromrotw,pos[1]-surfcentery+rotation_offset_center[1]+rh2-incfromroth) )
 
+def recenter_vehicle():
+    car_to_pixel_offset_x = -car.state["x"] * pixel_to_meters_scale + float(display_size[0]/2.0)
+    car_to_pixel_offset_y = car.state["y"] * pixel_to_meters_scale + float(display_size[1]/2.0)
+    print('RECENTERED')
+    return car_to_pixel_offset_x, car_to_pixel_offset_y
 
 # -------- Main Program Loop -----------
 while not done:
@@ -136,9 +141,7 @@ while not done:
                 zoom = 1
                 print('RESET')
             elif event.key == pygame.K_c:
-                car_to_pixel_offset_x = -car.state["x"] * pixel_to_meters_scale + float(display_size[0]/2.0)
-                car_to_pixel_offset_y = car.state["y"] * pixel_to_meters_scale + float(display_size[1]/2.0)
-                print('RECENTERED')
+                car_to_pixel_offset_x, car_to_pixel_offset_y = recenter_vehicle()
         if event.type == pygame.KEYUP:
             if event.key == pygame.K_UP:
                 keys["up"] = 0.0
@@ -162,7 +165,18 @@ while not done:
                 print('ZOOMING OUT, pixel_to_meters_scale = ', pixel_to_meters_scale)
                 car_to_pixel_offset_x = -car.state["x"] * pixel_to_meters_scale + float(display_size[0]/2.0)
                 car_to_pixel_offset_y = car.state["y"] * pixel_to_meters_scale + float(display_size[1]/2.0)
- 
+    
+    # Negate the y positions since pygame uses downwards as positive y direction.
+    # Add a car to pixel offset (this centers the car when zooming in or out of the display).
+    rect_x = car.state["x"] * pixel_to_meters_scale + car_to_pixel_offset_x
+    rect_y = -1.0*car.state["y"] * pixel_to_meters_scale + car_to_pixel_offset_y
+    # If the vehicle is outside the screen frame recenter the car in the screen.
+    if ((rect_x > display_size[0]) or (rect_x < 0 )):
+        car_to_pixel_offset_x, car_to_pixel_offset_y = recenter_vehicle()
+    # Negate the y positions since pygame uses downwards as positive y direction.
+    if ((rect_y > display_size[1]) or (rect_y < 0 )):
+        car_to_pixel_offset_x, car_to_pixel_offset_y = recenter_vehicle()
+
     # --- Game logic should go here
 
     # Update control inputs
