@@ -86,13 +86,16 @@ def update(car, update_sim_period):
     car.state = car.simTimeStep(car.state, car.control_input, update_sim_period)
     done = False
 
-def blitRotate(surface, rect_color, pos, rotation_angle):
+def blitRotate(surface, rect_color, rect_state):
     """
     - surface: the pygame sureface to draw on.
     - rect_color: The color to color the rectangle
+    - rect_state: Stores the state of the rectangle to draw. (x,y,length,width, rotation_angle)
     - pos: stores the rectangle (x,y,length,width)
     - rotation_angle: in degree
     """
+    pos = rect_state[0:4]
+    rotation_angle = rect_state[4]
     # define a surface (RECTANGLE)  
     image_orig = pygame.Surface((pos[2] , pos[3] ))  
     # for making transparent background while rotating an image  
@@ -116,33 +119,39 @@ def blitRotate(surface, rect_color, pos, rotation_angle):
     # drawing the rotated rectangle to the screen  
     surface.blit(new_image , rect)  
 
-def rectRotated( surface, color, pos, fill, border_radius, rotation_angle, rotation_offset_center = (0,0), nAntialiasingRatio = 1 ):
+def get_wheel_rect_states(car, car_rect_state):
     """
-    - rotation_angle: in degree
-    - rotation_offset_center: moving the center of the rotation: (-100,0) will turn the rectangle around a point 100 above center of the rectangle,
-                                            if (0,0) the rotation is at the center of the rectangle
-    - nAntialiasingRatio: set 1 for no antialising, 2/4/8 for better aliasing
+    - car: The vehicle class holding all vehicle state info.
+    - car_rect_state: The rectangle state representing the car stored as (x,y,width,length) in screen coordinates.
+    
+    return: A list storing the wheel rectangle states. (Front left, Front right, Rear Left, Rear Right) 
+            Each wheel rect state stores (x,y, length, width, rectangle_angle) in screen coordinates and angle in degrees. East is zero, clockwise is positive.
     """
-    nRenderRatio = nAntialiasingRatio
-    
-    sw = pos[2]+abs(rotation_offset_center[0])*2
-    sh = pos[3]+abs(rotation_offset_center[1])*2
+    rotation_angle = car.state["phi"] * 180.0 / math.pi  # Convert from radians to degrees.
+    rect_x = car_rect_state[0]
+    rect_y = car_rect_state[1]
+    half_width_x_offset = rect_w/2.0 * math.cos(math.pi/2.0 - car.state["phi"])
+    half_width_y_offset = rect_w/2.0 * math.sin(math.pi/2.0 - car.state["phi"])
+    half_length_x_offset = rect_l/2.0 * math.cos(- car.state["phi"])
+    half_length_y_offset = rect_l/2.0 * math.sin(- car.state["phi"])
 
-    surfcenterx = sw//2
-    surfcentery = sh//2
-    s = pygame.Surface( (sw*nRenderRatio,sh*nRenderRatio) )
-    s = s.convert_alpha()
-    s.fill((0,0,0,0))
-    
-    rw2=pos[2]//2 # halfwidth of rectangle
-    rh2=pos[3]//2
+    wheel_front_left_xy = (rect_x - half_width_x_offset + half_length_x_offset, rect_y - half_width_y_offset + half_length_y_offset)
+    wheel_front_left_angle = rotation_angle + car.control_input["delta"] * 180.0 / math.pi  # Convert from radians to degrees.
+    wheel_front_left_state = (wheel_front_left_xy[0], wheel_front_left_xy[1], rect_l / 4.0, rect_w / 4.0, wheel_front_left_angle)
 
-    pygame.draw.rect( s, color, ((surfcenterx-rw2-rotation_offset_center[0])*nRenderRatio,(surfcentery-rh2-rotation_offset_center[1])*nRenderRatio,pos[2]*nRenderRatio,pos[3]*nRenderRatio), (not fill)*nRenderRatio, border_radius=border_radius*nRenderRatio )
-    s = pygame.transform.rotate( s, rotation_angle )        
-    if nRenderRatio != 1: s = pygame.transform.smoothscale(s,(s.get_width()//nRenderRatio,s.get_height()//nRenderRatio))
-    incfromrotw = (s.get_width()-sw)//2
-    incfromroth = (s.get_height()-sh)//2
-    surface.blit( s, (pos[0]-surfcenterx+rotation_offset_center[0]+rw2-incfromrotw,pos[1]-surfcentery+rotation_offset_center[1]+rh2-incfromroth) )
+    wheel_front_right_xy = (rect_x + half_width_x_offset + half_length_x_offset , rect_y + half_width_y_offset + half_length_y_offset)
+    wheel_front_right_angle = rotation_angle + car.control_input["delta"] * 180.0 / math.pi  # Convert from radians to degrees.
+    wheel_front_right_state = (wheel_front_right_xy[0], wheel_front_right_xy[1], rect_l / 4.0, rect_w / 4.0, wheel_front_right_angle)
+
+    wheel_rear_left_xy = (rect_x - half_width_x_offset - half_length_x_offset, rect_y - half_width_y_offset - half_length_y_offset)
+    wheel_rear_left_angle = rotation_angle # In degrees
+    wheel_rear_left_state = (wheel_rear_left_xy[0], wheel_rear_left_xy[1], rect_l / 4.0, rect_w / 4.0, wheel_rear_left_angle)
+
+    wheel_rear_right_xy = (rect_x + half_width_x_offset - half_length_x_offset , rect_y + half_width_y_offset - half_length_y_offset)
+    wheel_rear_right_angle = rotation_angle # In degrees.
+    wheel_rear_right_state = (wheel_rear_right_xy[0], wheel_rear_right_xy[1], rect_l / 4.0, rect_w / 4.0, wheel_rear_right_angle)
+
+    return (wheel_front_left_state, wheel_front_right_state, wheel_rear_left_state, wheel_rear_right_state)
 
 def recenter_vehicle():
     car_to_pixel_offset_x = -car.state["x"] * pixel_to_meters_scale + float(display_size[0]/2.0)
@@ -247,33 +256,21 @@ while not done:
     rect_l = car.params["car_l"] * pixel_to_meters_scale
     rect_w = car.params["car_w"] * pixel_to_meters_scale
     rect_state = (rect_x, rect_y,
-                  rect_l, rect_w)
-    print("rect state = ", rect_state)
+                  rect_l, rect_w,
+                  rotation_angle)
+    #print("rect state = ", rect_state)
     angle_offset = (0.0, 0.0)
-    #rectRotated( screen, RED, rect_state, fill_vehicle_box, border_radius, rotation_angle, angle_offset, n_anti_aliasing_ratio)
-    blitRotate(screen, RED, rect_state, rotation_angle)
+    
+    blitRotate(screen, RED, rect_state)
     
     # Draw the Car wheels with steering angle. {lace at x and y positions around the car. 
     # Remember the rectangles are draw with the position being the center of the rectangle.
-    half_width_x_offset = rect_w/2.0 * math.cos(math.pi/2.0 - car.state["phi"])
-    half_width_y_offset = rect_w/2.0 * math.sin(math.pi/2.0 - car.state["phi"])
-    half_length_x_offset = rect_l/2.0 * math.cos(- car.state["phi"])
-    half_length_y_offset = rect_l/2.0 * math.sin(- car.state["phi"])
-
-    wheel_front_right_xy = (rect_x + half_width_x_offset + half_length_x_offset , rect_y + half_width_y_offset + half_length_y_offset)
-    wheel_front_right_state = (wheel_front_right_xy[0], wheel_front_right_xy[1], rect_l / 4.0, rect_w / 4.0)
-    wheel_front_right_angle = rotation_angle + car.control_input["delta"] * 180.0 / math.pi  # Convert from radians to degrees.
-
-    wheel_front_left_xy = (rect_x - half_width_x_offset + half_length_x_offset, rect_y - half_width_y_offset + half_length_y_offset)
-    wheel_front_left_state = (wheel_front_left_xy[0], wheel_front_left_xy[1], rect_l / 4.0, rect_w / 4.0)
-    wheel_front_left_angle = rotation_angle + car.control_input["delta"] * 180.0 / math.pi  # Convert from radians to degrees.
-
-    wheel_angle_offset = (0.0 , 0.0)
+    (wheel_front_left_state, wheel_front_right_state, wheel_rear_left_state, wheel_rear_right_state) = get_wheel_rect_states(car, rect_state)
     
-    #rectRotated( screen, BLACK, wheel_front_left_state, fill_vehicle_box, border_radius, wheel_front_left_angle, wheel_angle_offset, n_anti_aliasing_ratio)
-    #rectRotated( screen, BLACK, wheel_front_right_state, fill_vehicle_box, border_radius, wheel_front_right_angle, wheel_angle_offset, n_anti_aliasing_ratio)
-    blitRotate(screen, BLACK, wheel_front_left_state, wheel_front_left_angle)
-    blitRotate(screen, BLACK, wheel_front_right_state, wheel_front_right_angle)
+    blitRotate(screen, BLACK, wheel_front_left_state)
+    blitRotate(screen, BLACK, wheel_front_right_state)
+    blitRotate(screen, BLACK, wheel_rear_left_state)
+    blitRotate(screen, BLACK, wheel_rear_right_state)
 
     # --- Go ahead and update the screen with what we've drawn.
     pygame.display.flip()
