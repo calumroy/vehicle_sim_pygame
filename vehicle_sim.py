@@ -263,8 +263,8 @@ while not done:
     
     blitRotate(screen, RED, rect_state)
     
-    # Draw the Car wheels with steering angle. {lace at x and y positions around the car. 
-    # Remember the rectangles are draw with the position being the center of the rectangle.
+    # Draw the Car wheels with steering angle. Place at positions around the car. 
+    # Remember the rectangles are drawn with the position being the center of the rectangle.
     (wheel_front_left_state, wheel_front_right_state, wheel_rear_left_state, wheel_rear_right_state) = get_wheel_rect_states(car, rect_state)
     
     blitRotate(screen, BLACK, wheel_front_left_state)
