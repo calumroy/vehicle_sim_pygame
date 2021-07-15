@@ -21,8 +21,9 @@ RED = (255, 0, 0)
  
 pygame.init()
  
-FRAMES_PER_SEC = 60
+FRAMES_PER_SEC = 50
 UPDATE_SIM_HZ = 50
+frame_period = 1.0 / FRAMES_PER_SEC
 update_sim_period = 1.0 / float(UPDATE_SIM_HZ)
 frames_per_sim_update = int((1.0 / float(UPDATE_SIM_HZ)) * FRAMES_PER_SEC)
 print("frames_per_sim_update = {0}".format(frames_per_sim_update))
@@ -60,6 +61,7 @@ keys = {
 # Used to manage how fast the screen updates
 clock = pygame.time.Clock()
 tick_count = 0
+last_frame_time = time.time()
 
 # Timers
 last_print_time = time.time()
@@ -226,7 +228,7 @@ while not done:
     
     # Run simulation code
     tick_count += 1
-    if tick_count > frames_per_sim_update:
+    if tick_count >= frames_per_sim_update:
         tick_count = 0
         update(car, update_sim_period)
         # Add timer to keep track of how quickly the sim is running.
@@ -275,13 +277,13 @@ while not done:
 
     # --- Go ahead and update the screen with what we've drawn.
     pygame.display.flip()
- 
- 
 
     # --- Limit to FRAMES_PER_SEC frames per second
-    clock.tick(FRAMES_PER_SEC)
+    #frame_duration = clock.tick(FRAMES_PER_SEC)
+    if ((time.time() - last_frame_time) < (frame_period)):
+        sleep_time = frame_period - (time.time() - last_frame_time)
+        time.sleep(sleep_time)
+    last_frame_time = time.time()
 
-    
- 
 # Close the window and quit.
 pygame.quit()
