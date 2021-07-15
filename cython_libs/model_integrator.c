@@ -3,12 +3,12 @@
 /* BEGIN: Cython Metadata
 {
     "distutils": {
-        "name": "model_integrator",
+        "name": "cython_libs.model_integrator",
         "sources": [
             "model_integrator.pyx"
         ]
     },
-    "module_name": "model_integrator"
+    "module_name": "cython_libs.model_integrator"
 }
 END: Cython Metadata */
 
@@ -624,8 +624,8 @@ static CYTHON_INLINE float __PYX_NAN() {
   #endif
 #endif
 
-#define __PYX_HAVE__model_integrator
-#define __PYX_HAVE_API__model_integrator
+#define __PYX_HAVE__cython_libs__model_integrator
+#define __PYX_HAVE_API__cython_libs__model_integrator
 /* Early includes */
 #ifdef _OPENMP
 #include <omp.h>
@@ -1303,12 +1303,12 @@ static int __Pyx_check_binary_version(void);
 static int __Pyx_InitStrings(__Pyx_StringTabEntry *t);
 
 
-/* Module declarations from 'model_integrator' */
-#define __Pyx_MODULE_NAME "model_integrator"
-extern int __pyx_module_is_main_model_integrator;
-int __pyx_module_is_main_model_integrator = 0;
+/* Module declarations from 'cython_libs.model_integrator' */
+#define __Pyx_MODULE_NAME "cython_libs.model_integrator"
+extern int __pyx_module_is_main_cython_libs__model_integrator;
+int __pyx_module_is_main_cython_libs__model_integrator = 0;
 
-/* Implementation of 'model_integrator' */
+/* Implementation of 'cython_libs.model_integrator' */
 static PyObject *__pyx_builtin_range;
 static const char __pyx_k_f[] = "f_";
 static const char __pyx_k_g[] = "g";
@@ -1405,7 +1405,6 @@ static const char __pyx_k_fine_time_step[] = "fine_time_step_";
 static const char __pyx_k_friction_force[] = "friction_force";
 static const char __pyx_k_getForceFriction[] = "getForceFriction";
 static const char __pyx_k_getSlipAngleRear[] = "getSlipAngleRear";
-static const char __pyx_k_model_integrator[] = "model_integrator";
 static const char __pyx_k_tire_forces_rear[] = "tire_forces_rear";
 static const char __pyx_k_TireForces___init[] = "TireForces.__init__";
 static const char __pyx_k_getSlipAngleFront[] = "getSlipAngleFront";
@@ -1422,6 +1421,7 @@ static const char __pyx_k_Vehicle_vectorToState[] = "Vehicle.vectorToState";
 static const char __pyx_k_Vehicle_getForceFriction[] = "Vehicle.getForceFriction";
 static const char __pyx_k_Vehicle_getSlipAngleRear[] = "Vehicle.getSlipAngleRear";
 static const char __pyx_k_Vehicle_getSlipAngleFront[] = "Vehicle.getSlipAngleFront";
+static const char __pyx_k_cython_libs_model_integrator[] = "cython_libs.model_integrator";
 static const char __pyx_k_Warning_ts_self_fine_time_step[] = "Warning ts/self.fine_time_step_{0} integration_steps = {1}";
 static const char __pyx_k_A_simple_class_defining_a_vehicl[] = "A simple class defining a vehicle.";
 static PyObject *__pyx_kp_s_A_simple_class_defining_a_vehicl;
@@ -1467,6 +1467,7 @@ static PyObject *__pyx_n_s_car_w;
 static PyObject *__pyx_n_s_cline_in_traceback;
 static PyObject *__pyx_n_s_control_input;
 static PyObject *__pyx_n_s_cos;
+static PyObject *__pyx_n_s_cython_libs_model_integrator;
 static PyObject *__pyx_n_s_delta;
 static PyObject *__pyx_n_s_doc;
 static PyObject *__pyx_n_s_end;
@@ -1498,7 +1499,6 @@ static PyObject *__pyx_n_s_main;
 static PyObject *__pyx_n_s_mass;
 static PyObject *__pyx_n_s_math;
 static PyObject *__pyx_n_s_metaclass;
-static PyObject *__pyx_n_s_model_integrator;
 static PyObject *__pyx_kp_s_model_integrator_pyx;
 static PyObject *__pyx_n_s_module;
 static PyObject *__pyx_n_s_name;
@@ -1538,19 +1538,19 @@ static PyObject *__pyx_n_s_x_next;
 static PyObject *__pyx_n_s_x_vec;
 static PyObject *__pyx_n_s_xk;
 static PyObject *__pyx_n_s_y;
-static PyObject *__pyx_pf_16model_integrator_10TireForces___init__(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_self, PyObject *__pyx_v_F_x, PyObject *__pyx_v_F_y); /* proto */
-static PyObject *__pyx_pf_16model_integrator_7Vehicle___init__(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_self, PyObject *__pyx_v_start_pos); /* proto */
-static PyObject *__pyx_pf_16model_integrator_7Vehicle_2stateToVector(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_self, PyObject *__pyx_v_x); /* proto */
-static PyObject *__pyx_pf_16model_integrator_7Vehicle_4vectorToState(CYTHON_UNUSED PyObject *__pyx_self, CYTHON_UNUSED PyObject *__pyx_v_self, PyObject *__pyx_v_x_vec); /* proto */
-static PyObject *__pyx_pf_16model_integrator_7Vehicle_6inputToVector(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_self, PyObject *__pyx_v_u); /* proto */
-static PyObject *__pyx_pf_16model_integrator_7Vehicle_8getSlipAngleFront(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_self, PyObject *__pyx_v_x, PyObject *__pyx_v_u); /* proto */
-static PyObject *__pyx_pf_16model_integrator_7Vehicle_10getSlipAngleRear(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_self, PyObject *__pyx_v_x, CYTHON_UNUSED PyObject *__pyx_v_u); /* proto */
-static PyObject *__pyx_pf_16model_integrator_7Vehicle_12getForceFront(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_self, PyObject *__pyx_v_x, PyObject *__pyx_v_u); /* proto */
-static PyObject *__pyx_pf_16model_integrator_7Vehicle_14getForceRear(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_self, PyObject *__pyx_v_x, PyObject *__pyx_v_u); /* proto */
-static PyObject *__pyx_pf_16model_integrator_7Vehicle_16getForceFriction(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_self, PyObject *__pyx_v_x); /* proto */
-static PyObject *__pyx_pf_16model_integrator_7Vehicle_18getF(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_self, PyObject *__pyx_v_x, PyObject *__pyx_v_u, PyObject *__pyx_v_param); /* proto */
-static PyObject *__pyx_pf_16model_integrator_7Vehicle_20RK4(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_self, PyObject *__pyx_v_x, PyObject *__pyx_v_u, PyObject *__pyx_v_ts); /* proto */
-static PyObject *__pyx_pf_16model_integrator_7Vehicle_22simTimeStep(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_self, PyObject *__pyx_v_x, PyObject *__pyx_v_u, PyObject *__pyx_v_ts); /* proto */
+static PyObject *__pyx_pf_11cython_libs_16model_integrator_10TireForces___init__(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_self, PyObject *__pyx_v_F_x, PyObject *__pyx_v_F_y); /* proto */
+static PyObject *__pyx_pf_11cython_libs_16model_integrator_7Vehicle___init__(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_self, PyObject *__pyx_v_start_pos); /* proto */
+static PyObject *__pyx_pf_11cython_libs_16model_integrator_7Vehicle_2stateToVector(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_self, PyObject *__pyx_v_x); /* proto */
+static PyObject *__pyx_pf_11cython_libs_16model_integrator_7Vehicle_4vectorToState(CYTHON_UNUSED PyObject *__pyx_self, CYTHON_UNUSED PyObject *__pyx_v_self, PyObject *__pyx_v_x_vec); /* proto */
+static PyObject *__pyx_pf_11cython_libs_16model_integrator_7Vehicle_6inputToVector(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_self, PyObject *__pyx_v_u); /* proto */
+static PyObject *__pyx_pf_11cython_libs_16model_integrator_7Vehicle_8getSlipAngleFront(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_self, PyObject *__pyx_v_x, PyObject *__pyx_v_u); /* proto */
+static PyObject *__pyx_pf_11cython_libs_16model_integrator_7Vehicle_10getSlipAngleRear(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_self, PyObject *__pyx_v_x, CYTHON_UNUSED PyObject *__pyx_v_u); /* proto */
+static PyObject *__pyx_pf_11cython_libs_16model_integrator_7Vehicle_12getForceFront(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_self, PyObject *__pyx_v_x, PyObject *__pyx_v_u); /* proto */
+static PyObject *__pyx_pf_11cython_libs_16model_integrator_7Vehicle_14getForceRear(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_self, PyObject *__pyx_v_x, PyObject *__pyx_v_u); /* proto */
+static PyObject *__pyx_pf_11cython_libs_16model_integrator_7Vehicle_16getForceFriction(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_self, PyObject *__pyx_v_x); /* proto */
+static PyObject *__pyx_pf_11cython_libs_16model_integrator_7Vehicle_18getF(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_self, PyObject *__pyx_v_x, PyObject *__pyx_v_u, PyObject *__pyx_v_param); /* proto */
+static PyObject *__pyx_pf_11cython_libs_16model_integrator_7Vehicle_20RK4(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_self, PyObject *__pyx_v_x, PyObject *__pyx_v_u, PyObject *__pyx_v_ts); /* proto */
+static PyObject *__pyx_pf_11cython_libs_16model_integrator_7Vehicle_22simTimeStep(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_self, PyObject *__pyx_v_x, PyObject *__pyx_v_u, PyObject *__pyx_v_ts); /* proto */
 static PyObject *__pyx_float_2_;
 static PyObject *__pyx_float_3_;
 static PyObject *__pyx_float_6_;
@@ -1601,7 +1601,7 @@ static PyObject *__pyx_codeobj__24;
 static PyObject *__pyx_codeobj__26;
 /* Late includes */
 
-/* "model_integrator.pyx":5
+/* "cython_libs/model_integrator.pyx":5
  * 
  * class TireForces:
  *     def __init__(self, F_x, F_y):             # <<<<<<<<<<<<<<
@@ -1610,9 +1610,9 @@ static PyObject *__pyx_codeobj__26;
  */
 
 /* Python wrapper */
-static PyObject *__pyx_pw_16model_integrator_10TireForces_1__init__(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
-static PyMethodDef __pyx_mdef_16model_integrator_10TireForces_1__init__ = {"__init__", (PyCFunction)(void*)(PyCFunctionWithKeywords)__pyx_pw_16model_integrator_10TireForces_1__init__, METH_VARARGS|METH_KEYWORDS, 0};
-static PyObject *__pyx_pw_16model_integrator_10TireForces_1__init__(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds) {
+static PyObject *__pyx_pw_11cython_libs_16model_integrator_10TireForces_1__init__(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
+static PyMethodDef __pyx_mdef_11cython_libs_16model_integrator_10TireForces_1__init__ = {"__init__", (PyCFunction)(void*)(PyCFunctionWithKeywords)__pyx_pw_11cython_libs_16model_integrator_10TireForces_1__init__, METH_VARARGS|METH_KEYWORDS, 0};
+static PyObject *__pyx_pw_11cython_libs_16model_integrator_10TireForces_1__init__(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds) {
   PyObject *__pyx_v_self = 0;
   PyObject *__pyx_v_F_x = 0;
   PyObject *__pyx_v_F_y = 0;
@@ -1674,18 +1674,18 @@ static PyObject *__pyx_pw_16model_integrator_10TireForces_1__init__(PyObject *__
   __pyx_L5_argtuple_error:;
   __Pyx_RaiseArgtupleInvalid("__init__", 1, 3, 3, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 5, __pyx_L3_error)
   __pyx_L3_error:;
-  __Pyx_AddTraceback("model_integrator.TireForces.__init__", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_AddTraceback("cython_libs.model_integrator.TireForces.__init__", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
   return NULL;
   __pyx_L4_argument_unpacking_done:;
-  __pyx_r = __pyx_pf_16model_integrator_10TireForces___init__(__pyx_self, __pyx_v_self, __pyx_v_F_x, __pyx_v_F_y);
+  __pyx_r = __pyx_pf_11cython_libs_16model_integrator_10TireForces___init__(__pyx_self, __pyx_v_self, __pyx_v_F_x, __pyx_v_F_y);
 
   /* function exit code */
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_16model_integrator_10TireForces___init__(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_self, PyObject *__pyx_v_F_x, PyObject *__pyx_v_F_y) {
+static PyObject *__pyx_pf_11cython_libs_16model_integrator_10TireForces___init__(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_self, PyObject *__pyx_v_F_x, PyObject *__pyx_v_F_y) {
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
   int __pyx_lineno = 0;
@@ -1693,7 +1693,7 @@ static PyObject *__pyx_pf_16model_integrator_10TireForces___init__(CYTHON_UNUSED
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("__init__", 0);
 
-  /* "model_integrator.pyx":6
+  /* "cython_libs/model_integrator.pyx":6
  * class TireForces:
  *     def __init__(self, F_x, F_y):
  *         self.F_x = F_x             # <<<<<<<<<<<<<<
@@ -1702,7 +1702,7 @@ static PyObject *__pyx_pf_16model_integrator_10TireForces___init__(CYTHON_UNUSED
  */
   if (__Pyx_PyObject_SetAttrStr(__pyx_v_self, __pyx_n_s_F_x, __pyx_v_F_x) < 0) __PYX_ERR(0, 6, __pyx_L1_error)
 
-  /* "model_integrator.pyx":7
+  /* "cython_libs/model_integrator.pyx":7
  *     def __init__(self, F_x, F_y):
  *         self.F_x = F_x
  *         self.F_y = F_y             # <<<<<<<<<<<<<<
@@ -1711,7 +1711,7 @@ static PyObject *__pyx_pf_16model_integrator_10TireForces___init__(CYTHON_UNUSED
  */
   if (__Pyx_PyObject_SetAttrStr(__pyx_v_self, __pyx_n_s_F_y, __pyx_v_F_y) < 0) __PYX_ERR(0, 7, __pyx_L1_error)
 
-  /* "model_integrator.pyx":5
+  /* "cython_libs/model_integrator.pyx":5
  * 
  * class TireForces:
  *     def __init__(self, F_x, F_y):             # <<<<<<<<<<<<<<
@@ -1723,7 +1723,7 @@ static PyObject *__pyx_pf_16model_integrator_10TireForces___init__(CYTHON_UNUSED
   __pyx_r = Py_None; __Pyx_INCREF(Py_None);
   goto __pyx_L0;
   __pyx_L1_error:;
-  __Pyx_AddTraceback("model_integrator.TireForces.__init__", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_AddTraceback("cython_libs.model_integrator.TireForces.__init__", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __pyx_r = NULL;
   __pyx_L0:;
   __Pyx_XGIVEREF(__pyx_r);
@@ -1731,7 +1731,7 @@ static PyObject *__pyx_pf_16model_integrator_10TireForces___init__(CYTHON_UNUSED
   return __pyx_r;
 }
 
-/* "model_integrator.pyx":13
+/* "cython_libs/model_integrator.pyx":13
  *     """A simple class defining a vehicle."""
  *     # start_pos is a tuple (x,y) a 2d position
  *     def __init__(self, start_pos):             # <<<<<<<<<<<<<<
@@ -1740,9 +1740,9 @@ static PyObject *__pyx_pf_16model_integrator_10TireForces___init__(CYTHON_UNUSED
  */
 
 /* Python wrapper */
-static PyObject *__pyx_pw_16model_integrator_7Vehicle_1__init__(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
-static PyMethodDef __pyx_mdef_16model_integrator_7Vehicle_1__init__ = {"__init__", (PyCFunction)(void*)(PyCFunctionWithKeywords)__pyx_pw_16model_integrator_7Vehicle_1__init__, METH_VARARGS|METH_KEYWORDS, 0};
-static PyObject *__pyx_pw_16model_integrator_7Vehicle_1__init__(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds) {
+static PyObject *__pyx_pw_11cython_libs_16model_integrator_7Vehicle_1__init__(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
+static PyMethodDef __pyx_mdef_11cython_libs_16model_integrator_7Vehicle_1__init__ = {"__init__", (PyCFunction)(void*)(PyCFunctionWithKeywords)__pyx_pw_11cython_libs_16model_integrator_7Vehicle_1__init__, METH_VARARGS|METH_KEYWORDS, 0};
+static PyObject *__pyx_pw_11cython_libs_16model_integrator_7Vehicle_1__init__(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds) {
   PyObject *__pyx_v_self = 0;
   PyObject *__pyx_v_start_pos = 0;
   int __pyx_lineno = 0;
@@ -1793,18 +1793,18 @@ static PyObject *__pyx_pw_16model_integrator_7Vehicle_1__init__(PyObject *__pyx_
   __pyx_L5_argtuple_error:;
   __Pyx_RaiseArgtupleInvalid("__init__", 1, 2, 2, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 13, __pyx_L3_error)
   __pyx_L3_error:;
-  __Pyx_AddTraceback("model_integrator.Vehicle.__init__", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_AddTraceback("cython_libs.model_integrator.Vehicle.__init__", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
   return NULL;
   __pyx_L4_argument_unpacking_done:;
-  __pyx_r = __pyx_pf_16model_integrator_7Vehicle___init__(__pyx_self, __pyx_v_self, __pyx_v_start_pos);
+  __pyx_r = __pyx_pf_11cython_libs_16model_integrator_7Vehicle___init__(__pyx_self, __pyx_v_self, __pyx_v_start_pos);
 
   /* function exit code */
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_16model_integrator_7Vehicle___init__(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_self, PyObject *__pyx_v_start_pos) {
+static PyObject *__pyx_pf_11cython_libs_16model_integrator_7Vehicle___init__(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_self, PyObject *__pyx_v_start_pos) {
   CYTHON_UNUSED PyObject *__pyx_v_i = NULL;
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
@@ -1820,7 +1820,7 @@ static PyObject *__pyx_pf_16model_integrator_7Vehicle___init__(CYTHON_UNUSED PyO
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("__init__", 0);
 
-  /* "model_integrator.pyx":15
+  /* "cython_libs/model_integrator.pyx":15
  *     def __init__(self, start_pos):
  * 
  *         self.start_pos = (start_pos[0], start_pos[1])             # <<<<<<<<<<<<<<
@@ -1842,7 +1842,7 @@ static PyObject *__pyx_pf_16model_integrator_7Vehicle___init__(CYTHON_UNUSED PyO
   if (__Pyx_PyObject_SetAttrStr(__pyx_v_self, __pyx_n_s_start_pos, __pyx_t_3) < 0) __PYX_ERR(0, 15, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
 
-  /* "model_integrator.pyx":17
+  /* "cython_libs/model_integrator.pyx":17
  *         self.start_pos = (start_pos[0], start_pos[1])
  *         # Number of state variables.
  *         self.NX = 6             # <<<<<<<<<<<<<<
@@ -1851,7 +1851,7 @@ static PyObject *__pyx_pf_16model_integrator_7Vehicle___init__(CYTHON_UNUSED PyO
  */
   if (__Pyx_PyObject_SetAttrStr(__pyx_v_self, __pyx_n_s_NX, __pyx_int_6) < 0) __PYX_ERR(0, 17, __pyx_L1_error)
 
-  /* "model_integrator.pyx":19
+  /* "cython_libs/model_integrator.pyx":19
  *         self.NX = 6
  *         # Number of input variables
  *         self.NU = 2             # <<<<<<<<<<<<<<
@@ -1860,7 +1860,7 @@ static PyObject *__pyx_pf_16model_integrator_7Vehicle___init__(CYTHON_UNUSED PyO
  */
   if (__Pyx_PyObject_SetAttrStr(__pyx_v_self, __pyx_n_s_NU, __pyx_int_2) < 0) __PYX_ERR(0, 19, __pyx_L1_error)
 
-  /* "model_integrator.pyx":22
+  /* "cython_libs/model_integrator.pyx":22
  *         # The amount of time to step through each timestep.
  *         # Thsi is used in the model integrator when progating the state space forward.
  *         self.fine_time_step_ = 0.001  # [secs]             # <<<<<<<<<<<<<<
@@ -1869,7 +1869,7 @@ static PyObject *__pyx_pf_16model_integrator_7Vehicle___init__(CYTHON_UNUSED PyO
  */
   if (__Pyx_PyObject_SetAttrStr(__pyx_v_self, __pyx_n_s_fine_time_step, __pyx_float_0_001) < 0) __PYX_ERR(0, 22, __pyx_L1_error)
 
-  /* "model_integrator.pyx":26
+  /* "cython_libs/model_integrator.pyx":26
  *         # Used internally to convert from vec to state dict.
  *         # These save us from having to create new arrays each time.
  *         self.xk_ = np.array([0.0 for i in range(self.NX)])             # <<<<<<<<<<<<<<
@@ -1952,7 +1952,7 @@ static PyObject *__pyx_pf_16model_integrator_7Vehicle___init__(CYTHON_UNUSED PyO
   if (__Pyx_PyObject_SetAttrStr(__pyx_v_self, __pyx_n_s_xk, __pyx_t_3) < 0) __PYX_ERR(0, 26, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
 
-  /* "model_integrator.pyx":27
+  /* "cython_libs/model_integrator.pyx":27
  *         # These save us from having to create new arrays each time.
  *         self.xk_ = np.array([0.0 for i in range(self.NX)])
  *         self.uk_ = np.array([0.0 for i in range(self.NU)])             # <<<<<<<<<<<<<<
@@ -2035,7 +2035,7 @@ static PyObject *__pyx_pf_16model_integrator_7Vehicle___init__(CYTHON_UNUSED PyO
   if (__Pyx_PyObject_SetAttrStr(__pyx_v_self, __pyx_n_s_uk, __pyx_t_3) < 0) __PYX_ERR(0, 27, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
 
-  /* "model_integrator.pyx":28
+  /* "cython_libs/model_integrator.pyx":28
  *         self.xk_ = np.array([0.0 for i in range(self.NX)])
  *         self.uk_ = np.array([0.0 for i in range(self.NU)])
  *         self.f_ = np.array([0.0 for i in range(self.NX)])             # <<<<<<<<<<<<<<
@@ -2118,7 +2118,7 @@ static PyObject *__pyx_pf_16model_integrator_7Vehicle___init__(CYTHON_UNUSED PyO
   if (__Pyx_PyObject_SetAttrStr(__pyx_v_self, __pyx_n_s_f, __pyx_t_3) < 0) __PYX_ERR(0, 28, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
 
-  /* "model_integrator.pyx":31
+  /* "cython_libs/model_integrator.pyx":31
  * 
  *         self.control_input = {
  *                         "Fx": 0.0,  # Force in the longitudinal direction on rear wheels             # <<<<<<<<<<<<<<
@@ -2130,7 +2130,7 @@ static PyObject *__pyx_pf_16model_integrator_7Vehicle___init__(CYTHON_UNUSED PyO
   if (PyDict_SetItem(__pyx_t_3, __pyx_n_s_Fx, __pyx_float_0_0) < 0) __PYX_ERR(0, 31, __pyx_L1_error)
   if (PyDict_SetItem(__pyx_t_3, __pyx_n_s_delta, __pyx_float_0_0) < 0) __PYX_ERR(0, 31, __pyx_L1_error)
 
-  /* "model_integrator.pyx":30
+  /* "cython_libs/model_integrator.pyx":30
  *         self.f_ = np.array([0.0 for i in range(self.NX)])
  * 
  *         self.control_input = {             # <<<<<<<<<<<<<<
@@ -2140,7 +2140,7 @@ static PyObject *__pyx_pf_16model_integrator_7Vehicle___init__(CYTHON_UNUSED PyO
   if (__Pyx_PyObject_SetAttrStr(__pyx_v_self, __pyx_n_s_control_input, __pyx_t_3) < 0) __PYX_ERR(0, 30, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
 
-  /* "model_integrator.pyx":36
+  /* "cython_libs/model_integrator.pyx":36
  * 
  *         self.state = {
  *                         "x": self.start_pos[0], # X position of the center of gravity of the vehicle.             # <<<<<<<<<<<<<<
@@ -2157,7 +2157,7 @@ static PyObject *__pyx_pf_16model_integrator_7Vehicle___init__(CYTHON_UNUSED PyO
   if (PyDict_SetItem(__pyx_t_3, __pyx_n_s_x, __pyx_t_2) < 0) __PYX_ERR(0, 36, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
-  /* "model_integrator.pyx":37
+  /* "cython_libs/model_integrator.pyx":37
  *         self.state = {
  *                         "x": self.start_pos[0], # X position of the center of gravity of the vehicle.
  *                         "y": self.start_pos[1], # Y position of the center of gravity of the vehicle.             # <<<<<<<<<<<<<<
@@ -2176,7 +2176,7 @@ static PyObject *__pyx_pf_16model_integrator_7Vehicle___init__(CYTHON_UNUSED PyO
   if (PyDict_SetItem(__pyx_t_3, __pyx_n_s_vy, __pyx_float_0_0) < 0) __PYX_ERR(0, 36, __pyx_L1_error)
   if (PyDict_SetItem(__pyx_t_3, __pyx_n_s_r, __pyx_float_0_0) < 0) __PYX_ERR(0, 36, __pyx_L1_error)
 
-  /* "model_integrator.pyx":35
+  /* "cython_libs/model_integrator.pyx":35
  *                     }
  * 
  *         self.state = {             # <<<<<<<<<<<<<<
@@ -2186,7 +2186,7 @@ static PyObject *__pyx_pf_16model_integrator_7Vehicle___init__(CYTHON_UNUSED PyO
   if (__Pyx_PyObject_SetAttrStr(__pyx_v_self, __pyx_n_s_state, __pyx_t_3) < 0) __PYX_ERR(0, 35, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
 
-  /* "model_integrator.pyx":45
+  /* "cython_libs/model_integrator.pyx":45
  * 
  *         self.params = {
  *                         "mass" 	: 2000.0, # Mass of the vehicle [kg]             # <<<<<<<<<<<<<<
@@ -2211,7 +2211,7 @@ static PyObject *__pyx_pf_16model_integrator_7Vehicle___init__(CYTHON_UNUSED PyO
   if (PyDict_SetItem(__pyx_t_3, __pyx_n_s_Cr0, __pyx_float_0_0518) < 0) __PYX_ERR(0, 45, __pyx_L1_error)
   if (PyDict_SetItem(__pyx_t_3, __pyx_n_s_Cr2, __pyx_float_0_00035) < 0) __PYX_ERR(0, 45, __pyx_L1_error)
 
-  /* "model_integrator.pyx":44
+  /* "cython_libs/model_integrator.pyx":44
  *                      }
  * 
  *         self.params = {             # <<<<<<<<<<<<<<
@@ -2221,7 +2221,7 @@ static PyObject *__pyx_pf_16model_integrator_7Vehicle___init__(CYTHON_UNUSED PyO
   if (__Pyx_PyObject_SetAttrStr(__pyx_v_self, __pyx_n_s_params, __pyx_t_3) < 0) __PYX_ERR(0, 44, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
 
-  /* "model_integrator.pyx":13
+  /* "cython_libs/model_integrator.pyx":13
  *     """A simple class defining a vehicle."""
  *     # start_pos is a tuple (x,y) a 2d position
  *     def __init__(self, start_pos):             # <<<<<<<<<<<<<<
@@ -2238,7 +2238,7 @@ static PyObject *__pyx_pf_16model_integrator_7Vehicle___init__(CYTHON_UNUSED PyO
   __Pyx_XDECREF(__pyx_t_3);
   __Pyx_XDECREF(__pyx_t_4);
   __Pyx_XDECREF(__pyx_t_5);
-  __Pyx_AddTraceback("model_integrator.Vehicle.__init__", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_AddTraceback("cython_libs.model_integrator.Vehicle.__init__", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __pyx_r = NULL;
   __pyx_L0:;
   __Pyx_XDECREF(__pyx_v_i);
@@ -2247,7 +2247,7 @@ static PyObject *__pyx_pf_16model_integrator_7Vehicle___init__(CYTHON_UNUSED PyO
   return __pyx_r;
 }
 
-/* "model_integrator.pyx":67
+/* "cython_libs/model_integrator.pyx":67
  *                         "Cr2" : 0.00035, # quadratic friciton multiplier on the vehicle velocity.
  *                     }
  *     def stateToVector(self, x):             # <<<<<<<<<<<<<<
@@ -2256,9 +2256,9 @@ static PyObject *__pyx_pf_16model_integrator_7Vehicle___init__(CYTHON_UNUSED PyO
  */
 
 /* Python wrapper */
-static PyObject *__pyx_pw_16model_integrator_7Vehicle_3stateToVector(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
-static PyMethodDef __pyx_mdef_16model_integrator_7Vehicle_3stateToVector = {"stateToVector", (PyCFunction)(void*)(PyCFunctionWithKeywords)__pyx_pw_16model_integrator_7Vehicle_3stateToVector, METH_VARARGS|METH_KEYWORDS, 0};
-static PyObject *__pyx_pw_16model_integrator_7Vehicle_3stateToVector(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds) {
+static PyObject *__pyx_pw_11cython_libs_16model_integrator_7Vehicle_3stateToVector(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
+static PyMethodDef __pyx_mdef_11cython_libs_16model_integrator_7Vehicle_3stateToVector = {"stateToVector", (PyCFunction)(void*)(PyCFunctionWithKeywords)__pyx_pw_11cython_libs_16model_integrator_7Vehicle_3stateToVector, METH_VARARGS|METH_KEYWORDS, 0};
+static PyObject *__pyx_pw_11cython_libs_16model_integrator_7Vehicle_3stateToVector(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds) {
   PyObject *__pyx_v_self = 0;
   PyObject *__pyx_v_x = 0;
   int __pyx_lineno = 0;
@@ -2309,18 +2309,18 @@ static PyObject *__pyx_pw_16model_integrator_7Vehicle_3stateToVector(PyObject *_
   __pyx_L5_argtuple_error:;
   __Pyx_RaiseArgtupleInvalid("stateToVector", 1, 2, 2, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 67, __pyx_L3_error)
   __pyx_L3_error:;
-  __Pyx_AddTraceback("model_integrator.Vehicle.stateToVector", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_AddTraceback("cython_libs.model_integrator.Vehicle.stateToVector", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
   return NULL;
   __pyx_L4_argument_unpacking_done:;
-  __pyx_r = __pyx_pf_16model_integrator_7Vehicle_2stateToVector(__pyx_self, __pyx_v_self, __pyx_v_x);
+  __pyx_r = __pyx_pf_11cython_libs_16model_integrator_7Vehicle_2stateToVector(__pyx_self, __pyx_v_self, __pyx_v_x);
 
   /* function exit code */
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_16model_integrator_7Vehicle_2stateToVector(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_self, PyObject *__pyx_v_x) {
+static PyObject *__pyx_pf_11cython_libs_16model_integrator_7Vehicle_2stateToVector(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_self, PyObject *__pyx_v_x) {
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
   PyObject *__pyx_t_1 = NULL;
@@ -2330,7 +2330,7 @@ static PyObject *__pyx_pf_16model_integrator_7Vehicle_2stateToVector(CYTHON_UNUS
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("stateToVector", 0);
 
-  /* "model_integrator.pyx":69
+  /* "cython_libs/model_integrator.pyx":69
  *     def stateToVector(self, x):
  * 
  *         self.xk_[0] = x["x"]             # <<<<<<<<<<<<<<
@@ -2345,7 +2345,7 @@ static PyObject *__pyx_pf_16model_integrator_7Vehicle_2stateToVector(CYTHON_UNUS
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "model_integrator.pyx":70
+  /* "cython_libs/model_integrator.pyx":70
  * 
  *         self.xk_[0] = x["x"]
  *         self.xk_[1] = x["y"]             # <<<<<<<<<<<<<<
@@ -2360,7 +2360,7 @@ static PyObject *__pyx_pf_16model_integrator_7Vehicle_2stateToVector(CYTHON_UNUS
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "model_integrator.pyx":71
+  /* "cython_libs/model_integrator.pyx":71
  *         self.xk_[0] = x["x"]
  *         self.xk_[1] = x["y"]
  *         self.xk_[2] = x["phi"]             # <<<<<<<<<<<<<<
@@ -2375,7 +2375,7 @@ static PyObject *__pyx_pf_16model_integrator_7Vehicle_2stateToVector(CYTHON_UNUS
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "model_integrator.pyx":72
+  /* "cython_libs/model_integrator.pyx":72
  *         self.xk_[1] = x["y"]
  *         self.xk_[2] = x["phi"]
  *         self.xk_[3] = x["vx"]             # <<<<<<<<<<<<<<
@@ -2390,7 +2390,7 @@ static PyObject *__pyx_pf_16model_integrator_7Vehicle_2stateToVector(CYTHON_UNUS
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "model_integrator.pyx":73
+  /* "cython_libs/model_integrator.pyx":73
  *         self.xk_[2] = x["phi"]
  *         self.xk_[3] = x["vx"]
  *         self.xk_[4] = x["vy"]             # <<<<<<<<<<<<<<
@@ -2405,7 +2405,7 @@ static PyObject *__pyx_pf_16model_integrator_7Vehicle_2stateToVector(CYTHON_UNUS
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "model_integrator.pyx":74
+  /* "cython_libs/model_integrator.pyx":74
  *         self.xk_[3] = x["vx"]
  *         self.xk_[4] = x["vy"]
  *         self.xk_[5] = x["r"]             # <<<<<<<<<<<<<<
@@ -2420,7 +2420,7 @@ static PyObject *__pyx_pf_16model_integrator_7Vehicle_2stateToVector(CYTHON_UNUS
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "model_integrator.pyx":75
+  /* "cython_libs/model_integrator.pyx":75
  *         self.xk_[4] = x["vy"]
  *         self.xk_[5] = x["r"]
  *         return self.xk_             # <<<<<<<<<<<<<<
@@ -2434,7 +2434,7 @@ static PyObject *__pyx_pf_16model_integrator_7Vehicle_2stateToVector(CYTHON_UNUS
   __pyx_t_1 = 0;
   goto __pyx_L0;
 
-  /* "model_integrator.pyx":67
+  /* "cython_libs/model_integrator.pyx":67
  *                         "Cr2" : 0.00035, # quadratic friciton multiplier on the vehicle velocity.
  *                     }
  *     def stateToVector(self, x):             # <<<<<<<<<<<<<<
@@ -2446,7 +2446,7 @@ static PyObject *__pyx_pf_16model_integrator_7Vehicle_2stateToVector(CYTHON_UNUS
   __pyx_L1_error:;
   __Pyx_XDECREF(__pyx_t_1);
   __Pyx_XDECREF(__pyx_t_2);
-  __Pyx_AddTraceback("model_integrator.Vehicle.stateToVector", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_AddTraceback("cython_libs.model_integrator.Vehicle.stateToVector", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __pyx_r = NULL;
   __pyx_L0:;
   __Pyx_XGIVEREF(__pyx_r);
@@ -2454,7 +2454,7 @@ static PyObject *__pyx_pf_16model_integrator_7Vehicle_2stateToVector(CYTHON_UNUS
   return __pyx_r;
 }
 
-/* "model_integrator.pyx":77
+/* "cython_libs/model_integrator.pyx":77
  *         return self.xk_
  * 
  *     def vectorToState(self, x_vec):             # <<<<<<<<<<<<<<
@@ -2463,9 +2463,9 @@ static PyObject *__pyx_pf_16model_integrator_7Vehicle_2stateToVector(CYTHON_UNUS
  */
 
 /* Python wrapper */
-static PyObject *__pyx_pw_16model_integrator_7Vehicle_5vectorToState(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
-static PyMethodDef __pyx_mdef_16model_integrator_7Vehicle_5vectorToState = {"vectorToState", (PyCFunction)(void*)(PyCFunctionWithKeywords)__pyx_pw_16model_integrator_7Vehicle_5vectorToState, METH_VARARGS|METH_KEYWORDS, 0};
-static PyObject *__pyx_pw_16model_integrator_7Vehicle_5vectorToState(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds) {
+static PyObject *__pyx_pw_11cython_libs_16model_integrator_7Vehicle_5vectorToState(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
+static PyMethodDef __pyx_mdef_11cython_libs_16model_integrator_7Vehicle_5vectorToState = {"vectorToState", (PyCFunction)(void*)(PyCFunctionWithKeywords)__pyx_pw_11cython_libs_16model_integrator_7Vehicle_5vectorToState, METH_VARARGS|METH_KEYWORDS, 0};
+static PyObject *__pyx_pw_11cython_libs_16model_integrator_7Vehicle_5vectorToState(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds) {
   CYTHON_UNUSED PyObject *__pyx_v_self = 0;
   PyObject *__pyx_v_x_vec = 0;
   int __pyx_lineno = 0;
@@ -2516,18 +2516,18 @@ static PyObject *__pyx_pw_16model_integrator_7Vehicle_5vectorToState(PyObject *_
   __pyx_L5_argtuple_error:;
   __Pyx_RaiseArgtupleInvalid("vectorToState", 1, 2, 2, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 77, __pyx_L3_error)
   __pyx_L3_error:;
-  __Pyx_AddTraceback("model_integrator.Vehicle.vectorToState", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_AddTraceback("cython_libs.model_integrator.Vehicle.vectorToState", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
   return NULL;
   __pyx_L4_argument_unpacking_done:;
-  __pyx_r = __pyx_pf_16model_integrator_7Vehicle_4vectorToState(__pyx_self, __pyx_v_self, __pyx_v_x_vec);
+  __pyx_r = __pyx_pf_11cython_libs_16model_integrator_7Vehicle_4vectorToState(__pyx_self, __pyx_v_self, __pyx_v_x_vec);
 
   /* function exit code */
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_16model_integrator_7Vehicle_4vectorToState(CYTHON_UNUSED PyObject *__pyx_self, CYTHON_UNUSED PyObject *__pyx_v_self, PyObject *__pyx_v_x_vec) {
+static PyObject *__pyx_pf_11cython_libs_16model_integrator_7Vehicle_4vectorToState(CYTHON_UNUSED PyObject *__pyx_self, CYTHON_UNUSED PyObject *__pyx_v_self, PyObject *__pyx_v_x_vec) {
   PyObject *__pyx_v_new_state = NULL;
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
@@ -2538,7 +2538,7 @@ static PyObject *__pyx_pf_16model_integrator_7Vehicle_4vectorToState(CYTHON_UNUS
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("vectorToState", 0);
 
-  /* "model_integrator.pyx":79
+  /* "cython_libs/model_integrator.pyx":79
  *     def vectorToState(self, x_vec):
  *         new_state = {
  *                     "x": x_vec[0],             # <<<<<<<<<<<<<<
@@ -2552,7 +2552,7 @@ static PyObject *__pyx_pf_16model_integrator_7Vehicle_4vectorToState(CYTHON_UNUS
   if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_x, __pyx_t_2) < 0) __PYX_ERR(0, 79, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
-  /* "model_integrator.pyx":80
+  /* "cython_libs/model_integrator.pyx":80
  *         new_state = {
  *                     "x": x_vec[0],
  *                     "y": x_vec[1],             # <<<<<<<<<<<<<<
@@ -2564,7 +2564,7 @@ static PyObject *__pyx_pf_16model_integrator_7Vehicle_4vectorToState(CYTHON_UNUS
   if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_y, __pyx_t_2) < 0) __PYX_ERR(0, 79, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
-  /* "model_integrator.pyx":81
+  /* "cython_libs/model_integrator.pyx":81
  *                     "x": x_vec[0],
  *                     "y": x_vec[1],
  *                     "phi": x_vec[2],             # <<<<<<<<<<<<<<
@@ -2576,7 +2576,7 @@ static PyObject *__pyx_pf_16model_integrator_7Vehicle_4vectorToState(CYTHON_UNUS
   if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_phi, __pyx_t_2) < 0) __PYX_ERR(0, 79, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
-  /* "model_integrator.pyx":82
+  /* "cython_libs/model_integrator.pyx":82
  *                     "y": x_vec[1],
  *                     "phi": x_vec[2],
  *                     "vx": x_vec[3],             # <<<<<<<<<<<<<<
@@ -2588,7 +2588,7 @@ static PyObject *__pyx_pf_16model_integrator_7Vehicle_4vectorToState(CYTHON_UNUS
   if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_vx, __pyx_t_2) < 0) __PYX_ERR(0, 79, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
-  /* "model_integrator.pyx":83
+  /* "cython_libs/model_integrator.pyx":83
  *                     "phi": x_vec[2],
  *                     "vx": x_vec[3],
  *                     "vy": x_vec[4],             # <<<<<<<<<<<<<<
@@ -2600,7 +2600,7 @@ static PyObject *__pyx_pf_16model_integrator_7Vehicle_4vectorToState(CYTHON_UNUS
   if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_vy, __pyx_t_2) < 0) __PYX_ERR(0, 79, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
-  /* "model_integrator.pyx":84
+  /* "cython_libs/model_integrator.pyx":84
  *                     "vx": x_vec[3],
  *                     "vy": x_vec[4],
  *                     "r": x_vec[5]             # <<<<<<<<<<<<<<
@@ -2614,7 +2614,7 @@ static PyObject *__pyx_pf_16model_integrator_7Vehicle_4vectorToState(CYTHON_UNUS
   __pyx_v_new_state = ((PyObject*)__pyx_t_1);
   __pyx_t_1 = 0;
 
-  /* "model_integrator.pyx":86
+  /* "cython_libs/model_integrator.pyx":86
  *                     "r": x_vec[5]
  *         }
  *         return new_state             # <<<<<<<<<<<<<<
@@ -2626,7 +2626,7 @@ static PyObject *__pyx_pf_16model_integrator_7Vehicle_4vectorToState(CYTHON_UNUS
   __pyx_r = __pyx_v_new_state;
   goto __pyx_L0;
 
-  /* "model_integrator.pyx":77
+  /* "cython_libs/model_integrator.pyx":77
  *         return self.xk_
  * 
  *     def vectorToState(self, x_vec):             # <<<<<<<<<<<<<<
@@ -2638,7 +2638,7 @@ static PyObject *__pyx_pf_16model_integrator_7Vehicle_4vectorToState(CYTHON_UNUS
   __pyx_L1_error:;
   __Pyx_XDECREF(__pyx_t_1);
   __Pyx_XDECREF(__pyx_t_2);
-  __Pyx_AddTraceback("model_integrator.Vehicle.vectorToState", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_AddTraceback("cython_libs.model_integrator.Vehicle.vectorToState", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __pyx_r = NULL;
   __pyx_L0:;
   __Pyx_XDECREF(__pyx_v_new_state);
@@ -2647,7 +2647,7 @@ static PyObject *__pyx_pf_16model_integrator_7Vehicle_4vectorToState(CYTHON_UNUS
   return __pyx_r;
 }
 
-/* "model_integrator.pyx":88
+/* "cython_libs/model_integrator.pyx":88
  *         return new_state
  * 
  *     def inputToVector(self, u):             # <<<<<<<<<<<<<<
@@ -2656,9 +2656,9 @@ static PyObject *__pyx_pf_16model_integrator_7Vehicle_4vectorToState(CYTHON_UNUS
  */
 
 /* Python wrapper */
-static PyObject *__pyx_pw_16model_integrator_7Vehicle_7inputToVector(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
-static PyMethodDef __pyx_mdef_16model_integrator_7Vehicle_7inputToVector = {"inputToVector", (PyCFunction)(void*)(PyCFunctionWithKeywords)__pyx_pw_16model_integrator_7Vehicle_7inputToVector, METH_VARARGS|METH_KEYWORDS, 0};
-static PyObject *__pyx_pw_16model_integrator_7Vehicle_7inputToVector(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds) {
+static PyObject *__pyx_pw_11cython_libs_16model_integrator_7Vehicle_7inputToVector(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
+static PyMethodDef __pyx_mdef_11cython_libs_16model_integrator_7Vehicle_7inputToVector = {"inputToVector", (PyCFunction)(void*)(PyCFunctionWithKeywords)__pyx_pw_11cython_libs_16model_integrator_7Vehicle_7inputToVector, METH_VARARGS|METH_KEYWORDS, 0};
+static PyObject *__pyx_pw_11cython_libs_16model_integrator_7Vehicle_7inputToVector(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds) {
   PyObject *__pyx_v_self = 0;
   PyObject *__pyx_v_u = 0;
   int __pyx_lineno = 0;
@@ -2709,18 +2709,18 @@ static PyObject *__pyx_pw_16model_integrator_7Vehicle_7inputToVector(PyObject *_
   __pyx_L5_argtuple_error:;
   __Pyx_RaiseArgtupleInvalid("inputToVector", 1, 2, 2, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 88, __pyx_L3_error)
   __pyx_L3_error:;
-  __Pyx_AddTraceback("model_integrator.Vehicle.inputToVector", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_AddTraceback("cython_libs.model_integrator.Vehicle.inputToVector", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
   return NULL;
   __pyx_L4_argument_unpacking_done:;
-  __pyx_r = __pyx_pf_16model_integrator_7Vehicle_6inputToVector(__pyx_self, __pyx_v_self, __pyx_v_u);
+  __pyx_r = __pyx_pf_11cython_libs_16model_integrator_7Vehicle_6inputToVector(__pyx_self, __pyx_v_self, __pyx_v_u);
 
   /* function exit code */
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_16model_integrator_7Vehicle_6inputToVector(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_self, PyObject *__pyx_v_u) {
+static PyObject *__pyx_pf_11cython_libs_16model_integrator_7Vehicle_6inputToVector(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_self, PyObject *__pyx_v_u) {
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
   PyObject *__pyx_t_1 = NULL;
@@ -2730,7 +2730,7 @@ static PyObject *__pyx_pf_16model_integrator_7Vehicle_6inputToVector(CYTHON_UNUS
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("inputToVector", 0);
 
-  /* "model_integrator.pyx":90
+  /* "cython_libs/model_integrator.pyx":90
  *     def inputToVector(self, u):
  * 
  *         self.uk_[0] = u["Fx"]             # <<<<<<<<<<<<<<
@@ -2745,7 +2745,7 @@ static PyObject *__pyx_pf_16model_integrator_7Vehicle_6inputToVector(CYTHON_UNUS
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "model_integrator.pyx":91
+  /* "cython_libs/model_integrator.pyx":91
  * 
  *         self.uk_[0] = u["Fx"]
  *         self.uk_[1] = u["delta"]             # <<<<<<<<<<<<<<
@@ -2760,7 +2760,7 @@ static PyObject *__pyx_pf_16model_integrator_7Vehicle_6inputToVector(CYTHON_UNUS
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "model_integrator.pyx":92
+  /* "cython_libs/model_integrator.pyx":92
  *         self.uk_[0] = u["Fx"]
  *         self.uk_[1] = u["delta"]
  *         return self.uk_             # <<<<<<<<<<<<<<
@@ -2774,7 +2774,7 @@ static PyObject *__pyx_pf_16model_integrator_7Vehicle_6inputToVector(CYTHON_UNUS
   __pyx_t_1 = 0;
   goto __pyx_L0;
 
-  /* "model_integrator.pyx":88
+  /* "cython_libs/model_integrator.pyx":88
  *         return new_state
  * 
  *     def inputToVector(self, u):             # <<<<<<<<<<<<<<
@@ -2786,7 +2786,7 @@ static PyObject *__pyx_pf_16model_integrator_7Vehicle_6inputToVector(CYTHON_UNUS
   __pyx_L1_error:;
   __Pyx_XDECREF(__pyx_t_1);
   __Pyx_XDECREF(__pyx_t_2);
-  __Pyx_AddTraceback("model_integrator.Vehicle.inputToVector", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_AddTraceback("cython_libs.model_integrator.Vehicle.inputToVector", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __pyx_r = NULL;
   __pyx_L0:;
   __Pyx_XGIVEREF(__pyx_r);
@@ -2794,7 +2794,7 @@ static PyObject *__pyx_pf_16model_integrator_7Vehicle_6inputToVector(CYTHON_UNUS
   return __pyx_r;
 }
 
-/* "model_integrator.pyx":94
+/* "cython_libs/model_integrator.pyx":94
  *         return self.uk_
  * 
  *     def getSlipAngleFront(self, x, u):             # <<<<<<<<<<<<<<
@@ -2803,9 +2803,9 @@ static PyObject *__pyx_pf_16model_integrator_7Vehicle_6inputToVector(CYTHON_UNUS
  */
 
 /* Python wrapper */
-static PyObject *__pyx_pw_16model_integrator_7Vehicle_9getSlipAngleFront(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
-static PyMethodDef __pyx_mdef_16model_integrator_7Vehicle_9getSlipAngleFront = {"getSlipAngleFront", (PyCFunction)(void*)(PyCFunctionWithKeywords)__pyx_pw_16model_integrator_7Vehicle_9getSlipAngleFront, METH_VARARGS|METH_KEYWORDS, 0};
-static PyObject *__pyx_pw_16model_integrator_7Vehicle_9getSlipAngleFront(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds) {
+static PyObject *__pyx_pw_11cython_libs_16model_integrator_7Vehicle_9getSlipAngleFront(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
+static PyMethodDef __pyx_mdef_11cython_libs_16model_integrator_7Vehicle_9getSlipAngleFront = {"getSlipAngleFront", (PyCFunction)(void*)(PyCFunctionWithKeywords)__pyx_pw_11cython_libs_16model_integrator_7Vehicle_9getSlipAngleFront, METH_VARARGS|METH_KEYWORDS, 0};
+static PyObject *__pyx_pw_11cython_libs_16model_integrator_7Vehicle_9getSlipAngleFront(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds) {
   PyObject *__pyx_v_self = 0;
   PyObject *__pyx_v_x = 0;
   PyObject *__pyx_v_u = 0;
@@ -2867,18 +2867,18 @@ static PyObject *__pyx_pw_16model_integrator_7Vehicle_9getSlipAngleFront(PyObjec
   __pyx_L5_argtuple_error:;
   __Pyx_RaiseArgtupleInvalid("getSlipAngleFront", 1, 3, 3, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 94, __pyx_L3_error)
   __pyx_L3_error:;
-  __Pyx_AddTraceback("model_integrator.Vehicle.getSlipAngleFront", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_AddTraceback("cython_libs.model_integrator.Vehicle.getSlipAngleFront", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
   return NULL;
   __pyx_L4_argument_unpacking_done:;
-  __pyx_r = __pyx_pf_16model_integrator_7Vehicle_8getSlipAngleFront(__pyx_self, __pyx_v_self, __pyx_v_x, __pyx_v_u);
+  __pyx_r = __pyx_pf_11cython_libs_16model_integrator_7Vehicle_8getSlipAngleFront(__pyx_self, __pyx_v_self, __pyx_v_x, __pyx_v_u);
 
   /* function exit code */
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_16model_integrator_7Vehicle_8getSlipAngleFront(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_self, PyObject *__pyx_v_x, PyObject *__pyx_v_u) {
+static PyObject *__pyx_pf_11cython_libs_16model_integrator_7Vehicle_8getSlipAngleFront(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_self, PyObject *__pyx_v_x, PyObject *__pyx_v_u) {
   PyObject *__pyx_v_slip_ang_f = NULL;
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
@@ -2894,7 +2894,7 @@ static PyObject *__pyx_pf_16model_integrator_7Vehicle_8getSlipAngleFront(CYTHON_
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("getSlipAngleFront", 0);
 
-  /* "model_integrator.pyx":96
+  /* "cython_libs/model_integrator.pyx":96
  *     def getSlipAngleFront(self, x, u):
  *         # compute slip angels given current state
  *         slip_ang_f = -math.atan2(x["vy"]+x["r"]*self.params["lf"],x["vx"]) + u["delta"]             # <<<<<<<<<<<<<<
@@ -2986,7 +2986,7 @@ static PyObject *__pyx_pf_16model_integrator_7Vehicle_8getSlipAngleFront(CYTHON_
   __pyx_v_slip_ang_f = __pyx_t_4;
   __pyx_t_4 = 0;
 
-  /* "model_integrator.pyx":98
+  /* "cython_libs/model_integrator.pyx":98
  *         slip_ang_f = -math.atan2(x["vy"]+x["r"]*self.params["lf"],x["vx"]) + u["delta"]
  *         #print("SlipAngleRear = ", slip_ang_r)
  *         return slip_ang_f             # <<<<<<<<<<<<<<
@@ -2998,7 +2998,7 @@ static PyObject *__pyx_pf_16model_integrator_7Vehicle_8getSlipAngleFront(CYTHON_
   __pyx_r = __pyx_v_slip_ang_f;
   goto __pyx_L0;
 
-  /* "model_integrator.pyx":94
+  /* "cython_libs/model_integrator.pyx":94
  *         return self.uk_
  * 
  *     def getSlipAngleFront(self, x, u):             # <<<<<<<<<<<<<<
@@ -3014,7 +3014,7 @@ static PyObject *__pyx_pf_16model_integrator_7Vehicle_8getSlipAngleFront(CYTHON_
   __Pyx_XDECREF(__pyx_t_4);
   __Pyx_XDECREF(__pyx_t_5);
   __Pyx_XDECREF(__pyx_t_6);
-  __Pyx_AddTraceback("model_integrator.Vehicle.getSlipAngleFront", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_AddTraceback("cython_libs.model_integrator.Vehicle.getSlipAngleFront", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __pyx_r = NULL;
   __pyx_L0:;
   __Pyx_XDECREF(__pyx_v_slip_ang_f);
@@ -3023,7 +3023,7 @@ static PyObject *__pyx_pf_16model_integrator_7Vehicle_8getSlipAngleFront(CYTHON_
   return __pyx_r;
 }
 
-/* "model_integrator.pyx":100
+/* "cython_libs/model_integrator.pyx":100
  *         return slip_ang_f
  * 
  *     def getSlipAngleRear(self, x, u):             # <<<<<<<<<<<<<<
@@ -3032,9 +3032,9 @@ static PyObject *__pyx_pf_16model_integrator_7Vehicle_8getSlipAngleFront(CYTHON_
  */
 
 /* Python wrapper */
-static PyObject *__pyx_pw_16model_integrator_7Vehicle_11getSlipAngleRear(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
-static PyMethodDef __pyx_mdef_16model_integrator_7Vehicle_11getSlipAngleRear = {"getSlipAngleRear", (PyCFunction)(void*)(PyCFunctionWithKeywords)__pyx_pw_16model_integrator_7Vehicle_11getSlipAngleRear, METH_VARARGS|METH_KEYWORDS, 0};
-static PyObject *__pyx_pw_16model_integrator_7Vehicle_11getSlipAngleRear(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds) {
+static PyObject *__pyx_pw_11cython_libs_16model_integrator_7Vehicle_11getSlipAngleRear(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
+static PyMethodDef __pyx_mdef_11cython_libs_16model_integrator_7Vehicle_11getSlipAngleRear = {"getSlipAngleRear", (PyCFunction)(void*)(PyCFunctionWithKeywords)__pyx_pw_11cython_libs_16model_integrator_7Vehicle_11getSlipAngleRear, METH_VARARGS|METH_KEYWORDS, 0};
+static PyObject *__pyx_pw_11cython_libs_16model_integrator_7Vehicle_11getSlipAngleRear(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds) {
   PyObject *__pyx_v_self = 0;
   PyObject *__pyx_v_x = 0;
   CYTHON_UNUSED PyObject *__pyx_v_u = 0;
@@ -3096,18 +3096,18 @@ static PyObject *__pyx_pw_16model_integrator_7Vehicle_11getSlipAngleRear(PyObjec
   __pyx_L5_argtuple_error:;
   __Pyx_RaiseArgtupleInvalid("getSlipAngleRear", 1, 3, 3, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 100, __pyx_L3_error)
   __pyx_L3_error:;
-  __Pyx_AddTraceback("model_integrator.Vehicle.getSlipAngleRear", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_AddTraceback("cython_libs.model_integrator.Vehicle.getSlipAngleRear", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
   return NULL;
   __pyx_L4_argument_unpacking_done:;
-  __pyx_r = __pyx_pf_16model_integrator_7Vehicle_10getSlipAngleRear(__pyx_self, __pyx_v_self, __pyx_v_x, __pyx_v_u);
+  __pyx_r = __pyx_pf_11cython_libs_16model_integrator_7Vehicle_10getSlipAngleRear(__pyx_self, __pyx_v_self, __pyx_v_x, __pyx_v_u);
 
   /* function exit code */
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_16model_integrator_7Vehicle_10getSlipAngleRear(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_self, PyObject *__pyx_v_x, CYTHON_UNUSED PyObject *__pyx_v_u) {
+static PyObject *__pyx_pf_11cython_libs_16model_integrator_7Vehicle_10getSlipAngleRear(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_self, PyObject *__pyx_v_x, CYTHON_UNUSED PyObject *__pyx_v_u) {
   PyObject *__pyx_v_slip_ang_r = NULL;
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
@@ -3123,7 +3123,7 @@ static PyObject *__pyx_pf_16model_integrator_7Vehicle_10getSlipAngleRear(CYTHON_
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("getSlipAngleRear", 0);
 
-  /* "model_integrator.pyx":102
+  /* "cython_libs/model_integrator.pyx":102
  *     def getSlipAngleRear(self, x, u):
  *         # compute slip angels given current state
  *         slip_ang_r = -math.atan2(x["vy"]-x["r"]*self.params["lr"],x["vx"])             # <<<<<<<<<<<<<<
@@ -3209,7 +3209,7 @@ static PyObject *__pyx_pf_16model_integrator_7Vehicle_10getSlipAngleRear(CYTHON_
   __pyx_v_slip_ang_r = __pyx_t_3;
   __pyx_t_3 = 0;
 
-  /* "model_integrator.pyx":103
+  /* "cython_libs/model_integrator.pyx":103
  *         # compute slip angels given current state
  *         slip_ang_r = -math.atan2(x["vy"]-x["r"]*self.params["lr"],x["vx"])
  *         return slip_ang_r             # <<<<<<<<<<<<<<
@@ -3221,7 +3221,7 @@ static PyObject *__pyx_pf_16model_integrator_7Vehicle_10getSlipAngleRear(CYTHON_
   __pyx_r = __pyx_v_slip_ang_r;
   goto __pyx_L0;
 
-  /* "model_integrator.pyx":100
+  /* "cython_libs/model_integrator.pyx":100
  *         return slip_ang_f
  * 
  *     def getSlipAngleRear(self, x, u):             # <<<<<<<<<<<<<<
@@ -3237,7 +3237,7 @@ static PyObject *__pyx_pf_16model_integrator_7Vehicle_10getSlipAngleRear(CYTHON_
   __Pyx_XDECREF(__pyx_t_4);
   __Pyx_XDECREF(__pyx_t_5);
   __Pyx_XDECREF(__pyx_t_6);
-  __Pyx_AddTraceback("model_integrator.Vehicle.getSlipAngleRear", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_AddTraceback("cython_libs.model_integrator.Vehicle.getSlipAngleRear", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __pyx_r = NULL;
   __pyx_L0:;
   __Pyx_XDECREF(__pyx_v_slip_ang_r);
@@ -3246,7 +3246,7 @@ static PyObject *__pyx_pf_16model_integrator_7Vehicle_10getSlipAngleRear(CYTHON_
   return __pyx_r;
 }
 
-/* "model_integrator.pyx":105
+/* "cython_libs/model_integrator.pyx":105
  *         return slip_ang_r
  * 
  *     def getForceFront(self, x, u):             # <<<<<<<<<<<<<<
@@ -3255,9 +3255,9 @@ static PyObject *__pyx_pf_16model_integrator_7Vehicle_10getSlipAngleRear(CYTHON_
  */
 
 /* Python wrapper */
-static PyObject *__pyx_pw_16model_integrator_7Vehicle_13getForceFront(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
-static PyMethodDef __pyx_mdef_16model_integrator_7Vehicle_13getForceFront = {"getForceFront", (PyCFunction)(void*)(PyCFunctionWithKeywords)__pyx_pw_16model_integrator_7Vehicle_13getForceFront, METH_VARARGS|METH_KEYWORDS, 0};
-static PyObject *__pyx_pw_16model_integrator_7Vehicle_13getForceFront(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds) {
+static PyObject *__pyx_pw_11cython_libs_16model_integrator_7Vehicle_13getForceFront(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
+static PyMethodDef __pyx_mdef_11cython_libs_16model_integrator_7Vehicle_13getForceFront = {"getForceFront", (PyCFunction)(void*)(PyCFunctionWithKeywords)__pyx_pw_11cython_libs_16model_integrator_7Vehicle_13getForceFront, METH_VARARGS|METH_KEYWORDS, 0};
+static PyObject *__pyx_pw_11cython_libs_16model_integrator_7Vehicle_13getForceFront(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds) {
   PyObject *__pyx_v_self = 0;
   PyObject *__pyx_v_x = 0;
   PyObject *__pyx_v_u = 0;
@@ -3319,18 +3319,18 @@ static PyObject *__pyx_pw_16model_integrator_7Vehicle_13getForceFront(PyObject *
   __pyx_L5_argtuple_error:;
   __Pyx_RaiseArgtupleInvalid("getForceFront", 1, 3, 3, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 105, __pyx_L3_error)
   __pyx_L3_error:;
-  __Pyx_AddTraceback("model_integrator.Vehicle.getForceFront", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_AddTraceback("cython_libs.model_integrator.Vehicle.getForceFront", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
   return NULL;
   __pyx_L4_argument_unpacking_done:;
-  __pyx_r = __pyx_pf_16model_integrator_7Vehicle_12getForceFront(__pyx_self, __pyx_v_self, __pyx_v_x, __pyx_v_u);
+  __pyx_r = __pyx_pf_11cython_libs_16model_integrator_7Vehicle_12getForceFront(__pyx_self, __pyx_v_self, __pyx_v_x, __pyx_v_u);
 
   /* function exit code */
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_16model_integrator_7Vehicle_12getForceFront(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_self, PyObject *__pyx_v_x, PyObject *__pyx_v_u) {
+static PyObject *__pyx_pf_11cython_libs_16model_integrator_7Vehicle_12getForceFront(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_self, PyObject *__pyx_v_x, PyObject *__pyx_v_u) {
   PyObject *__pyx_v_alpha_f = NULL;
   PyObject *__pyx_v_F_y = NULL;
   double __pyx_v_F_x;
@@ -3351,7 +3351,7 @@ static PyObject *__pyx_pf_16model_integrator_7Vehicle_12getForceFront(CYTHON_UNU
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("getForceFront", 0);
 
-  /* "model_integrator.pyx":107
+  /* "cython_libs/model_integrator.pyx":107
  *     def getForceFront(self, x, u):
  * 
  *         alpha_f = self.getSlipAngleFront(x, u)             # <<<<<<<<<<<<<<
@@ -3408,7 +3408,7 @@ static PyObject *__pyx_pf_16model_integrator_7Vehicle_12getForceFront(CYTHON_UNU
   __pyx_v_alpha_f = __pyx_t_1;
   __pyx_t_1 = 0;
 
-  /* "model_integrator.pyx":108
+  /* "cython_libs/model_integrator.pyx":108
  * 
  *         alpha_f = self.getSlipAngleFront(x, u)
  *         F_y = self.params["Df"] * math.sin(self.params["Cf"] * math.atan(self.params["Bf"] * alpha_f ))             # <<<<<<<<<<<<<<
@@ -3486,7 +3486,7 @@ static PyObject *__pyx_pf_16model_integrator_7Vehicle_12getForceFront(CYTHON_UNU
   __pyx_v_F_y = __pyx_t_3;
   __pyx_t_3 = 0;
 
-  /* "model_integrator.pyx":109
+  /* "cython_libs/model_integrator.pyx":109
  *         alpha_f = self.getSlipAngleFront(x, u)
  *         F_y = self.params["Df"] * math.sin(self.params["Cf"] * math.atan(self.params["Bf"] * alpha_f ))
  *         F_y = F_y * self.params["mass"]             # <<<<<<<<<<<<<<
@@ -3504,7 +3504,7 @@ static PyObject *__pyx_pf_16model_integrator_7Vehicle_12getForceFront(CYTHON_UNU
   __Pyx_DECREF_SET(__pyx_v_F_y, __pyx_t_3);
   __pyx_t_3 = 0;
 
-  /* "model_integrator.pyx":111
+  /* "cython_libs/model_integrator.pyx":111
  *         F_y = F_y * self.params["mass"]
  *         # Rear wheel drive vehicle so no forwards force on the front tires.
  *         F_x = 0.0             # <<<<<<<<<<<<<<
@@ -3513,7 +3513,7 @@ static PyObject *__pyx_pf_16model_integrator_7Vehicle_12getForceFront(CYTHON_UNU
  */
   __pyx_v_F_x = 0.0;
 
-  /* "model_integrator.pyx":113
+  /* "cython_libs/model_integrator.pyx":113
  *         F_x = 0.0
  *         #print(" getForceFront fx,fy = {0}, {1}  alpha_f = {2}".format(F_x,F_y,alpha_f))
  *         f_tire = TireForces(F_x, F_y)             # <<<<<<<<<<<<<<
@@ -3574,7 +3574,7 @@ static PyObject *__pyx_pf_16model_integrator_7Vehicle_12getForceFront(CYTHON_UNU
   __pyx_v_f_tire = __pyx_t_3;
   __pyx_t_3 = 0;
 
-  /* "model_integrator.pyx":114
+  /* "cython_libs/model_integrator.pyx":114
  *         #print(" getForceFront fx,fy = {0}, {1}  alpha_f = {2}".format(F_x,F_y,alpha_f))
  *         f_tire = TireForces(F_x, F_y)
  *         return f_tire             # <<<<<<<<<<<<<<
@@ -3586,7 +3586,7 @@ static PyObject *__pyx_pf_16model_integrator_7Vehicle_12getForceFront(CYTHON_UNU
   __pyx_r = __pyx_v_f_tire;
   goto __pyx_L0;
 
-  /* "model_integrator.pyx":105
+  /* "cython_libs/model_integrator.pyx":105
  *         return slip_ang_r
  * 
  *     def getForceFront(self, x, u):             # <<<<<<<<<<<<<<
@@ -3604,7 +3604,7 @@ static PyObject *__pyx_pf_16model_integrator_7Vehicle_12getForceFront(CYTHON_UNU
   __Pyx_XDECREF(__pyx_t_7);
   __Pyx_XDECREF(__pyx_t_8);
   __Pyx_XDECREF(__pyx_t_9);
-  __Pyx_AddTraceback("model_integrator.Vehicle.getForceFront", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_AddTraceback("cython_libs.model_integrator.Vehicle.getForceFront", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __pyx_r = NULL;
   __pyx_L0:;
   __Pyx_XDECREF(__pyx_v_alpha_f);
@@ -3615,7 +3615,7 @@ static PyObject *__pyx_pf_16model_integrator_7Vehicle_12getForceFront(CYTHON_UNU
   return __pyx_r;
 }
 
-/* "model_integrator.pyx":116
+/* "cython_libs/model_integrator.pyx":116
  *         return f_tire
  * 
  *     def getForceRear(self, x, u):             # <<<<<<<<<<<<<<
@@ -3624,9 +3624,9 @@ static PyObject *__pyx_pf_16model_integrator_7Vehicle_12getForceFront(CYTHON_UNU
  */
 
 /* Python wrapper */
-static PyObject *__pyx_pw_16model_integrator_7Vehicle_15getForceRear(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
-static PyMethodDef __pyx_mdef_16model_integrator_7Vehicle_15getForceRear = {"getForceRear", (PyCFunction)(void*)(PyCFunctionWithKeywords)__pyx_pw_16model_integrator_7Vehicle_15getForceRear, METH_VARARGS|METH_KEYWORDS, 0};
-static PyObject *__pyx_pw_16model_integrator_7Vehicle_15getForceRear(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds) {
+static PyObject *__pyx_pw_11cython_libs_16model_integrator_7Vehicle_15getForceRear(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
+static PyMethodDef __pyx_mdef_11cython_libs_16model_integrator_7Vehicle_15getForceRear = {"getForceRear", (PyCFunction)(void*)(PyCFunctionWithKeywords)__pyx_pw_11cython_libs_16model_integrator_7Vehicle_15getForceRear, METH_VARARGS|METH_KEYWORDS, 0};
+static PyObject *__pyx_pw_11cython_libs_16model_integrator_7Vehicle_15getForceRear(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds) {
   PyObject *__pyx_v_self = 0;
   PyObject *__pyx_v_x = 0;
   PyObject *__pyx_v_u = 0;
@@ -3688,18 +3688,18 @@ static PyObject *__pyx_pw_16model_integrator_7Vehicle_15getForceRear(PyObject *_
   __pyx_L5_argtuple_error:;
   __Pyx_RaiseArgtupleInvalid("getForceRear", 1, 3, 3, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 116, __pyx_L3_error)
   __pyx_L3_error:;
-  __Pyx_AddTraceback("model_integrator.Vehicle.getForceRear", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_AddTraceback("cython_libs.model_integrator.Vehicle.getForceRear", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
   return NULL;
   __pyx_L4_argument_unpacking_done:;
-  __pyx_r = __pyx_pf_16model_integrator_7Vehicle_14getForceRear(__pyx_self, __pyx_v_self, __pyx_v_x, __pyx_v_u);
+  __pyx_r = __pyx_pf_11cython_libs_16model_integrator_7Vehicle_14getForceRear(__pyx_self, __pyx_v_self, __pyx_v_x, __pyx_v_u);
 
   /* function exit code */
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_16model_integrator_7Vehicle_14getForceRear(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_self, PyObject *__pyx_v_x, PyObject *__pyx_v_u) {
+static PyObject *__pyx_pf_11cython_libs_16model_integrator_7Vehicle_14getForceRear(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_self, PyObject *__pyx_v_x, PyObject *__pyx_v_u) {
   PyObject *__pyx_v_alpha_r = NULL;
   PyObject *__pyx_v_F_y = NULL;
   PyObject *__pyx_v_F_x = NULL;
@@ -3720,7 +3720,7 @@ static PyObject *__pyx_pf_16model_integrator_7Vehicle_14getForceRear(CYTHON_UNUS
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("getForceRear", 0);
 
-  /* "model_integrator.pyx":118
+  /* "cython_libs/model_integrator.pyx":118
  *     def getForceRear(self, x, u):
  * 
  *         alpha_r = self.getSlipAngleRear(x, u)             # <<<<<<<<<<<<<<
@@ -3777,7 +3777,7 @@ static PyObject *__pyx_pf_16model_integrator_7Vehicle_14getForceRear(CYTHON_UNUS
   __pyx_v_alpha_r = __pyx_t_1;
   __pyx_t_1 = 0;
 
-  /* "model_integrator.pyx":119
+  /* "cython_libs/model_integrator.pyx":119
  * 
  *         alpha_r = self.getSlipAngleRear(x, u)
  *         F_y = self.params["Dr"] * math.sin(self.params["Cr"] * math.atan(self.params["Br"] * alpha_r ))             # <<<<<<<<<<<<<<
@@ -3855,7 +3855,7 @@ static PyObject *__pyx_pf_16model_integrator_7Vehicle_14getForceRear(CYTHON_UNUS
   __pyx_v_F_y = __pyx_t_3;
   __pyx_t_3 = 0;
 
-  /* "model_integrator.pyx":120
+  /* "cython_libs/model_integrator.pyx":120
  *         alpha_r = self.getSlipAngleRear(x, u)
  *         F_y = self.params["Dr"] * math.sin(self.params["Cr"] * math.atan(self.params["Br"] * alpha_r ))
  *         F_y = F_y * self.params["mass"]             # <<<<<<<<<<<<<<
@@ -3873,7 +3873,7 @@ static PyObject *__pyx_pf_16model_integrator_7Vehicle_14getForceRear(CYTHON_UNUS
   __Pyx_DECREF_SET(__pyx_v_F_y, __pyx_t_3);
   __pyx_t_3 = 0;
 
-  /* "model_integrator.pyx":123
+  /* "cython_libs/model_integrator.pyx":123
  *         # Rear wheel drive vehicle with a force related to the control input force on rear wheels u["Fx"]
  *         #F_x = self.params["Cm1"]*u["Fx"] - self.params["Cm2"]*u["Fx"]*x["vx"]  # - param_.Cr0 - param_.Cr2*std::pow(x.vx,2.0);
  *         F_x = u["Fx"]  # Perfect control simulated. The exact rear wheel desired force is acheived.             # <<<<<<<<<<<<<<
@@ -3885,7 +3885,7 @@ static PyObject *__pyx_pf_16model_integrator_7Vehicle_14getForceRear(CYTHON_UNUS
   __pyx_v_F_x = __pyx_t_3;
   __pyx_t_3 = 0;
 
-  /* "model_integrator.pyx":125
+  /* "cython_libs/model_integrator.pyx":125
  *         F_x = u["Fx"]  # Perfect control simulated. The exact rear wheel desired force is acheived.
  * 
  *         r_tire = TireForces(F_x, F_y)             # <<<<<<<<<<<<<<
@@ -3942,7 +3942,7 @@ static PyObject *__pyx_pf_16model_integrator_7Vehicle_14getForceRear(CYTHON_UNUS
   __pyx_v_r_tire = __pyx_t_3;
   __pyx_t_3 = 0;
 
-  /* "model_integrator.pyx":126
+  /* "cython_libs/model_integrator.pyx":126
  * 
  *         r_tire = TireForces(F_x, F_y)
  *         return r_tire             # <<<<<<<<<<<<<<
@@ -3954,7 +3954,7 @@ static PyObject *__pyx_pf_16model_integrator_7Vehicle_14getForceRear(CYTHON_UNUS
   __pyx_r = __pyx_v_r_tire;
   goto __pyx_L0;
 
-  /* "model_integrator.pyx":116
+  /* "cython_libs/model_integrator.pyx":116
  *         return f_tire
  * 
  *     def getForceRear(self, x, u):             # <<<<<<<<<<<<<<
@@ -3972,7 +3972,7 @@ static PyObject *__pyx_pf_16model_integrator_7Vehicle_14getForceRear(CYTHON_UNUS
   __Pyx_XDECREF(__pyx_t_7);
   __Pyx_XDECREF(__pyx_t_8);
   __Pyx_XDECREF(__pyx_t_9);
-  __Pyx_AddTraceback("model_integrator.Vehicle.getForceRear", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_AddTraceback("cython_libs.model_integrator.Vehicle.getForceRear", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __pyx_r = NULL;
   __pyx_L0:;
   __Pyx_XDECREF(__pyx_v_alpha_r);
@@ -3984,7 +3984,7 @@ static PyObject *__pyx_pf_16model_integrator_7Vehicle_14getForceRear(CYTHON_UNUS
   return __pyx_r;
 }
 
-/* "model_integrator.pyx":128
+/* "cython_libs/model_integrator.pyx":128
  *         return r_tire
  * 
  *     def getForceFriction(self, x):             # <<<<<<<<<<<<<<
@@ -3993,9 +3993,9 @@ static PyObject *__pyx_pf_16model_integrator_7Vehicle_14getForceRear(CYTHON_UNUS
  */
 
 /* Python wrapper */
-static PyObject *__pyx_pw_16model_integrator_7Vehicle_17getForceFriction(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
-static PyMethodDef __pyx_mdef_16model_integrator_7Vehicle_17getForceFriction = {"getForceFriction", (PyCFunction)(void*)(PyCFunctionWithKeywords)__pyx_pw_16model_integrator_7Vehicle_17getForceFriction, METH_VARARGS|METH_KEYWORDS, 0};
-static PyObject *__pyx_pw_16model_integrator_7Vehicle_17getForceFriction(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds) {
+static PyObject *__pyx_pw_11cython_libs_16model_integrator_7Vehicle_17getForceFriction(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
+static PyMethodDef __pyx_mdef_11cython_libs_16model_integrator_7Vehicle_17getForceFriction = {"getForceFriction", (PyCFunction)(void*)(PyCFunctionWithKeywords)__pyx_pw_11cython_libs_16model_integrator_7Vehicle_17getForceFriction, METH_VARARGS|METH_KEYWORDS, 0};
+static PyObject *__pyx_pw_11cython_libs_16model_integrator_7Vehicle_17getForceFriction(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds) {
   PyObject *__pyx_v_self = 0;
   PyObject *__pyx_v_x = 0;
   int __pyx_lineno = 0;
@@ -4046,18 +4046,18 @@ static PyObject *__pyx_pw_16model_integrator_7Vehicle_17getForceFriction(PyObjec
   __pyx_L5_argtuple_error:;
   __Pyx_RaiseArgtupleInvalid("getForceFriction", 1, 2, 2, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 128, __pyx_L3_error)
   __pyx_L3_error:;
-  __Pyx_AddTraceback("model_integrator.Vehicle.getForceFriction", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_AddTraceback("cython_libs.model_integrator.Vehicle.getForceFriction", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
   return NULL;
   __pyx_L4_argument_unpacking_done:;
-  __pyx_r = __pyx_pf_16model_integrator_7Vehicle_16getForceFriction(__pyx_self, __pyx_v_self, __pyx_v_x);
+  __pyx_r = __pyx_pf_11cython_libs_16model_integrator_7Vehicle_16getForceFriction(__pyx_self, __pyx_v_self, __pyx_v_x);
 
   /* function exit code */
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_16model_integrator_7Vehicle_16getForceFriction(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_self, PyObject *__pyx_v_x) {
+static PyObject *__pyx_pf_11cython_libs_16model_integrator_7Vehicle_16getForceFriction(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_self, PyObject *__pyx_v_x) {
   PyObject *__pyx_v_F_f = NULL;
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
@@ -4074,7 +4074,7 @@ static PyObject *__pyx_pf_16model_integrator_7Vehicle_16getForceFriction(CYTHON_
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("getForceFriction", 0);
 
-  /* "model_integrator.pyx":130
+  /* "cython_libs/model_integrator.pyx":130
  *     def getForceFriction(self, x):
  *         #return -params.Cr0 - params.Cr2*std::pow(x.vx,2.0);
  *         F_f = -self.params["Cr0"] - self.params["Cr2"]*math.pow(x["vx"],2.0)             # <<<<<<<<<<<<<<
@@ -4159,7 +4159,7 @@ static PyObject *__pyx_pf_16model_integrator_7Vehicle_16getForceFriction(CYTHON_
   __pyx_v_F_f = __pyx_t_2;
   __pyx_t_2 = 0;
 
-  /* "model_integrator.pyx":131
+  /* "cython_libs/model_integrator.pyx":131
  *         #return -params.Cr0 - params.Cr2*std::pow(x.vx,2.0);
  *         F_f = -self.params["Cr0"] - self.params["Cr2"]*math.pow(x["vx"],2.0)
  *         return F_f             # <<<<<<<<<<<<<<
@@ -4171,7 +4171,7 @@ static PyObject *__pyx_pf_16model_integrator_7Vehicle_16getForceFriction(CYTHON_
   __pyx_r = __pyx_v_F_f;
   goto __pyx_L0;
 
-  /* "model_integrator.pyx":128
+  /* "cython_libs/model_integrator.pyx":128
  *         return r_tire
  * 
  *     def getForceFriction(self, x):             # <<<<<<<<<<<<<<
@@ -4188,7 +4188,7 @@ static PyObject *__pyx_pf_16model_integrator_7Vehicle_16getForceFriction(CYTHON_
   __Pyx_XDECREF(__pyx_t_5);
   __Pyx_XDECREF(__pyx_t_6);
   __Pyx_XDECREF(__pyx_t_8);
-  __Pyx_AddTraceback("model_integrator.Vehicle.getForceFriction", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_AddTraceback("cython_libs.model_integrator.Vehicle.getForceFriction", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __pyx_r = NULL;
   __pyx_L0:;
   __Pyx_XDECREF(__pyx_v_F_f);
@@ -4197,7 +4197,7 @@ static PyObject *__pyx_pf_16model_integrator_7Vehicle_16getForceFriction(CYTHON_
   return __pyx_r;
 }
 
-/* "model_integrator.pyx":133
+/* "cython_libs/model_integrator.pyx":133
  *         return F_f
  * 
  *     def getF(self, x, u, param):             # <<<<<<<<<<<<<<
@@ -4206,10 +4206,10 @@ static PyObject *__pyx_pf_16model_integrator_7Vehicle_16getForceFriction(CYTHON_
  */
 
 /* Python wrapper */
-static PyObject *__pyx_pw_16model_integrator_7Vehicle_19getF(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
-static char __pyx_doc_16model_integrator_7Vehicle_18getF[] = "Return the next state vector based on the state space equation of the model\n\n        Args:\n            x(dict vehicle state): The input state space structure.\n            u(dict vehicle controls): The control input structure\n        ";
-static PyMethodDef __pyx_mdef_16model_integrator_7Vehicle_19getF = {"getF", (PyCFunction)(void*)(PyCFunctionWithKeywords)__pyx_pw_16model_integrator_7Vehicle_19getF, METH_VARARGS|METH_KEYWORDS, __pyx_doc_16model_integrator_7Vehicle_18getF};
-static PyObject *__pyx_pw_16model_integrator_7Vehicle_19getF(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds) {
+static PyObject *__pyx_pw_11cython_libs_16model_integrator_7Vehicle_19getF(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
+static char __pyx_doc_11cython_libs_16model_integrator_7Vehicle_18getF[] = "Return the next state vector based on the state space equation of the model\n\n        Args:\n            x(dict vehicle state): The input state space structure.\n            u(dict vehicle controls): The control input structure\n        ";
+static PyMethodDef __pyx_mdef_11cython_libs_16model_integrator_7Vehicle_19getF = {"getF", (PyCFunction)(void*)(PyCFunctionWithKeywords)__pyx_pw_11cython_libs_16model_integrator_7Vehicle_19getF, METH_VARARGS|METH_KEYWORDS, __pyx_doc_11cython_libs_16model_integrator_7Vehicle_18getF};
+static PyObject *__pyx_pw_11cython_libs_16model_integrator_7Vehicle_19getF(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds) {
   PyObject *__pyx_v_self = 0;
   PyObject *__pyx_v_x = 0;
   PyObject *__pyx_v_u = 0;
@@ -4282,18 +4282,18 @@ static PyObject *__pyx_pw_16model_integrator_7Vehicle_19getF(PyObject *__pyx_sel
   __pyx_L5_argtuple_error:;
   __Pyx_RaiseArgtupleInvalid("getF", 1, 4, 4, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 133, __pyx_L3_error)
   __pyx_L3_error:;
-  __Pyx_AddTraceback("model_integrator.Vehicle.getF", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_AddTraceback("cython_libs.model_integrator.Vehicle.getF", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
   return NULL;
   __pyx_L4_argument_unpacking_done:;
-  __pyx_r = __pyx_pf_16model_integrator_7Vehicle_18getF(__pyx_self, __pyx_v_self, __pyx_v_x, __pyx_v_u, __pyx_v_param);
+  __pyx_r = __pyx_pf_11cython_libs_16model_integrator_7Vehicle_18getF(__pyx_self, __pyx_v_self, __pyx_v_x, __pyx_v_u, __pyx_v_param);
 
   /* function exit code */
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_16model_integrator_7Vehicle_18getF(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_self, PyObject *__pyx_v_x, PyObject *__pyx_v_u, PyObject *__pyx_v_param) {
+static PyObject *__pyx_pf_11cython_libs_16model_integrator_7Vehicle_18getF(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_self, PyObject *__pyx_v_x, PyObject *__pyx_v_u, PyObject *__pyx_v_param) {
   PyObject *__pyx_v_tire_forces_front = NULL;
   PyObject *__pyx_v_tire_forces_rear = NULL;
   PyObject *__pyx_v_friction_force = NULL;
@@ -4313,7 +4313,7 @@ static PyObject *__pyx_pf_16model_integrator_7Vehicle_18getF(CYTHON_UNUSED PyObj
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("getF", 0);
 
-  /* "model_integrator.pyx":140
+  /* "cython_libs/model_integrator.pyx":140
  *             u(dict vehicle controls): The control input structure
  *         """
  *         tire_forces_front = self.getForceFront(x,u)             # <<<<<<<<<<<<<<
@@ -4370,7 +4370,7 @@ static PyObject *__pyx_pf_16model_integrator_7Vehicle_18getF(CYTHON_UNUSED PyObj
   __pyx_v_tire_forces_front = __pyx_t_1;
   __pyx_t_1 = 0;
 
-  /* "model_integrator.pyx":141
+  /* "cython_libs/model_integrator.pyx":141
  *         """
  *         tire_forces_front = self.getForceFront(x,u)
  *         tire_forces_rear  = self.getForceRear(x,u)             # <<<<<<<<<<<<<<
@@ -4427,7 +4427,7 @@ static PyObject *__pyx_pf_16model_integrator_7Vehicle_18getF(CYTHON_UNUSED PyObj
   __pyx_v_tire_forces_rear = __pyx_t_1;
   __pyx_t_1 = 0;
 
-  /* "model_integrator.pyx":142
+  /* "cython_libs/model_integrator.pyx":142
  *         tire_forces_front = self.getForceFront(x,u)
  *         tire_forces_rear  = self.getForceRear(x,u)
  *         friction_force = self.getForceFriction(x)             # <<<<<<<<<<<<<<
@@ -4454,7 +4454,7 @@ static PyObject *__pyx_pf_16model_integrator_7Vehicle_18getF(CYTHON_UNUSED PyObj
   __pyx_v_friction_force = __pyx_t_1;
   __pyx_t_1 = 0;
 
-  /* "model_integrator.pyx":145
+  /* "cython_libs/model_integrator.pyx":145
  * 
  *         # state_vector
  *         self.f_[0] = x["vx"]*math.cos(x["phi"]) - x["vy"]*math.sin(x["phi"])             # <<<<<<<<<<<<<<
@@ -4529,7 +4529,7 @@ static PyObject *__pyx_pf_16model_integrator_7Vehicle_18getF(CYTHON_UNUSED PyObj
   __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "model_integrator.pyx":146
+  /* "cython_libs/model_integrator.pyx":146
  *         # state_vector
  *         self.f_[0] = x["vx"]*math.cos(x["phi"]) - x["vy"]*math.sin(x["phi"])
  *         self.f_[1] = x["vy"]*math.cos(x["phi"]) + x["vx"]*math.sin(x["phi"])             # <<<<<<<<<<<<<<
@@ -4604,7 +4604,7 @@ static PyObject *__pyx_pf_16model_integrator_7Vehicle_18getF(CYTHON_UNUSED PyObj
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "model_integrator.pyx":147
+  /* "cython_libs/model_integrator.pyx":147
  *         self.f_[0] = x["vx"]*math.cos(x["phi"]) - x["vy"]*math.sin(x["phi"])
  *         self.f_[1] = x["vy"]*math.cos(x["phi"]) + x["vx"]*math.sin(x["phi"])
  *         self.f_[2] = x["r"]             # <<<<<<<<<<<<<<
@@ -4619,7 +4619,7 @@ static PyObject *__pyx_pf_16model_integrator_7Vehicle_18getF(CYTHON_UNUSED PyObj
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "model_integrator.pyx":148
+  /* "cython_libs/model_integrator.pyx":148
  *         self.f_[1] = x["vy"]*math.cos(x["phi"]) + x["vx"]*math.sin(x["phi"])
  *         self.f_[2] = x["r"]
  *         self.f_[3] = 1.0/float(param["mass"]) * (tire_forces_rear.F_x + friction_force - tire_forces_front.F_y*math.sin(u["delta"]) + param["mass"]*x["vy"]*x["r"])             # <<<<<<<<<<<<<<
@@ -4702,7 +4702,7 @@ static PyObject *__pyx_pf_16model_integrator_7Vehicle_18getF(CYTHON_UNUSED PyObj
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
 
-  /* "model_integrator.pyx":149
+  /* "cython_libs/model_integrator.pyx":149
  *         self.f_[2] = x["r"]
  *         self.f_[3] = 1.0/float(param["mass"]) * (tire_forces_rear.F_x + friction_force - tire_forces_front.F_y*math.sin(u["delta"]) + param["mass"]*x["vy"]*x["r"])
  *         self.f_[4] = 1.0/float(param["mass"]) * (tire_forces_rear.F_y + tire_forces_front.F_y*math.cos(u["delta"]) - param["mass"]*x["vx"]*x["r"])             # <<<<<<<<<<<<<<
@@ -4782,7 +4782,7 @@ static PyObject *__pyx_pf_16model_integrator_7Vehicle_18getF(CYTHON_UNUSED PyObj
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
 
-  /* "model_integrator.pyx":150
+  /* "cython_libs/model_integrator.pyx":150
  *         self.f_[3] = 1.0/float(param["mass"]) * (tire_forces_rear.F_x + friction_force - tire_forces_front.F_y*math.sin(u["delta"]) + param["mass"]*x["vy"]*x["r"])
  *         self.f_[4] = 1.0/float(param["mass"]) * (tire_forces_rear.F_y + tire_forces_front.F_y*math.cos(u["delta"]) - param["mass"]*x["vx"]*x["r"])
  *         self.f_[5] = 1.0/float(param["Iz"]) * (tire_forces_front.F_y*param["lf"]*math.cos(u["delta"]) - tire_forces_rear.F_y*param["lr"])             # <<<<<<<<<<<<<<
@@ -4856,7 +4856,7 @@ static PyObject *__pyx_pf_16model_integrator_7Vehicle_18getF(CYTHON_UNUSED PyObj
   __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
-  /* "model_integrator.pyx":156
+  /* "cython_libs/model_integrator.pyx":156
  *         # f(9) = dVs
  * 
  *         return self.f_             # <<<<<<<<<<<<<<
@@ -4870,7 +4870,7 @@ static PyObject *__pyx_pf_16model_integrator_7Vehicle_18getF(CYTHON_UNUSED PyObj
   __pyx_t_2 = 0;
   goto __pyx_L0;
 
-  /* "model_integrator.pyx":133
+  /* "cython_libs/model_integrator.pyx":133
  *         return F_f
  * 
  *     def getF(self, x, u, param):             # <<<<<<<<<<<<<<
@@ -4887,7 +4887,7 @@ static PyObject *__pyx_pf_16model_integrator_7Vehicle_18getF(CYTHON_UNUSED PyObj
   __Pyx_XDECREF(__pyx_t_6);
   __Pyx_XDECREF(__pyx_t_7);
   __Pyx_XDECREF(__pyx_t_9);
-  __Pyx_AddTraceback("model_integrator.Vehicle.getF", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_AddTraceback("cython_libs.model_integrator.Vehicle.getF", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __pyx_r = NULL;
   __pyx_L0:;
   __Pyx_XDECREF(__pyx_v_tire_forces_front);
@@ -4898,7 +4898,7 @@ static PyObject *__pyx_pf_16model_integrator_7Vehicle_18getF(CYTHON_UNUSED PyObj
   return __pyx_r;
 }
 
-/* "model_integrator.pyx":158
+/* "cython_libs/model_integrator.pyx":158
  *         return self.f_
  * 
  *     def RK4(self, x, u, ts):             # <<<<<<<<<<<<<<
@@ -4907,10 +4907,10 @@ static PyObject *__pyx_pf_16model_integrator_7Vehicle_18getF(CYTHON_UNUSED PyObj
  */
 
 /* Python wrapper */
-static PyObject *__pyx_pw_16model_integrator_7Vehicle_21RK4(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
-static char __pyx_doc_16model_integrator_7Vehicle_20RK4[] = "4th order Runge Kutta (RK4) implementation\n           4 evaluation points of continuous dynamics\n        Args:\n            x(dict vehicle state): The input state space structure.\n            u(dict vehicle controls): The control input structure\n            ts (int): The time step length [seconds]\n        ";
-static PyMethodDef __pyx_mdef_16model_integrator_7Vehicle_21RK4 = {"RK4", (PyCFunction)(void*)(PyCFunctionWithKeywords)__pyx_pw_16model_integrator_7Vehicle_21RK4, METH_VARARGS|METH_KEYWORDS, __pyx_doc_16model_integrator_7Vehicle_20RK4};
-static PyObject *__pyx_pw_16model_integrator_7Vehicle_21RK4(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds) {
+static PyObject *__pyx_pw_11cython_libs_16model_integrator_7Vehicle_21RK4(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
+static char __pyx_doc_11cython_libs_16model_integrator_7Vehicle_20RK4[] = "4th order Runge Kutta (RK4) implementation\n           4 evaluation points of continuous dynamics\n        Args:\n            x(dict vehicle state): The input state space structure.\n            u(dict vehicle controls): The control input structure\n            ts (int): The time step length [seconds]\n        ";
+static PyMethodDef __pyx_mdef_11cython_libs_16model_integrator_7Vehicle_21RK4 = {"RK4", (PyCFunction)(void*)(PyCFunctionWithKeywords)__pyx_pw_11cython_libs_16model_integrator_7Vehicle_21RK4, METH_VARARGS|METH_KEYWORDS, __pyx_doc_11cython_libs_16model_integrator_7Vehicle_20RK4};
+static PyObject *__pyx_pw_11cython_libs_16model_integrator_7Vehicle_21RK4(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds) {
   PyObject *__pyx_v_self = 0;
   PyObject *__pyx_v_x = 0;
   PyObject *__pyx_v_u = 0;
@@ -4983,18 +4983,18 @@ static PyObject *__pyx_pw_16model_integrator_7Vehicle_21RK4(PyObject *__pyx_self
   __pyx_L5_argtuple_error:;
   __Pyx_RaiseArgtupleInvalid("RK4", 1, 4, 4, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 158, __pyx_L3_error)
   __pyx_L3_error:;
-  __Pyx_AddTraceback("model_integrator.Vehicle.RK4", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_AddTraceback("cython_libs.model_integrator.Vehicle.RK4", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
   return NULL;
   __pyx_L4_argument_unpacking_done:;
-  __pyx_r = __pyx_pf_16model_integrator_7Vehicle_20RK4(__pyx_self, __pyx_v_self, __pyx_v_x, __pyx_v_u, __pyx_v_ts);
+  __pyx_r = __pyx_pf_11cython_libs_16model_integrator_7Vehicle_20RK4(__pyx_self, __pyx_v_self, __pyx_v_x, __pyx_v_u, __pyx_v_ts);
 
   /* function exit code */
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_16model_integrator_7Vehicle_20RK4(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_self, PyObject *__pyx_v_x, PyObject *__pyx_v_u, PyObject *__pyx_v_ts) {
+static PyObject *__pyx_pf_11cython_libs_16model_integrator_7Vehicle_20RK4(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_self, PyObject *__pyx_v_x, PyObject *__pyx_v_u, PyObject *__pyx_v_ts) {
   PyObject *__pyx_v_x_vec = NULL;
   CYTHON_UNUSED PyObject *__pyx_v_u_vec = NULL;
   PyObject *__pyx_v_k1 = NULL;
@@ -5016,7 +5016,7 @@ static PyObject *__pyx_pf_16model_integrator_7Vehicle_20RK4(CYTHON_UNUSED PyObje
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("RK4", 0);
 
-  /* "model_integrator.pyx":168
+  /* "cython_libs/model_integrator.pyx":168
  *         # 4th order Runge Kutta (RK4) implementation
  *         # 4 evaluation points of continuous dynamics
  *         x_vec = self.stateToVector(x)             # <<<<<<<<<<<<<<
@@ -5043,7 +5043,7 @@ static PyObject *__pyx_pf_16model_integrator_7Vehicle_20RK4(CYTHON_UNUSED PyObje
   __pyx_v_x_vec = __pyx_t_1;
   __pyx_t_1 = 0;
 
-  /* "model_integrator.pyx":169
+  /* "cython_libs/model_integrator.pyx":169
  *         # 4 evaluation points of continuous dynamics
  *         x_vec = self.stateToVector(x)
  *         u_vec = self.inputToVector(u)             # <<<<<<<<<<<<<<
@@ -5070,7 +5070,7 @@ static PyObject *__pyx_pf_16model_integrator_7Vehicle_20RK4(CYTHON_UNUSED PyObje
   __pyx_v_u_vec = __pyx_t_1;
   __pyx_t_1 = 0;
 
-  /* "model_integrator.pyx":174
+  /* "cython_libs/model_integrator.pyx":174
  *         #     import ipdb; ipdb.set_trace()
  *         # evaluating the 4 points
  *         k1 = self.getF(self.vectorToState(x_vec),u,self.params)             # <<<<<<<<<<<<<<
@@ -5153,7 +5153,7 @@ static PyObject *__pyx_pf_16model_integrator_7Vehicle_20RK4(CYTHON_UNUSED PyObje
   __pyx_v_k1 = __pyx_t_1;
   __pyx_t_1 = 0;
 
-  /* "model_integrator.pyx":175
+  /* "cython_libs/model_integrator.pyx":175
  *         # evaluating the 4 points
  *         k1 = self.getF(self.vectorToState(x_vec),u,self.params)
  *         k2 = self.getF(self.vectorToState(x_vec+ts/2.*k1),u,self.params)             # <<<<<<<<<<<<<<
@@ -5245,7 +5245,7 @@ static PyObject *__pyx_pf_16model_integrator_7Vehicle_20RK4(CYTHON_UNUSED PyObje
   __pyx_v_k2 = __pyx_t_1;
   __pyx_t_1 = 0;
 
-  /* "model_integrator.pyx":176
+  /* "cython_libs/model_integrator.pyx":176
  *         k1 = self.getF(self.vectorToState(x_vec),u,self.params)
  *         k2 = self.getF(self.vectorToState(x_vec+ts/2.*k1),u,self.params)
  *         k3 = self.getF(self.vectorToState(x_vec+ts/2.*k2),u,self.params)             # <<<<<<<<<<<<<<
@@ -5337,7 +5337,7 @@ static PyObject *__pyx_pf_16model_integrator_7Vehicle_20RK4(CYTHON_UNUSED PyObje
   __pyx_v_k3 = __pyx_t_1;
   __pyx_t_1 = 0;
 
-  /* "model_integrator.pyx":177
+  /* "cython_libs/model_integrator.pyx":177
  *         k2 = self.getF(self.vectorToState(x_vec+ts/2.*k1),u,self.params)
  *         k3 = self.getF(self.vectorToState(x_vec+ts/2.*k2),u,self.params)
  *         k4 = self.getF(self.vectorToState(x_vec+ts*k3),u,self.params)             # <<<<<<<<<<<<<<
@@ -5426,7 +5426,7 @@ static PyObject *__pyx_pf_16model_integrator_7Vehicle_20RK4(CYTHON_UNUSED PyObje
   __pyx_v_k4 = __pyx_t_1;
   __pyx_t_1 = 0;
 
-  /* "model_integrator.pyx":179
+  /* "cython_libs/model_integrator.pyx":179
  *         k4 = self.getF(self.vectorToState(x_vec+ts*k3),u,self.params)
  *         # combining to give output
  *         x_next = x_vec + ts*(k1/6.+k2/3.+k3/3.+k4/6.)             # <<<<<<<<<<<<<<
@@ -5462,7 +5462,7 @@ static PyObject *__pyx_pf_16model_integrator_7Vehicle_20RK4(CYTHON_UNUSED PyObje
   __pyx_v_x_next = __pyx_t_5;
   __pyx_t_5 = 0;
 
-  /* "model_integrator.pyx":180
+  /* "cython_libs/model_integrator.pyx":180
  *         # combining to give output
  *         x_next = x_vec + ts*(k1/6.+k2/3.+k3/3.+k4/6.)
  *         return self.vectorToState(x_next)             # <<<<<<<<<<<<<<
@@ -5491,7 +5491,7 @@ static PyObject *__pyx_pf_16model_integrator_7Vehicle_20RK4(CYTHON_UNUSED PyObje
   __pyx_t_5 = 0;
   goto __pyx_L0;
 
-  /* "model_integrator.pyx":158
+  /* "cython_libs/model_integrator.pyx":158
  *         return self.f_
  * 
  *     def RK4(self, x, u, ts):             # <<<<<<<<<<<<<<
@@ -5507,7 +5507,7 @@ static PyObject *__pyx_pf_16model_integrator_7Vehicle_20RK4(CYTHON_UNUSED PyObje
   __Pyx_XDECREF(__pyx_t_4);
   __Pyx_XDECREF(__pyx_t_5);
   __Pyx_XDECREF(__pyx_t_7);
-  __Pyx_AddTraceback("model_integrator.Vehicle.RK4", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_AddTraceback("cython_libs.model_integrator.Vehicle.RK4", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __pyx_r = NULL;
   __pyx_L0:;
   __Pyx_XDECREF(__pyx_v_x_vec);
@@ -5522,7 +5522,7 @@ static PyObject *__pyx_pf_16model_integrator_7Vehicle_20RK4(CYTHON_UNUSED PyObje
   return __pyx_r;
 }
 
-/* "model_integrator.pyx":182
+/* "cython_libs/model_integrator.pyx":182
  *         return self.vectorToState(x_next)
  * 
  *     def simTimeStep(self, x, u, ts):             # <<<<<<<<<<<<<<
@@ -5531,10 +5531,10 @@ static PyObject *__pyx_pf_16model_integrator_7Vehicle_20RK4(CYTHON_UNUSED PyObje
  */
 
 /* Python wrapper */
-static PyObject *__pyx_pw_16model_integrator_7Vehicle_23simTimeStep(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
-static char __pyx_doc_16model_integrator_7Vehicle_22simTimeStep[] = "Simulate the vehicle continuous dynamics\n        Args:\n            x(dict vehicle state): The input state space structure.\n            u(dict vehicle controls): The control input structure\n            ts (int): The time step length [seconds]\n        ";
-static PyMethodDef __pyx_mdef_16model_integrator_7Vehicle_23simTimeStep = {"simTimeStep", (PyCFunction)(void*)(PyCFunctionWithKeywords)__pyx_pw_16model_integrator_7Vehicle_23simTimeStep, METH_VARARGS|METH_KEYWORDS, __pyx_doc_16model_integrator_7Vehicle_22simTimeStep};
-static PyObject *__pyx_pw_16model_integrator_7Vehicle_23simTimeStep(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds) {
+static PyObject *__pyx_pw_11cython_libs_16model_integrator_7Vehicle_23simTimeStep(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
+static char __pyx_doc_11cython_libs_16model_integrator_7Vehicle_22simTimeStep[] = "Simulate the vehicle continuous dynamics\n        Args:\n            x(dict vehicle state): The input state space structure.\n            u(dict vehicle controls): The control input structure\n            ts (int): The time step length [seconds]\n        ";
+static PyMethodDef __pyx_mdef_11cython_libs_16model_integrator_7Vehicle_23simTimeStep = {"simTimeStep", (PyCFunction)(void*)(PyCFunctionWithKeywords)__pyx_pw_11cython_libs_16model_integrator_7Vehicle_23simTimeStep, METH_VARARGS|METH_KEYWORDS, __pyx_doc_11cython_libs_16model_integrator_7Vehicle_22simTimeStep};
+static PyObject *__pyx_pw_11cython_libs_16model_integrator_7Vehicle_23simTimeStep(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds) {
   PyObject *__pyx_v_self = 0;
   PyObject *__pyx_v_x = 0;
   PyObject *__pyx_v_u = 0;
@@ -5607,18 +5607,18 @@ static PyObject *__pyx_pw_16model_integrator_7Vehicle_23simTimeStep(PyObject *__
   __pyx_L5_argtuple_error:;
   __Pyx_RaiseArgtupleInvalid("simTimeStep", 1, 4, 4, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 182, __pyx_L3_error)
   __pyx_L3_error:;
-  __Pyx_AddTraceback("model_integrator.Vehicle.simTimeStep", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_AddTraceback("cython_libs.model_integrator.Vehicle.simTimeStep", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
   return NULL;
   __pyx_L4_argument_unpacking_done:;
-  __pyx_r = __pyx_pf_16model_integrator_7Vehicle_22simTimeStep(__pyx_self, __pyx_v_self, __pyx_v_x, __pyx_v_u, __pyx_v_ts);
+  __pyx_r = __pyx_pf_11cython_libs_16model_integrator_7Vehicle_22simTimeStep(__pyx_self, __pyx_v_self, __pyx_v_x, __pyx_v_u, __pyx_v_ts);
 
   /* function exit code */
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_16model_integrator_7Vehicle_22simTimeStep(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_self, PyObject *__pyx_v_x, PyObject *__pyx_v_u, PyObject *__pyx_v_ts) {
+static PyObject *__pyx_pf_11cython_libs_16model_integrator_7Vehicle_22simTimeStep(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_self, PyObject *__pyx_v_x, PyObject *__pyx_v_u, PyObject *__pyx_v_ts) {
   PyObject *__pyx_v_x_next = NULL;
   PyObject *__pyx_v_integration_steps = NULL;
   CYTHON_UNUSED PyObject *__pyx_v_i = NULL;
@@ -5639,7 +5639,7 @@ static PyObject *__pyx_pf_16model_integrator_7Vehicle_22simTimeStep(CYTHON_UNUSE
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("simTimeStep", 0);
 
-  /* "model_integrator.pyx":191
+  /* "cython_libs/model_integrator.pyx":191
  *         #print(" before sim car.state[phi] = {0}".format(x["phi"]))
  *         #print(" before sim car.state[r] = {0}".format(x["r"]))
  *         x_next = x             # <<<<<<<<<<<<<<
@@ -5649,7 +5649,7 @@ static PyObject *__pyx_pf_16model_integrator_7Vehicle_22simTimeStep(CYTHON_UNUSE
   __Pyx_INCREF(__pyx_v_x);
   __pyx_v_x_next = __pyx_v_x;
 
-  /* "model_integrator.pyx":192
+  /* "cython_libs/model_integrator.pyx":192
  *         #print(" before sim car.state[r] = {0}".format(x["r"]))
  *         x_next = x
  *         integration_steps = (int)(ts/self.fine_time_step_)             # <<<<<<<<<<<<<<
@@ -5667,7 +5667,7 @@ static PyObject *__pyx_pf_16model_integrator_7Vehicle_22simTimeStep(CYTHON_UNUSE
   __pyx_v_integration_steps = __pyx_t_1;
   __pyx_t_1 = 0;
 
-  /* "model_integrator.pyx":193
+  /* "cython_libs/model_integrator.pyx":193
  *         x_next = x
  *         integration_steps = (int)(ts/self.fine_time_step_)
  *         if(ts/self.fine_time_step_ != integration_steps):             # <<<<<<<<<<<<<<
@@ -5685,7 +5685,7 @@ static PyObject *__pyx_pf_16model_integrator_7Vehicle_22simTimeStep(CYTHON_UNUSE
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   if (__pyx_t_3) {
 
-    /* "model_integrator.pyx":194
+    /* "cython_libs/model_integrator.pyx":194
  *         integration_steps = (int)(ts/self.fine_time_step_)
  *         if(ts/self.fine_time_step_ != integration_steps):
  *             print("Warning ts/self.fine_time_step_{0} integration_steps = {1}".format(ts/self.fine_time_step_,integration_steps))             # <<<<<<<<<<<<<<
@@ -5749,7 +5749,7 @@ static PyObject *__pyx_pf_16model_integrator_7Vehicle_22simTimeStep(CYTHON_UNUSE
     if (__Pyx_PrintOne(0, __pyx_t_1) < 0) __PYX_ERR(0, 194, __pyx_L1_error)
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-    /* "model_integrator.pyx":193
+    /* "cython_libs/model_integrator.pyx":193
  *         x_next = x
  *         integration_steps = (int)(ts/self.fine_time_step_)
  *         if(ts/self.fine_time_step_ != integration_steps):             # <<<<<<<<<<<<<<
@@ -5758,7 +5758,7 @@ static PyObject *__pyx_pf_16model_integrator_7Vehicle_22simTimeStep(CYTHON_UNUSE
  */
   }
 
-  /* "model_integrator.pyx":195
+  /* "cython_libs/model_integrator.pyx":195
  *         if(ts/self.fine_time_step_ != integration_steps):
  *             print("Warning ts/self.fine_time_step_{0} integration_steps = {1}".format(ts/self.fine_time_step_,integration_steps))
  *         for i in range(0,integration_steps):             # <<<<<<<<<<<<<<
@@ -5819,7 +5819,7 @@ static PyObject *__pyx_pf_16model_integrator_7Vehicle_22simTimeStep(CYTHON_UNUSE
     __Pyx_XDECREF_SET(__pyx_v_i, __pyx_t_2);
     __pyx_t_2 = 0;
 
-    /* "model_integrator.pyx":196
+    /* "cython_libs/model_integrator.pyx":196
  *             print("Warning ts/self.fine_time_step_{0} integration_steps = {1}".format(ts/self.fine_time_step_,integration_steps))
  *         for i in range(0,integration_steps):
  *             x_next = self.RK4(x_next,u,self.fine_time_step_)             # <<<<<<<<<<<<<<
@@ -5883,7 +5883,7 @@ static PyObject *__pyx_pf_16model_integrator_7Vehicle_22simTimeStep(CYTHON_UNUSE
     __Pyx_DECREF_SET(__pyx_v_x_next, __pyx_t_2);
     __pyx_t_2 = 0;
 
-    /* "model_integrator.pyx":195
+    /* "cython_libs/model_integrator.pyx":195
  *         if(ts/self.fine_time_step_ != integration_steps):
  *             print("Warning ts/self.fine_time_step_{0} integration_steps = {1}".format(ts/self.fine_time_step_,integration_steps))
  *         for i in range(0,integration_steps):             # <<<<<<<<<<<<<<
@@ -5893,7 +5893,7 @@ static PyObject *__pyx_pf_16model_integrator_7Vehicle_22simTimeStep(CYTHON_UNUSE
   }
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "model_integrator.pyx":198
+  /* "cython_libs/model_integrator.pyx":198
  *             x_next = self.RK4(x_next,u,self.fine_time_step_)
  *         #print(" after sim car.state[x] = {0}".format(x_next["x"]))
  *         return x_next             # <<<<<<<<<<<<<<
@@ -5905,7 +5905,7 @@ static PyObject *__pyx_pf_16model_integrator_7Vehicle_22simTimeStep(CYTHON_UNUSE
   __pyx_r = __pyx_v_x_next;
   goto __pyx_L0;
 
-  /* "model_integrator.pyx":182
+  /* "cython_libs/model_integrator.pyx":182
  *         return self.vectorToState(x_next)
  * 
  *     def simTimeStep(self, x, u, ts):             # <<<<<<<<<<<<<<
@@ -5921,7 +5921,7 @@ static PyObject *__pyx_pf_16model_integrator_7Vehicle_22simTimeStep(CYTHON_UNUSE
   __Pyx_XDECREF(__pyx_t_5);
   __Pyx_XDECREF(__pyx_t_7);
   __Pyx_XDECREF(__pyx_t_10);
-  __Pyx_AddTraceback("model_integrator.Vehicle.simTimeStep", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_AddTraceback("cython_libs.model_integrator.Vehicle.simTimeStep", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __pyx_r = NULL;
   __pyx_L0:;
   __Pyx_XDECREF(__pyx_v_x_next);
@@ -6021,6 +6021,7 @@ static __Pyx_StringTabEntry __pyx_string_tab[] = {
   {&__pyx_n_s_cline_in_traceback, __pyx_k_cline_in_traceback, sizeof(__pyx_k_cline_in_traceback), 0, 0, 1, 1},
   {&__pyx_n_s_control_input, __pyx_k_control_input, sizeof(__pyx_k_control_input), 0, 0, 1, 1},
   {&__pyx_n_s_cos, __pyx_k_cos, sizeof(__pyx_k_cos), 0, 0, 1, 1},
+  {&__pyx_n_s_cython_libs_model_integrator, __pyx_k_cython_libs_model_integrator, sizeof(__pyx_k_cython_libs_model_integrator), 0, 0, 1, 1},
   {&__pyx_n_s_delta, __pyx_k_delta, sizeof(__pyx_k_delta), 0, 0, 1, 1},
   {&__pyx_n_s_doc, __pyx_k_doc, sizeof(__pyx_k_doc), 0, 0, 1, 1},
   {&__pyx_n_s_end, __pyx_k_end, sizeof(__pyx_k_end), 0, 0, 1, 1},
@@ -6052,7 +6053,6 @@ static __Pyx_StringTabEntry __pyx_string_tab[] = {
   {&__pyx_n_s_mass, __pyx_k_mass, sizeof(__pyx_k_mass), 0, 0, 1, 1},
   {&__pyx_n_s_math, __pyx_k_math, sizeof(__pyx_k_math), 0, 0, 1, 1},
   {&__pyx_n_s_metaclass, __pyx_k_metaclass, sizeof(__pyx_k_metaclass), 0, 0, 1, 1},
-  {&__pyx_n_s_model_integrator, __pyx_k_model_integrator, sizeof(__pyx_k_model_integrator), 0, 0, 1, 1},
   {&__pyx_kp_s_model_integrator_pyx, __pyx_k_model_integrator_pyx, sizeof(__pyx_k_model_integrator_pyx), 0, 0, 1, 0},
   {&__pyx_n_s_module, __pyx_k_module, sizeof(__pyx_k_module), 0, 0, 1, 1},
   {&__pyx_n_s_name, __pyx_k_name, sizeof(__pyx_k_name), 0, 0, 1, 1},
@@ -6105,7 +6105,7 @@ static CYTHON_SMALL_CODE int __Pyx_InitCachedConstants(void) {
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("__Pyx_InitCachedConstants", 0);
 
-  /* "model_integrator.pyx":5
+  /* "cython_libs/model_integrator.pyx":5
  * 
  * class TireForces:
  *     def __init__(self, F_x, F_y):             # <<<<<<<<<<<<<<
@@ -6117,7 +6117,7 @@ static CYTHON_SMALL_CODE int __Pyx_InitCachedConstants(void) {
   __Pyx_GIVEREF(__pyx_tuple_);
   __pyx_codeobj__2 = (PyObject*)__Pyx_PyCode_New(3, 0, 3, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple_, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_model_integrator_pyx, __pyx_n_s_init, 5, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__2)) __PYX_ERR(0, 5, __pyx_L1_error)
 
-  /* "model_integrator.pyx":13
+  /* "cython_libs/model_integrator.pyx":13
  *     """A simple class defining a vehicle."""
  *     # start_pos is a tuple (x,y) a 2d position
  *     def __init__(self, start_pos):             # <<<<<<<<<<<<<<
@@ -6129,7 +6129,7 @@ static CYTHON_SMALL_CODE int __Pyx_InitCachedConstants(void) {
   __Pyx_GIVEREF(__pyx_tuple__3);
   __pyx_codeobj__4 = (PyObject*)__Pyx_PyCode_New(2, 0, 3, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__3, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_model_integrator_pyx, __pyx_n_s_init, 13, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__4)) __PYX_ERR(0, 13, __pyx_L1_error)
 
-  /* "model_integrator.pyx":67
+  /* "cython_libs/model_integrator.pyx":67
  *                         "Cr2" : 0.00035, # quadratic friciton multiplier on the vehicle velocity.
  *                     }
  *     def stateToVector(self, x):             # <<<<<<<<<<<<<<
@@ -6141,7 +6141,7 @@ static CYTHON_SMALL_CODE int __Pyx_InitCachedConstants(void) {
   __Pyx_GIVEREF(__pyx_tuple__5);
   __pyx_codeobj__6 = (PyObject*)__Pyx_PyCode_New(2, 0, 2, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__5, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_model_integrator_pyx, __pyx_n_s_stateToVector, 67, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__6)) __PYX_ERR(0, 67, __pyx_L1_error)
 
-  /* "model_integrator.pyx":77
+  /* "cython_libs/model_integrator.pyx":77
  *         return self.xk_
  * 
  *     def vectorToState(self, x_vec):             # <<<<<<<<<<<<<<
@@ -6153,7 +6153,7 @@ static CYTHON_SMALL_CODE int __Pyx_InitCachedConstants(void) {
   __Pyx_GIVEREF(__pyx_tuple__7);
   __pyx_codeobj__8 = (PyObject*)__Pyx_PyCode_New(2, 0, 3, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__7, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_model_integrator_pyx, __pyx_n_s_vectorToState, 77, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__8)) __PYX_ERR(0, 77, __pyx_L1_error)
 
-  /* "model_integrator.pyx":88
+  /* "cython_libs/model_integrator.pyx":88
  *         return new_state
  * 
  *     def inputToVector(self, u):             # <<<<<<<<<<<<<<
@@ -6165,7 +6165,7 @@ static CYTHON_SMALL_CODE int __Pyx_InitCachedConstants(void) {
   __Pyx_GIVEREF(__pyx_tuple__9);
   __pyx_codeobj__10 = (PyObject*)__Pyx_PyCode_New(2, 0, 2, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__9, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_model_integrator_pyx, __pyx_n_s_inputToVector, 88, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__10)) __PYX_ERR(0, 88, __pyx_L1_error)
 
-  /* "model_integrator.pyx":94
+  /* "cython_libs/model_integrator.pyx":94
  *         return self.uk_
  * 
  *     def getSlipAngleFront(self, x, u):             # <<<<<<<<<<<<<<
@@ -6177,7 +6177,7 @@ static CYTHON_SMALL_CODE int __Pyx_InitCachedConstants(void) {
   __Pyx_GIVEREF(__pyx_tuple__11);
   __pyx_codeobj__12 = (PyObject*)__Pyx_PyCode_New(3, 0, 4, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__11, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_model_integrator_pyx, __pyx_n_s_getSlipAngleFront, 94, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__12)) __PYX_ERR(0, 94, __pyx_L1_error)
 
-  /* "model_integrator.pyx":100
+  /* "cython_libs/model_integrator.pyx":100
  *         return slip_ang_f
  * 
  *     def getSlipAngleRear(self, x, u):             # <<<<<<<<<<<<<<
@@ -6189,7 +6189,7 @@ static CYTHON_SMALL_CODE int __Pyx_InitCachedConstants(void) {
   __Pyx_GIVEREF(__pyx_tuple__13);
   __pyx_codeobj__14 = (PyObject*)__Pyx_PyCode_New(3, 0, 4, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__13, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_model_integrator_pyx, __pyx_n_s_getSlipAngleRear, 100, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__14)) __PYX_ERR(0, 100, __pyx_L1_error)
 
-  /* "model_integrator.pyx":105
+  /* "cython_libs/model_integrator.pyx":105
  *         return slip_ang_r
  * 
  *     def getForceFront(self, x, u):             # <<<<<<<<<<<<<<
@@ -6201,7 +6201,7 @@ static CYTHON_SMALL_CODE int __Pyx_InitCachedConstants(void) {
   __Pyx_GIVEREF(__pyx_tuple__15);
   __pyx_codeobj__16 = (PyObject*)__Pyx_PyCode_New(3, 0, 7, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__15, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_model_integrator_pyx, __pyx_n_s_getForceFront, 105, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__16)) __PYX_ERR(0, 105, __pyx_L1_error)
 
-  /* "model_integrator.pyx":116
+  /* "cython_libs/model_integrator.pyx":116
  *         return f_tire
  * 
  *     def getForceRear(self, x, u):             # <<<<<<<<<<<<<<
@@ -6213,7 +6213,7 @@ static CYTHON_SMALL_CODE int __Pyx_InitCachedConstants(void) {
   __Pyx_GIVEREF(__pyx_tuple__17);
   __pyx_codeobj__18 = (PyObject*)__Pyx_PyCode_New(3, 0, 7, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__17, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_model_integrator_pyx, __pyx_n_s_getForceRear, 116, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__18)) __PYX_ERR(0, 116, __pyx_L1_error)
 
-  /* "model_integrator.pyx":128
+  /* "cython_libs/model_integrator.pyx":128
  *         return r_tire
  * 
  *     def getForceFriction(self, x):             # <<<<<<<<<<<<<<
@@ -6225,7 +6225,7 @@ static CYTHON_SMALL_CODE int __Pyx_InitCachedConstants(void) {
   __Pyx_GIVEREF(__pyx_tuple__19);
   __pyx_codeobj__20 = (PyObject*)__Pyx_PyCode_New(2, 0, 3, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__19, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_model_integrator_pyx, __pyx_n_s_getForceFriction, 128, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__20)) __PYX_ERR(0, 128, __pyx_L1_error)
 
-  /* "model_integrator.pyx":133
+  /* "cython_libs/model_integrator.pyx":133
  *         return F_f
  * 
  *     def getF(self, x, u, param):             # <<<<<<<<<<<<<<
@@ -6237,7 +6237,7 @@ static CYTHON_SMALL_CODE int __Pyx_InitCachedConstants(void) {
   __Pyx_GIVEREF(__pyx_tuple__21);
   __pyx_codeobj__22 = (PyObject*)__Pyx_PyCode_New(4, 0, 7, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__21, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_model_integrator_pyx, __pyx_n_s_getF, 133, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__22)) __PYX_ERR(0, 133, __pyx_L1_error)
 
-  /* "model_integrator.pyx":158
+  /* "cython_libs/model_integrator.pyx":158
  *         return self.f_
  * 
  *     def RK4(self, x, u, ts):             # <<<<<<<<<<<<<<
@@ -6249,7 +6249,7 @@ static CYTHON_SMALL_CODE int __Pyx_InitCachedConstants(void) {
   __Pyx_GIVEREF(__pyx_tuple__23);
   __pyx_codeobj__24 = (PyObject*)__Pyx_PyCode_New(4, 0, 11, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__23, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_model_integrator_pyx, __pyx_n_s_RK4, 158, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__24)) __PYX_ERR(0, 158, __pyx_L1_error)
 
-  /* "model_integrator.pyx":182
+  /* "cython_libs/model_integrator.pyx":182
  *         return self.vectorToState(x_next)
  * 
  *     def simTimeStep(self, x, u, ts):             # <<<<<<<<<<<<<<
@@ -6533,14 +6533,14 @@ if (!__Pyx_RefNanny) {
   #if PY_MAJOR_VERSION < 3 && (__PYX_DEFAULT_STRING_ENCODING_IS_ASCII || __PYX_DEFAULT_STRING_ENCODING_IS_DEFAULT)
   if (__Pyx_init_sys_getdefaultencoding_params() < 0) __PYX_ERR(0, 1, __pyx_L1_error)
   #endif
-  if (__pyx_module_is_main_model_integrator) {
+  if (__pyx_module_is_main_cython_libs__model_integrator) {
     if (PyObject_SetAttr(__pyx_m, __pyx_n_s_name, __pyx_n_s_main) < 0) __PYX_ERR(0, 1, __pyx_L1_error)
   }
   #if PY_MAJOR_VERSION >= 3
   {
     PyObject *modules = PyImport_GetModuleDict(); if (unlikely(!modules)) __PYX_ERR(0, 1, __pyx_L1_error)
-    if (!PyDict_GetItemString(modules, "model_integrator")) {
-      if (unlikely(PyDict_SetItemString(modules, "model_integrator", __pyx_m) < 0)) __PYX_ERR(0, 1, __pyx_L1_error)
+    if (!PyDict_GetItemString(modules, "cython_libs.model_integrator")) {
+      if (unlikely(PyDict_SetItemString(modules, "cython_libs.model_integrator", __pyx_m) < 0)) __PYX_ERR(0, 1, __pyx_L1_error)
     }
   }
   #endif
@@ -6561,7 +6561,7 @@ if (!__Pyx_RefNanny) {
   if (__Pyx_patch_abc() < 0) __PYX_ERR(0, 1, __pyx_L1_error)
   #endif
 
-  /* "model_integrator.pyx":1
+  /* "cython_libs/model_integrator.pyx":1
  * import math             # <<<<<<<<<<<<<<
  * import numpy as np
  * 
@@ -6571,7 +6571,7 @@ if (!__Pyx_RefNanny) {
   if (PyDict_SetItem(__pyx_d, __pyx_n_s_math, __pyx_t_1) < 0) __PYX_ERR(0, 1, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "model_integrator.pyx":2
+  /* "cython_libs/model_integrator.pyx":2
  * import math
  * import numpy as np             # <<<<<<<<<<<<<<
  * 
@@ -6582,29 +6582,29 @@ if (!__Pyx_RefNanny) {
   if (PyDict_SetItem(__pyx_d, __pyx_n_s_np, __pyx_t_1) < 0) __PYX_ERR(0, 2, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "model_integrator.pyx":4
+  /* "cython_libs/model_integrator.pyx":4
  * import numpy as np
  * 
  * class TireForces:             # <<<<<<<<<<<<<<
  *     def __init__(self, F_x, F_y):
  *         self.F_x = F_x
  */
-  __pyx_t_1 = __Pyx_Py3MetaclassPrepare((PyObject *) NULL, __pyx_empty_tuple, __pyx_n_s_TireForces, __pyx_n_s_TireForces, (PyObject *) NULL, __pyx_n_s_model_integrator, (PyObject *) NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 4, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_Py3MetaclassPrepare((PyObject *) NULL, __pyx_empty_tuple, __pyx_n_s_TireForces, __pyx_n_s_TireForces, (PyObject *) NULL, __pyx_n_s_cython_libs_model_integrator, (PyObject *) NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 4, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
 
-  /* "model_integrator.pyx":5
+  /* "cython_libs/model_integrator.pyx":5
  * 
  * class TireForces:
  *     def __init__(self, F_x, F_y):             # <<<<<<<<<<<<<<
  *         self.F_x = F_x
  *         self.F_y = F_y
  */
-  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_16model_integrator_10TireForces_1__init__, 0, __pyx_n_s_TireForces___init, NULL, __pyx_n_s_model_integrator, __pyx_d, ((PyObject *)__pyx_codeobj__2)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 5, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_11cython_libs_16model_integrator_10TireForces_1__init__, 0, __pyx_n_s_TireForces___init, NULL, __pyx_n_s_cython_libs_model_integrator, __pyx_d, ((PyObject *)__pyx_codeobj__2)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 5, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   if (__Pyx_SetNameInClass(__pyx_t_1, __pyx_n_s_init, __pyx_t_2) < 0) __PYX_ERR(0, 5, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
-  /* "model_integrator.pyx":4
+  /* "cython_libs/model_integrator.pyx":4
  * import numpy as np
  * 
  * class TireForces:             # <<<<<<<<<<<<<<
@@ -6617,161 +6617,161 @@ if (!__Pyx_RefNanny) {
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "model_integrator.pyx":10
+  /* "cython_libs/model_integrator.pyx":10
  * 
  * # Vehicle
  * class Vehicle:             # <<<<<<<<<<<<<<
  *     """A simple class defining a vehicle."""
  *     # start_pos is a tuple (x,y) a 2d position
  */
-  __pyx_t_1 = __Pyx_Py3MetaclassPrepare((PyObject *) NULL, __pyx_empty_tuple, __pyx_n_s_Vehicle, __pyx_n_s_Vehicle, (PyObject *) NULL, __pyx_n_s_model_integrator, __pyx_kp_s_A_simple_class_defining_a_vehicl); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 10, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_Py3MetaclassPrepare((PyObject *) NULL, __pyx_empty_tuple, __pyx_n_s_Vehicle, __pyx_n_s_Vehicle, (PyObject *) NULL, __pyx_n_s_cython_libs_model_integrator, __pyx_kp_s_A_simple_class_defining_a_vehicl); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 10, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
 
-  /* "model_integrator.pyx":13
+  /* "cython_libs/model_integrator.pyx":13
  *     """A simple class defining a vehicle."""
  *     # start_pos is a tuple (x,y) a 2d position
  *     def __init__(self, start_pos):             # <<<<<<<<<<<<<<
  * 
  *         self.start_pos = (start_pos[0], start_pos[1])
  */
-  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_16model_integrator_7Vehicle_1__init__, 0, __pyx_n_s_Vehicle___init, NULL, __pyx_n_s_model_integrator, __pyx_d, ((PyObject *)__pyx_codeobj__4)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 13, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_11cython_libs_16model_integrator_7Vehicle_1__init__, 0, __pyx_n_s_Vehicle___init, NULL, __pyx_n_s_cython_libs_model_integrator, __pyx_d, ((PyObject *)__pyx_codeobj__4)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 13, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   if (__Pyx_SetNameInClass(__pyx_t_1, __pyx_n_s_init, __pyx_t_2) < 0) __PYX_ERR(0, 13, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
-  /* "model_integrator.pyx":67
+  /* "cython_libs/model_integrator.pyx":67
  *                         "Cr2" : 0.00035, # quadratic friciton multiplier on the vehicle velocity.
  *                     }
  *     def stateToVector(self, x):             # <<<<<<<<<<<<<<
  * 
  *         self.xk_[0] = x["x"]
  */
-  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_16model_integrator_7Vehicle_3stateToVector, 0, __pyx_n_s_Vehicle_stateToVector, NULL, __pyx_n_s_model_integrator, __pyx_d, ((PyObject *)__pyx_codeobj__6)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 67, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_11cython_libs_16model_integrator_7Vehicle_3stateToVector, 0, __pyx_n_s_Vehicle_stateToVector, NULL, __pyx_n_s_cython_libs_model_integrator, __pyx_d, ((PyObject *)__pyx_codeobj__6)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 67, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   if (__Pyx_SetNameInClass(__pyx_t_1, __pyx_n_s_stateToVector, __pyx_t_2) < 0) __PYX_ERR(0, 67, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
-  /* "model_integrator.pyx":77
+  /* "cython_libs/model_integrator.pyx":77
  *         return self.xk_
  * 
  *     def vectorToState(self, x_vec):             # <<<<<<<<<<<<<<
  *         new_state = {
  *                     "x": x_vec[0],
  */
-  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_16model_integrator_7Vehicle_5vectorToState, 0, __pyx_n_s_Vehicle_vectorToState, NULL, __pyx_n_s_model_integrator, __pyx_d, ((PyObject *)__pyx_codeobj__8)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 77, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_11cython_libs_16model_integrator_7Vehicle_5vectorToState, 0, __pyx_n_s_Vehicle_vectorToState, NULL, __pyx_n_s_cython_libs_model_integrator, __pyx_d, ((PyObject *)__pyx_codeobj__8)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 77, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   if (__Pyx_SetNameInClass(__pyx_t_1, __pyx_n_s_vectorToState, __pyx_t_2) < 0) __PYX_ERR(0, 77, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
-  /* "model_integrator.pyx":88
+  /* "cython_libs/model_integrator.pyx":88
  *         return new_state
  * 
  *     def inputToVector(self, u):             # <<<<<<<<<<<<<<
  * 
  *         self.uk_[0] = u["Fx"]
  */
-  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_16model_integrator_7Vehicle_7inputToVector, 0, __pyx_n_s_Vehicle_inputToVector, NULL, __pyx_n_s_model_integrator, __pyx_d, ((PyObject *)__pyx_codeobj__10)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 88, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_11cython_libs_16model_integrator_7Vehicle_7inputToVector, 0, __pyx_n_s_Vehicle_inputToVector, NULL, __pyx_n_s_cython_libs_model_integrator, __pyx_d, ((PyObject *)__pyx_codeobj__10)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 88, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   if (__Pyx_SetNameInClass(__pyx_t_1, __pyx_n_s_inputToVector, __pyx_t_2) < 0) __PYX_ERR(0, 88, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
-  /* "model_integrator.pyx":94
+  /* "cython_libs/model_integrator.pyx":94
  *         return self.uk_
  * 
  *     def getSlipAngleFront(self, x, u):             # <<<<<<<<<<<<<<
  *         # compute slip angels given current state
  *         slip_ang_f = -math.atan2(x["vy"]+x["r"]*self.params["lf"],x["vx"]) + u["delta"]
  */
-  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_16model_integrator_7Vehicle_9getSlipAngleFront, 0, __pyx_n_s_Vehicle_getSlipAngleFront, NULL, __pyx_n_s_model_integrator, __pyx_d, ((PyObject *)__pyx_codeobj__12)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 94, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_11cython_libs_16model_integrator_7Vehicle_9getSlipAngleFront, 0, __pyx_n_s_Vehicle_getSlipAngleFront, NULL, __pyx_n_s_cython_libs_model_integrator, __pyx_d, ((PyObject *)__pyx_codeobj__12)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 94, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   if (__Pyx_SetNameInClass(__pyx_t_1, __pyx_n_s_getSlipAngleFront, __pyx_t_2) < 0) __PYX_ERR(0, 94, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
-  /* "model_integrator.pyx":100
+  /* "cython_libs/model_integrator.pyx":100
  *         return slip_ang_f
  * 
  *     def getSlipAngleRear(self, x, u):             # <<<<<<<<<<<<<<
  *         # compute slip angels given current state
  *         slip_ang_r = -math.atan2(x["vy"]-x["r"]*self.params["lr"],x["vx"])
  */
-  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_16model_integrator_7Vehicle_11getSlipAngleRear, 0, __pyx_n_s_Vehicle_getSlipAngleRear, NULL, __pyx_n_s_model_integrator, __pyx_d, ((PyObject *)__pyx_codeobj__14)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 100, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_11cython_libs_16model_integrator_7Vehicle_11getSlipAngleRear, 0, __pyx_n_s_Vehicle_getSlipAngleRear, NULL, __pyx_n_s_cython_libs_model_integrator, __pyx_d, ((PyObject *)__pyx_codeobj__14)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 100, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   if (__Pyx_SetNameInClass(__pyx_t_1, __pyx_n_s_getSlipAngleRear, __pyx_t_2) < 0) __PYX_ERR(0, 100, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
-  /* "model_integrator.pyx":105
+  /* "cython_libs/model_integrator.pyx":105
  *         return slip_ang_r
  * 
  *     def getForceFront(self, x, u):             # <<<<<<<<<<<<<<
  * 
  *         alpha_f = self.getSlipAngleFront(x, u)
  */
-  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_16model_integrator_7Vehicle_13getForceFront, 0, __pyx_n_s_Vehicle_getForceFront, NULL, __pyx_n_s_model_integrator, __pyx_d, ((PyObject *)__pyx_codeobj__16)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 105, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_11cython_libs_16model_integrator_7Vehicle_13getForceFront, 0, __pyx_n_s_Vehicle_getForceFront, NULL, __pyx_n_s_cython_libs_model_integrator, __pyx_d, ((PyObject *)__pyx_codeobj__16)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 105, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   if (__Pyx_SetNameInClass(__pyx_t_1, __pyx_n_s_getForceFront, __pyx_t_2) < 0) __PYX_ERR(0, 105, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
-  /* "model_integrator.pyx":116
+  /* "cython_libs/model_integrator.pyx":116
  *         return f_tire
  * 
  *     def getForceRear(self, x, u):             # <<<<<<<<<<<<<<
  * 
  *         alpha_r = self.getSlipAngleRear(x, u)
  */
-  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_16model_integrator_7Vehicle_15getForceRear, 0, __pyx_n_s_Vehicle_getForceRear, NULL, __pyx_n_s_model_integrator, __pyx_d, ((PyObject *)__pyx_codeobj__18)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 116, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_11cython_libs_16model_integrator_7Vehicle_15getForceRear, 0, __pyx_n_s_Vehicle_getForceRear, NULL, __pyx_n_s_cython_libs_model_integrator, __pyx_d, ((PyObject *)__pyx_codeobj__18)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 116, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   if (__Pyx_SetNameInClass(__pyx_t_1, __pyx_n_s_getForceRear, __pyx_t_2) < 0) __PYX_ERR(0, 116, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
-  /* "model_integrator.pyx":128
+  /* "cython_libs/model_integrator.pyx":128
  *         return r_tire
  * 
  *     def getForceFriction(self, x):             # <<<<<<<<<<<<<<
  *         #return -params.Cr0 - params.Cr2*std::pow(x.vx,2.0);
  *         F_f = -self.params["Cr0"] - self.params["Cr2"]*math.pow(x["vx"],2.0)
  */
-  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_16model_integrator_7Vehicle_17getForceFriction, 0, __pyx_n_s_Vehicle_getForceFriction, NULL, __pyx_n_s_model_integrator, __pyx_d, ((PyObject *)__pyx_codeobj__20)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 128, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_11cython_libs_16model_integrator_7Vehicle_17getForceFriction, 0, __pyx_n_s_Vehicle_getForceFriction, NULL, __pyx_n_s_cython_libs_model_integrator, __pyx_d, ((PyObject *)__pyx_codeobj__20)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 128, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   if (__Pyx_SetNameInClass(__pyx_t_1, __pyx_n_s_getForceFriction, __pyx_t_2) < 0) __PYX_ERR(0, 128, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
-  /* "model_integrator.pyx":133
+  /* "cython_libs/model_integrator.pyx":133
  *         return F_f
  * 
  *     def getF(self, x, u, param):             # <<<<<<<<<<<<<<
  *         """Return the next state vector based on the state space equation of the model
  * 
  */
-  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_16model_integrator_7Vehicle_19getF, 0, __pyx_n_s_Vehicle_getF, NULL, __pyx_n_s_model_integrator, __pyx_d, ((PyObject *)__pyx_codeobj__22)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 133, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_11cython_libs_16model_integrator_7Vehicle_19getF, 0, __pyx_n_s_Vehicle_getF, NULL, __pyx_n_s_cython_libs_model_integrator, __pyx_d, ((PyObject *)__pyx_codeobj__22)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 133, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   if (__Pyx_SetNameInClass(__pyx_t_1, __pyx_n_s_getF, __pyx_t_2) < 0) __PYX_ERR(0, 133, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
-  /* "model_integrator.pyx":158
+  /* "cython_libs/model_integrator.pyx":158
  *         return self.f_
  * 
  *     def RK4(self, x, u, ts):             # <<<<<<<<<<<<<<
  *         """4th order Runge Kutta (RK4) implementation
  *            4 evaluation points of continuous dynamics
  */
-  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_16model_integrator_7Vehicle_21RK4, 0, __pyx_n_s_Vehicle_RK4, NULL, __pyx_n_s_model_integrator, __pyx_d, ((PyObject *)__pyx_codeobj__24)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 158, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_11cython_libs_16model_integrator_7Vehicle_21RK4, 0, __pyx_n_s_Vehicle_RK4, NULL, __pyx_n_s_cython_libs_model_integrator, __pyx_d, ((PyObject *)__pyx_codeobj__24)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 158, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   if (__Pyx_SetNameInClass(__pyx_t_1, __pyx_n_s_RK4, __pyx_t_2) < 0) __PYX_ERR(0, 158, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
-  /* "model_integrator.pyx":182
+  /* "cython_libs/model_integrator.pyx":182
  *         return self.vectorToState(x_next)
  * 
  *     def simTimeStep(self, x, u, ts):             # <<<<<<<<<<<<<<
  *         """Simulate the vehicle continuous dynamics
  *         Args:
  */
-  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_16model_integrator_7Vehicle_23simTimeStep, 0, __pyx_n_s_Vehicle_simTimeStep, NULL, __pyx_n_s_model_integrator, __pyx_d, ((PyObject *)__pyx_codeobj__26)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 182, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_11cython_libs_16model_integrator_7Vehicle_23simTimeStep, 0, __pyx_n_s_Vehicle_simTimeStep, NULL, __pyx_n_s_cython_libs_model_integrator, __pyx_d, ((PyObject *)__pyx_codeobj__26)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 182, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   if (__Pyx_SetNameInClass(__pyx_t_1, __pyx_n_s_simTimeStep, __pyx_t_2) < 0) __PYX_ERR(0, 182, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
-  /* "model_integrator.pyx":10
+  /* "cython_libs/model_integrator.pyx":10
  * 
  * # Vehicle
  * class Vehicle:             # <<<<<<<<<<<<<<
@@ -6784,7 +6784,7 @@ if (!__Pyx_RefNanny) {
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "model_integrator.pyx":1
+  /* "cython_libs/model_integrator.pyx":1
  * import math             # <<<<<<<<<<<<<<
  * import numpy as np
  * 
@@ -6802,11 +6802,11 @@ if (!__Pyx_RefNanny) {
   __Pyx_XDECREF(__pyx_t_2);
   if (__pyx_m) {
     if (__pyx_d) {
-      __Pyx_AddTraceback("init model_integrator", __pyx_clineno, __pyx_lineno, __pyx_filename);
+      __Pyx_AddTraceback("init cython_libs.model_integrator", __pyx_clineno, __pyx_lineno, __pyx_filename);
     }
     Py_CLEAR(__pyx_m);
   } else if (!PyErr_Occurred()) {
-    PyErr_SetString(PyExc_ImportError, "init model_integrator");
+    PyErr_SetString(PyExc_ImportError, "init cython_libs.model_integrator");
   }
   __pyx_L0:;
   __Pyx_RefNannyFinishContext();

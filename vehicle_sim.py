@@ -9,8 +9,8 @@ import random
 from collections import deque
 import math
 import time
-#import model_integrator as mi
-from cython_libs import model_integrator as mi
+import model_integrator as mi
+#from cython_libs import model_integrator as mi
 import sim_timer as simtimer
  
 # Define some colors

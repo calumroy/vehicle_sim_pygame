@@ -30,4 +30,14 @@ build with
 run with  
     `runin.sh`
 
-
+## pyp3
+We can run using pypy3 instead of the standard cpython. This "may" run abit quicker.
+Install pypy3 by downloading it and unpacking.
+INstall pip for pypy3
+`/home/calum/Downloads/pypy3.7-v7.3.5-linux64/bin/pypy3 -m ensurepip` 
+Install dev pygame that works with pypy3
+`~/Downloads/pypy3.7-v7.3.5-linux64/bin/pypy3 -m pip install 'Pygame>=1.9.4.dev0'`
+Install numpy
+`~/Downloads/pypy3.7-v7.3.5-linux64/bin/pypy3 -m pip install 'numpy'`
+Run
+`~/Downloads/pypy3.7-v7.3.5-linux64/bin/pypy3 vehicle_sim.py`
