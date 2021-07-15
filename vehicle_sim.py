@@ -9,7 +9,8 @@ import random
 from collections import deque
 import math
 import time
-import model_integrator as mi
+#import model_integrator as mi
+from cython_libs import model_integrator as mi
 import sim_timer as simtimer
  
 # Define some colors
@@ -21,7 +22,7 @@ RED = (255, 0, 0)
 pygame.init()
  
 FRAMES_PER_SEC = 60
-UPDATE_SIM_HZ = 20
+UPDATE_SIM_HZ = 50
 update_sim_period = 1.0 / float(UPDATE_SIM_HZ)
 frames_per_sim_update = int((1.0 / float(UPDATE_SIM_HZ)) * FRAMES_PER_SEC)
 print("frames_per_sim_update = {0}".format(frames_per_sim_update))
