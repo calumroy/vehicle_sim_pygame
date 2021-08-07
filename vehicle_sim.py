@@ -238,7 +238,7 @@ while not done:
     time_now = time.time()
     time_diff = (time_now - last_print_time)
     if ( time_diff > print_time_period):
-        #print_car_state(car)
+        print_car_state(car)
         last_print_time = time_now
  
     # --- Screen-clearing code goes here
