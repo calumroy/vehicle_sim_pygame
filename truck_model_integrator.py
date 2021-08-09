@@ -269,15 +269,15 @@ class Vehicle:
                 # r' = [delta'*Vx/cos^2(delta) + tan(delta)*vx'] * ( 1 / (Lr + Lf))
                 # This is the same as r' = vy' / Lr
                 self.f_[bdx*self.N_PB+5] = self.f_[bdx*self.N_PB+4] / param[bdx]["lr"] 
-                self.f_[bdx*self.N_PB+6] = u["ddelta"]     # The steering angle of the cab is from the control inputs.
+                self.f_[bdx*self.N_PB+6] = u["ddelta"]     # The steering angle rate of the cab is from the control inputs.
             else:                                               
                 # How quickly each trailer accelerates depends on the steering angle of the prev trailer.
                 # vx' = Fx*cos(delta[1:dbx])/total_mass
-                self.f_[bdx*self.N_PB+3] = 1.0/total_mass * (np.product(np.cos(delta_arr[1:bdx])))
+                self.f_[bdx*self.N_PB+3] = 1.0/total_mass * (u["Fx"] * np.product(np.cos(delta_arr[1:bdx+1])))
                 # delta' (steering rate) for a trailer = prev_trailer_heading' - current_trailer_heading'
                 self.f_[bdx*self.N_PB+6] = (self.f_[(bdx-1)*self.N_PB+2] - self.f_[(bdx)*self.N_PB+2])
                 # vy' = [delta'*Vx/cos^2(delta) + tan(delta)*vx'] * ( Lr / (Lr + Lf)) + Fx*sin(delta[1:dbx])/total_mass
-                self.f_[bdx*self.N_PB+4] = (self.f_[bdx*self.N_PB+6] * x[bdx]["vx"] / math.cos(x[bdx]["delta"])**2 + self.f_[bdx*self.N_PB+0] * math.tan(x[bdx]["delta"])) * (param[bdx]["lr"]/(param[bdx]["lr"] + param[bdx]["lf"])) + 1.0/total_mass * (u["Fx"]*np.product(np.sin(delta_arr[1:bdx])))
+                self.f_[bdx*self.N_PB+4] = (self.f_[bdx*self.N_PB+6] * x[bdx]["vx"] / math.cos(x[bdx]["delta"])**2 + self.f_[bdx*self.N_PB+0] * math.tan(x[bdx]["delta"])) * (param[bdx]["lr"]/(param[bdx]["lr"] + param[bdx]["lf"])) + 1.0/total_mass * (u["Fx"]*np.product(np.sin(delta_arr[1:bdx+1])))
                 # r' = [delta'*Vx/cos^2(delta) + tan(delta)*vx'] * ( 1 / (Lr + Lf))
                 self.f_[bdx*self.N_PB+5] = (self.f_[bdx*self.N_PB+6] * x[bdx]["vx"] / math.cos(x[bdx]["delta"])**2 + self.f_[bdx*self.N_PB+0] * math.tan(x[bdx]["delta"])) * (1.0/(param[bdx]["lr"] + param[bdx]["lf"]))
 

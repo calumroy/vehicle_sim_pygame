@@ -35,7 +35,7 @@ screen = pygame.display.set_mode(display_size)
 orig_pixel_to_meters_scale = 40.0
 pixel_to_meters_scale = orig_pixel_to_meters_scale  
 newtons_per_key_press = 1600.0
-rads_per_sec_press = 1.9
+rads_per_sec_press = 16.0
 zoom = 1
 zoom_factor = 0.05
 # These offsets center the car to the display when zooming in or out.
@@ -75,7 +75,7 @@ start_pos = (start_pos[0] / pixel_to_meters_scale, start_pos[1] / pixel_to_meter
 car = mi.Vehicle(start_pos) 
 
 def print_car_state(car):
-    print("  Vehicle input controls: \n\t\t Fx = {0} \n\t\t ddelta = {1}".format(car.control_input["Fx"], car.control_input["ddelta"]))
+    print("  Vehicle input controls: \n\t\t Fx = {0} \t\t ddelta = {1}".format(car.control_input["Fx"], car.control_input["ddelta"]))
     print(" car.state[0][x] = {0}".format(car.state[0]["x"]))
     print(" car.state[0][y] = {0}".format(car.state[0]["y"]))
     print(" car.state[0][phi] = {0}".format(car.state[0]["phi"]))
@@ -225,7 +225,7 @@ while not done:
 
     # Update control inputs
     car.control_input["Fx"] = (keys["up"] - keys["down"]) * newtons_per_key_press
-    car.control_input["ddelta"] += (keys["left"] - keys["right"]) * rads_per_sec_press / FRAMES_PER_SEC
+    car.control_input["ddelta"] = (keys["left"] - keys["right"]) * rads_per_sec_press / FRAMES_PER_SEC
     
     # Run simulation code
     tick_count += 1
