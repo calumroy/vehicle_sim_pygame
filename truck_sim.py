@@ -75,13 +75,14 @@ start_pos = (start_pos[0] / pixel_to_meters_scale, start_pos[1] / pixel_to_meter
 car = mi.Vehicle(start_pos) 
 
 def print_car_state(car):
-    print("  Vehicle input controls: \n\t\t Fx = {0} \n\t\t delta = {1}".format(car.control_input["Fx"], car.control_input["delta"]))
-    print(" car.state["T0"][x] = {0}".format(car.state["T0"]["x"]))
-    print(" car.state["T0"][y] = {0}".format(car.state["T0"]["y"]))
-    print(" car.state["T0"][phi] = {0}".format(car.state["T0"]["phi"]))
-    print(" car.state["T0"][vx] = {0}".format(car.state["T0"]["vx"]))
-    print(" car.state["T0"][vy] = {0}".format(car.state["T0"]["vy"]))
-    print(" car.state["T0"][r] = {0}".format(car.state["T0"]["r"]))
+    print("  Vehicle input controls: \n\t\t Fx = {0} \n\t\t ddelta = {1}".format(car.control_input["Fx"], car.control_input["ddelta"]))
+    print(" car.state[0][x] = {0}".format(car.state[0]["x"]))
+    print(" car.state[0][y] = {0}".format(car.state[0]["y"]))
+    print(" car.state[0][phi] = {0}".format(car.state[0]["phi"]))
+    print(" car.state[0][vx] = {0}".format(car.state[0]["vx"]))
+    print(" car.state[0][vy] = {0}".format(car.state[0]["vy"]))
+    print(" car.state[0][r] = {0}".format(car.state[0]["r"]))
+    print(" car.state[0][delta] = {0}".format(car.state[0]["delta"]))
 
 def update(car, update_sim_period):
     global done
@@ -130,20 +131,20 @@ def get_wheel_rect_states(car, car_rect_state):
     return: A list storing the wheel rectangle states. (Front left, Front right, Rear Left, Rear Right) 
             Each wheel rect state stores (x,y, length, width, rectangle_angle) in screen coordinates and angle in degrees. East is zero, clockwise is positive.
     """
-    rotation_angle = car.state["T0"]["phi"] * 180.0 / math.pi  # Convert from radians to degrees.
+    rotation_angle = car.state[0]["phi"] * 180.0 / math.pi  # Convert from radians to degrees.
     rect_x = car_rect_state[0]
     rect_y = car_rect_state[1]
-    half_width_x_offset = rect_w/2.0 * math.cos(math.pi/2.0 - car.state["T0"]["phi"])
-    half_width_y_offset = rect_w/2.0 * math.sin(math.pi/2.0 - car.state["T0"]["phi"])
-    half_length_x_offset = rect_l/2.0 * math.cos(- car.state["T0"]["phi"])
-    half_length_y_offset = rect_l/2.0 * math.sin(- car.state["T0"]["phi"])
+    half_width_x_offset = rect_w/2.0 * math.cos(math.pi/2.0 - car.state[0]["phi"])
+    half_width_y_offset = rect_w/2.0 * math.sin(math.pi/2.0 - car.state[0]["phi"])
+    half_length_x_offset = rect_l/2.0 * math.cos(- car.state[0]["phi"])
+    half_length_y_offset = rect_l/2.0 * math.sin(- car.state[0]["phi"])
 
     wheel_front_left_xy = (rect_x - half_width_x_offset + half_length_x_offset, rect_y - half_width_y_offset + half_length_y_offset)
-    wheel_front_left_angle = rotation_angle + car.control_input["delta"] * 180.0 / math.pi  # Convert from radians to degrees.
+    wheel_front_left_angle = rotation_angle + car.state[0]["delta"] * 180.0 / math.pi  # Convert from radians to degrees.
     wheel_front_left_state = (wheel_front_left_xy[0], wheel_front_left_xy[1], rect_l / 4.0, rect_w / 4.0, wheel_front_left_angle)
 
     wheel_front_right_xy = (rect_x + half_width_x_offset + half_length_x_offset , rect_y + half_width_y_offset + half_length_y_offset)
-    wheel_front_right_angle = rotation_angle + car.control_input["delta"] * 180.0 / math.pi  # Convert from radians to degrees.
+    wheel_front_right_angle = rotation_angle + car.state[0]["delta"] * 180.0 / math.pi  # Convert from radians to degrees.
     wheel_front_right_state = (wheel_front_right_xy[0], wheel_front_right_xy[1], rect_l / 4.0, rect_w / 4.0, wheel_front_right_angle)
 
     wheel_rear_left_xy = (rect_x - half_width_x_offset - half_length_x_offset, rect_y - half_width_y_offset - half_length_y_offset)
@@ -157,8 +158,8 @@ def get_wheel_rect_states(car, car_rect_state):
     return (wheel_front_left_state, wheel_front_right_state, wheel_rear_left_state, wheel_rear_right_state)
 
 def recenter_vehicle():
-    car_to_pixel_offset_x = -car.state["T0"]["x"] * pixel_to_meters_scale + float(display_size[0]/2.0)
-    car_to_pixel_offset_y = car.state["T0"]["y"] * pixel_to_meters_scale + float(display_size[1]/2.0)
+    car_to_pixel_offset_x = -car.state[0]["x"] * pixel_to_meters_scale + float(display_size[0]/2.0)
+    car_to_pixel_offset_y = car.state[0]["y"] * pixel_to_meters_scale + float(display_size[1]/2.0)
     print('RECENTERED')
     return car_to_pixel_offset_x, car_to_pixel_offset_y
 
@@ -198,21 +199,21 @@ while not done:
             zoom += zoom_factor
             pixel_to_meters_scale = orig_pixel_to_meters_scale * zoom
             print('ZOOMING IN, pixel_to_meters_scale = ', pixel_to_meters_scale)
-            car_to_pixel_offset_x = -car.state["T0"]["x"] * pixel_to_meters_scale + float(display_size[0]/2.0)
-            car_to_pixel_offset_y = car.state["T0"]["y"] * pixel_to_meters_scale + float(display_size[1]/2.0)
+            car_to_pixel_offset_x = -car.state[0]["x"] * pixel_to_meters_scale + float(display_size[0]/2.0)
+            car_to_pixel_offset_y = car.state[0]["y"] * pixel_to_meters_scale + float(display_size[1]/2.0)
         elif event.type == pygame.MOUSEBUTTONDOWN and event.button == 5: # wheel rolled down
             if (zoom - zoom_factor > 0):
                 zoom -= zoom_factor
                 pixel_to_meters_scale = orig_pixel_to_meters_scale * zoom
                 print('ZOOMING OUT, pixel_to_meters_scale = ', pixel_to_meters_scale)
-                car_to_pixel_offset_x = -car.state["T0"]["x"] * pixel_to_meters_scale + float(display_size[0]/2.0)
-                car_to_pixel_offset_y = car.state["T0"]["y"] * pixel_to_meters_scale + float(display_size[1]/2.0)
+                car_to_pixel_offset_x = -car.state[0]["x"] * pixel_to_meters_scale + float(display_size[0]/2.0)
+                car_to_pixel_offset_y = car.state[0]["y"] * pixel_to_meters_scale + float(display_size[1]/2.0)
 
     # Auto recenter the vehicle in the game view. 
     # Negate the y positions since pygame uses downwards as positive y direction.
     # Add a car to pixel offset (this centers the car when zooming in or out of the display).
-    rect_x = car.state["T0"]["x"] * pixel_to_meters_scale + car_to_pixel_offset_x
-    rect_y = -1.0*car.state["T0"]["y"] * pixel_to_meters_scale + car_to_pixel_offset_y
+    rect_x = car.state[0]["x"] * pixel_to_meters_scale + car_to_pixel_offset_x
+    rect_y = -1.0*car.state[0]["y"] * pixel_to_meters_scale + car_to_pixel_offset_y
     # If the vehicle is outside the screen frame recenter the car in the screen.
     if ((rect_x > display_size[0]) or (rect_x < 0 )):
         car_to_pixel_offset_x, car_to_pixel_offset_y = recenter_vehicle()
@@ -224,7 +225,7 @@ while not done:
 
     # Update control inputs
     car.control_input["Fx"] = (keys["up"] - keys["down"]) * newtons_per_key_press
-    car.control_input["delta"] += (keys["left"] - keys["right"]) * rads_per_sec_press / FRAMES_PER_SEC
+    car.control_input["ddelta"] += (keys["left"] - keys["right"]) * rads_per_sec_press / FRAMES_PER_SEC
     
     # Run simulation code
     tick_count += 1
@@ -251,13 +252,13 @@ while not done:
     screen.fill(WHITE)
 
     # --- Drawing code should go here
-    rotation_angle = car.state["T0"]["phi"] * 180.0 / math.pi  # Convert from radians to degrees.
+    rotation_angle = car.state[0]["phi"] * 180.0 / math.pi  # Convert from radians to degrees.
     # Negate the y positions since pygame uses downwards as positive y direction.
     # Add a car to pixel offset (this centers the car when zooming in or out of the display).
-    rect_x = car.state["T0"]["x"] * pixel_to_meters_scale + car_to_pixel_offset_x
-    rect_y = -1.0*car.state["T0"]["y"] * pixel_to_meters_scale + car_to_pixel_offset_y
-    rect_l = car.params["car_l"] * pixel_to_meters_scale
-    rect_w = car.params["car_w"] * pixel_to_meters_scale
+    rect_x = car.state[0]["x"] * pixel_to_meters_scale + car_to_pixel_offset_x
+    rect_y = -1.0*car.state[0]["y"] * pixel_to_meters_scale + car_to_pixel_offset_y
+    rect_l = car.params[0]["car_l"] * pixel_to_meters_scale
+    rect_w = car.params[0]["car_w"] * pixel_to_meters_scale
     rect_state = (rect_x, rect_y,
                   rect_l, rect_w,
                   rotation_angle)

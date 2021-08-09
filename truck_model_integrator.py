@@ -28,9 +28,9 @@ class Vehicle:
         # The number of rigid bodies in the model. There is a drivers cab of the truck plus the number of trailers.
         self.num_bodies = self.num_trailers + 1
         # Number of state vars per rigid body (per trailer/cab)
-        self.N_PER_BODY = 7
+        self.N_PB = 7
         # Number of state variables.
-        self.NX = self.N_PER_BODY * (self.num_bodies)
+        self.NX = self.N_PB * (self.num_bodies)
         # Number of input variables
         self.NU = 2
         # The amount of time to step through each timestep. 
@@ -72,7 +72,6 @@ class Vehicle:
         )
         # Add to the params dictionary the state variables for each trailer. 
         for bdx in range(self.num_trailers):
-            trailer_number = bdx + 1
             self.params.append(
                 {
                     "mass" 	: 2000.0, # Mass of this section of the vehicle [kg]
@@ -101,13 +100,13 @@ class Vehicle:
 
         self.control_input = {
             "Fx": 0.0,  # Force in the longitudinal direction on rear wheels
-            "ddelta": 0.0 # Front steering tire angle rate. We conrol the rate of steerign not the steering angle directly.
+            "ddelta": 0.0 # Front steering tire angle rate. We control the rate of steerign not the steering angle directly.
         }
 
         # Create a python list storing python dicts of all the state space variables for the model. 
         # The first entries are the state space for the trucks front drivers cab.
         self.state = list()
-        # The drivers cab is classified at trailer zero "T0". The following state variables all relate to just T0.
+        # The drivers cab is classified at trailer zero. The following state variables all relate to just T0.
         self.state.append(
             {
                 "x": self.start_pos[0], # X position of the center of gravity of this section of the vehicle.
@@ -122,10 +121,13 @@ class Vehicle:
         # Add to the state dictionary the state variables for each trailer. 
         for bdx in range(self.num_trailers):
             t_num = bdx + 1
-            prev_t_num = trailer_number - 1
+            prev_t_num = bdx
             # Get the starting position of the trailers. This is based on the length and position/heading of the preceeding trailer.
-            start_xpos = self.start_pos[0] - self.params[prev_t_num]["lr"]*math.cos(self.state[prev_t_num]["phi"]) - self.params[t_num]["lf"]*math.cos(self.state[t_num]["phi"])
-            start_ypos = self.start_pos[0] - self.params[prev_t_num]["lr"]*math.sin(self.state[prev_t_num]["phi"]) - self.params[t_num]["lf"]*math.sin(self.state[t_num]["phi"])
+            # TODO
+            # Set phi from a parameter input
+            start_phi = 0.0 
+            start_xpos = self.start_pos[0] - self.params[prev_t_num]["lr"]*math.cos(self.state[prev_t_num]["phi"]) - self.params[t_num]["lf"]*math.cos(start_phi)
+            start_ypos = self.start_pos[0] - self.params[prev_t_num]["lr"]*math.sin(self.state[prev_t_num]["phi"]) - self.params[t_num]["lf"]*math.sin(start_phi)
             self.state.append(
                 {
                     "x": start_xpos, # X position of the center of gravity of this section of the vehicle.
@@ -141,40 +143,44 @@ class Vehicle:
     def stateToVector(self, x):
         # Go through each trailers state variables, zero is the truck cab, plus one for the end trailer.
         for bdx in range(self.num_bodies):
-            # The state vars are stored as a list of dicts. There are self.N_PER_BODY vars stored per trailer section.  
-            self.xk_[bdx*self.N_PER_BODY+0] = x[bdx]["x"]
-            self.xk_[bdx*self.N_PER_BODY+1] = x[bdx]["y"]
-            self.xk_[bdx*self.N_PER_BODY+2] = x[bdx]["phi"]
-            self.xk_[bdx*self.N_PER_BODY+3] = x[bdx]["vx"]
-            self.xk_[bdx*self.N_PER_BODY+4] = x[bdx]["vy"]
-            self.xk_[bdx*self.N_PER_BODY+5] = x[bdx]["r"]
-            self.xk_[bdx*self.N_PER_BODY+6] = x[bdx]["delta"]
+            # The state vars are stored as a list of dicts. There are self.N_PB vars stored per trailer section.  
+            self.xk_[bdx*self.N_PB+0] = x[bdx]["x"]
+            self.xk_[bdx*self.N_PB+1] = x[bdx]["y"]
+            self.xk_[bdx*self.N_PB+2] = x[bdx]["phi"]
+            self.xk_[bdx*self.N_PB+3] = x[bdx]["vx"]
+            self.xk_[bdx*self.N_PB+4] = x[bdx]["vy"]
+            self.xk_[bdx*self.N_PB+5] = x[bdx]["r"]
+            self.xk_[bdx*self.N_PB+6] = x[bdx]["delta"]
         return self.xk_
     
     def vectorToState(self, x_vec):
         # Return a new state list of dicts representing all the states of each seciton of the vehicle. 
-        new_state = dict()
+        new_state = list()
         for bdx in range(self.num_bodies):
-            self.state[bdx] = {
-                "x": x_vec[bdx*self.N_PER_BODY+0],    # X position of the center of gravity of this section of the vehicle.
-                "y": x_vec[bdx*self.N_PER_BODY+1],    # Y position of the center of gravity of this section of the vehicle.
-                "phi": x_vec[bdx*self.N_PER_BODY+2],  # The heading angle of this section of the vehicle
-                "vx": x_vec[bdx*self.N_PER_BODY+3],   # The forwards velocity in vehicle frame of references.
-                "vy": x_vec[bdx*self.N_PER_BODY+4],   # The lateral velocity in vehicle frame of references.
-                "r": x_vec[bdx*self.N_PER_BODY+5],    # Yaw rate of this section of the vehicle, this is the rate of phi.
-                "delta": x_vec[bdx*self.N_PER_BODY+6] # The effective steering angle of each trailer. This is actually just the heading of the preceeding trailer minus the current trailers heading. For the front drivers cab this is actually a control input. 
-            }
+            new_state.append(
+                {
+                    "x": x_vec[bdx*self.N_PB+0],    # X position of the center of gravity of this section of the vehicle.
+                    "y": x_vec[bdx*self.N_PB+1],    # Y position of the center of gravity of this section of the vehicle.
+                    "phi": x_vec[bdx*self.N_PB+2],  # The heading angle of this section of the vehicle
+                    "vx": x_vec[bdx*self.N_PB+3],   # The forwards velocity in vehicle frame of references.
+                    "vy": x_vec[bdx*self.N_PB+4],   # The lateral velocity in vehicle frame of references.
+                    "r": x_vec[bdx*self.N_PB+5],    # Yaw rate of this section of the vehicle, this is the rate of phi.
+                    "delta": x_vec[bdx*self.N_PB+6] # The effective steering angle of each trailer. This is actually just the heading of the preceeding trailer minus the current trailers heading. For the front drivers cab this is actually a control input. 
+                }
+            )
         return new_state
 
     def inputToVector(self, u):
         
         self.uk_[0] = u["Fx"]
-        self.uk_[1] = u["delta"]
+        self.uk_[1] = u["ddelta"]
         return self.uk_
 
     def getSlipAngleFront(self, x, u):
-        # compute slip angels given current state
-        slip_ang_f = -math.atan2(x["vy"]+x["r"]*self.params["lf"],x["vx"]) + u["delta"]
+        # Compute slip angle given current state
+        # TODO
+        # Fix the x[dbx]["delta"] dbx is the index of each trailer. Calculate a slip per trailer.
+        slip_ang_f = -math.atan2(x["vy"]+x["r"]*self.params["lf"],x["vx"]) + x["delta"]
         #print("SlipAngleRear = ", slip_ang_r)
         return slip_ang_f
 
@@ -246,30 +252,34 @@ class Vehicle:
         mass_list = [param[i]["mass"] for i in range(self.num_bodies)]
         total_mass = float(sum(mass_list))
         # The value x[bdx-1]["phi"] - x[bdx]["phi"] is effectively the steering angle of each trailer (the cab has a steering angle of delta).
-        delta_arr = np.array([x[i-1]["phi"] - x[i]["phi"] for i in range(self.num_bodies)])
+        # Create an array storing the real steerign angle of the front cab and the effective steering angle of each trailer. 
+        delta_arr = np.array([x[i-1]["phi"] - x[i]["phi"] if i != 0 else x[i]["delta"] for i in range(self.num_bodies)])
 
         for bdx in range(self.num_bodies):
-            self.f_[bdx*self.N_PER_BODY+0] = x[bdx]["vx"]*math.cos(x[bdx]["phi"]) - x[bdx]["vy"]*math.sin(x[bdx]["phi"]) # The rate of change of the X position of the center of gravity of this section of the vehicle.
-            self.f_[bdx*self.N_PER_BODY+1] = x[bdx]["vy"]*math.cos(x[bdx]["phi"]) + x[bdx]["vx"]*math.sin(x[bdx]["phi"]) # The rate of change of the Y position of the center of gravity of this section of the vehicle.
-            self.f_[bdx*self.N_PER_BODY+2] = x[bdx]["r"]  # The rate of change of the heading angle of this section of the vehicle
+            self.f_[bdx*self.N_PB+0] = x[bdx]["vx"]*math.cos(x[bdx]["phi"]) - x[bdx]["vy"]*math.sin(x[bdx]["phi"]) # The rate of change of the X position of the center of gravity of this section of the vehicle.
+            self.f_[bdx*self.N_PB+1] = x[bdx]["vy"]*math.cos(x[bdx]["phi"]) + x[bdx]["vx"]*math.sin(x[bdx]["phi"]) # The rate of change of the Y position of the center of gravity of this section of the vehicle.
+            self.f_[bdx*self.N_PB+2] = x[bdx]["r"]  # The rate of change of the heading angle of this section of the vehicle
             # The rate of change of the forwards velocity in vehicle frame of references.
-            # The cab is treated differently to the trailers since it is driving the forwards accel
+            # The cab is treated differently to the trailers since it is driving the forwards acceleration.
             if bdx == 0:
-                self.f_[bdx*self.N_PER_BODY+3] = 1.0/total_mass * (u["Fx"])
-                self.f_[bdx*self.N_PER_BODY+6] = x[bdx]["delta"]
-                # vx' = [delta'*Vx/cos^2(delta) + tan(delta)*vx'] * ( Lr / (Lr + Lf))
-                # TODO 
-                # Fix this equation it is wrong. Use delta' for the cab. We may need to add delta' to the state space or control inputs delta'.
-                self.f_[bdx*self.N_PER_BODY+4] = ((self.f_[(bdx-1)self.N_PER_BODY+2] - self.f_[(bdx)self.N_PER_BODY+2]) * x[bdx]["vx"] + self.f_[bdxself.N_PER_BODY+0] * math.tan(u["delta"])) * (param[bdx]["lr"]/(param[bdx]["lr"] + param[bdx]["lf"]))
+                # vx' = Fx / mass
+                self.f_[bdx*self.N_PB+3] = 1.0/total_mass * (u["Fx"])
+                # vy' = [delta'*Vx/cos^2(delta) + tan(delta)*vx'] * ( Lr / (Lr + Lf))
+                self.f_[bdx*self.N_PB+4] = (u["ddelta"] * x[bdx]["vx"] / math.cos(x[bdx]["delta"])**2 + self.f_[bdx*self.N_PB+0] * math.tan(x[bdx]["delta"])) * (param[bdx]["lr"]/(param[bdx]["lr"] + param[bdx]["lf"]))
+                # r' = [delta'*Vx/cos^2(delta) + tan(delta)*vx'] * ( 1 / (Lr + Lf))
+                # This is the same as r' = vy' / Lr
+                self.f_[bdx*self.N_PB+5] = self.f_[bdx*self.N_PB+4] / param[bdx]["lr"] 
+                self.f_[bdx*self.N_PB+6] = u["ddelta"]     # The steering angle of the cab is from the control inputs.
             else:                                               
                 # How quickly each trailer accelerates depends on the steering angle of the prev trailer.
-                self.f_[bdxself.N_PER_BODY+3] = 1.0/total_mass * (np.product(np.cos(delta_arr[1:bdx])))
+                # vx' = Fx*cos(delta[1:dbx])/total_mass
+                self.f_[bdx*self.N_PB+3] = 1.0/total_mass * (np.product(np.cos(delta_arr[1:bdx])))
                 # delta' (steering rate) for a trailer = prev_trailer_heading' - current_trailer_heading'
-                # vx' = [delta'*Vx/cos^2(delta) + tan(delta)*vx'] * ( Lr / (Lr + Lf)) + Fx*sin(delta[1:dbx])/total_mass
-                self.f_[bdxself.N_PER_BODY+4] = ((self.f_[(bdx-1)self.N_PER_BODY+2] - self.f_[(bdx)self.N_PER_BODY+2]) * x[bdx]["vx"] + self.f_[bdxself.N_PER_BODY+0] * math.tan(u["delta"])) * (param[bdx]["lr"]/(param[bdx]["lr"] + param[bdx]["lf"])) + 1.0/total_mass * (u["Fx"]*np.product(np.sin(delta_arr[1:bdx])))
-            # The rate of change of the lateral velocity in vehicle frame of references.
-            self.f_[bdxself.N_PER_BODY+4] = 
-            self.f_[bdxself.N_PER_BODY+5] = 1.0/float(param["Iz"]) * (tire_forces_front.F_y*param["lf"]*math.cos(u["delta"]) - tire_forces_rear.F_y*param["lr"]) # The rate of change of the Yaw rate of this section of the vehicle, this is the rate of phi.
+                self.f_[bdx*self.N_PB+6] = (self.f_[(bdx-1)*self.N_PB+2] - self.f_[(bdx)*self.N_PB+2])
+                # vy' = [delta'*Vx/cos^2(delta) + tan(delta)*vx'] * ( Lr / (Lr + Lf)) + Fx*sin(delta[1:dbx])/total_mass
+                self.f_[bdx*self.N_PB+4] = (self.f_[bdx*self.N_PB+6] * x[bdx]["vx"] / math.cos(x[bdx]["delta"])**2 + self.f_[bdx*self.N_PB+0] * math.tan(x[bdx]["delta"])) * (param[bdx]["lr"]/(param[bdx]["lr"] + param[bdx]["lf"])) + 1.0/total_mass * (u["Fx"]*np.product(np.sin(delta_arr[1:bdx])))
+                # r' = [delta'*Vx/cos^2(delta) + tan(delta)*vx'] * ( 1 / (Lr + Lf))
+                self.f_[bdx*self.N_PB+5] = (self.f_[bdx*self.N_PB+6] * x[bdx]["vx"] / math.cos(x[bdx]["delta"])**2 + self.f_[bdx*self.N_PB+0] * math.tan(x[bdx]["delta"])) * (1.0/(param[bdx]["lr"] + param[bdx]["lf"]))
 
         return self.f_
 
