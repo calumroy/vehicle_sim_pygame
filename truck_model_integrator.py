@@ -154,7 +154,7 @@ class Vehicle:
         return self.xk_
     
     def vectorToState(self, x_vec):
-        # Return a new state list of dicts representing all the states of each seciton of the vehicle. 
+        # Return a new state list of dicts representing all the states of each section of the vehicle. 
         new_state = list()
         for bdx in range(self.num_bodies):
             new_state.append(
@@ -287,6 +287,23 @@ class Vehicle:
 
         return self.f_
 
+    def apply_contraints(self, x_next):
+        """
+        Apply any constraints to the state space. 
+
+        Args:
+            x_next(list of dicts): Representing all the next state variables of each section of the vehicle. 
+        Return: 
+            x_next_constrained(list of dicts): Representing all the next state variables but after apply physical constraints.
+        """
+        # Make sure each trailer stays connected to the preceeding trailer.
+        for bdx in range(self.num_trailers):
+            t_num = bdx + 1
+            prev_t_num = bdx
+            x_next[t_num]["x"] = x_next[prev_t_num]["x"] - self.params[prev_t_num]["lr"]*math.cos(x_next[prev_t_num]["phi"]) - self.params[t_num]["lf"]*math.cos(x_next[t_num]["phi"])
+            x_next[t_num]["y"] = x_next[prev_t_num]["y"] - self.params[prev_t_num]["lr"]*math.sin(x_next[prev_t_num]["phi"]) - self.params[t_num]["lf"]*math.sin(x_next[t_num]["phi"])
+        return x_next
+
     def RK4(self, x, u, ts):
         """4th order Runge Kutta (RK4) implementation
            4 evaluation points of continuous dynamics
@@ -299,9 +316,6 @@ class Vehicle:
         # 4 evaluation points of continuous dynamics
         x_vec = self.stateToVector(x)
         u_vec = self.inputToVector(u)
-        #import ipdb; ipdb.set_trace()
-        # if (x["r"] < -1e-9):
-        #     import ipdb; ipdb.set_trace()
         # evaluating the 4 points
         k1 = self.getF(self.vectorToState(x_vec),u,self.params)
         k2 = self.getF(self.vectorToState(x_vec+ts/2.*k1),u,self.params)
@@ -309,7 +323,11 @@ class Vehicle:
         k4 = self.getF(self.vectorToState(x_vec+ts*k3),u,self.params)
         # combining to give output
         x_next = x_vec + ts*(k1/6.+k2/3.+k3/3.+k4/6.)
-        return self.vectorToState(x_next)
+        # Add additional hard constraints to the state vect.
+        # E.g All trailers must stay attached to the preceeding trailer.
+        new_state = self.vectorToState(x_next)
+        self.apply_contraints(new_state)
+        return new_state
 
     def simTimeStep(self, x, u, ts):
         """Simulate the vehicle continuous dynamics
