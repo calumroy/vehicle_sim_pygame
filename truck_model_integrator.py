@@ -52,8 +52,8 @@ class Vehicle:
                 "lf" 	: 1.463,  # Distance from rear axel to COG along this section of the vehicles center line. 
                 "lr" 	: 1.757,  # Distance from front axel to COG along this section of the vehicles center line. 
 
-                "car_l": 5.426,   # The vehicles length [m]
-                "car_w": 2.163,   # The vehicles width [m]
+                "veh_l": 5.426,   # The vehicles length [m]
+                "veh_w": 2.163,   # The vehicles width [m]
 
                 "g"   : 9.81,      # Gravity acceleration.
                 
@@ -79,8 +79,8 @@ class Vehicle:
                     "lf" 	: 1.463,  # Distance from rear axel to COG along this section of the vehicles center line. 
                     "lr" 	: 1.757,  # Distance from front axel to COG along this section of the vehicles center line. 
 
-                    "car_l": 5.426,   # The vehicles length [m]
-                    "car_w": 2.163,   # The vehicles width [m]
+                    "veh_l": 5.426,   # The vehicles length [m]
+                    "veh_w": 2.163,   # The vehicles width [m]
 
                     "g"   : 9.81,      # Gravity acceleration.
                     
@@ -317,15 +317,15 @@ class Vehicle:
             u(dict vehicle controls): The control input structure
             ts (int): The time step length [seconds]
         """
-        #print(" before sim car.state[phi] = {0}".format(x["phi"]))
-        #print(" before sim car.state[r] = {0}".format(x["r"]))
+        #print(" before sim veh.state[phi] = {0}".format(x["phi"]))
+        #print(" before sim veh.state[r] = {0}".format(x["r"]))
         x_next = x
         integration_steps = (int)(ts/self.fine_time_step_)   
         if(ts/self.fine_time_step_ != integration_steps):
             print("Warning ts/self.fine_time_step_{0} integration_steps = {1}".format(ts/self.fine_time_step_,integration_steps))
         for i in range(0,integration_steps):
             x_next = self.RK4(x_next,u,self.fine_time_step_)
-        #print(" after sim car.state[x] = {0}".format(x_next["x"]))
+        #print(" after sim veh.state[x] = {0}".format(x_next["x"]))
         return x_next
 
     
