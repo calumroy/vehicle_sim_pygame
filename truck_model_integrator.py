@@ -49,8 +49,8 @@ class Vehicle:
             {
                 "mass" 	: 2000.0, # Mass of this section of the vehicle [kg]
                 "Iz" 	: 5200.0, # The rotation inertia in the z axis (yaw) [kg*m^2] of this section of the vehicle
-                "lf" 	: 1.463,  # Distance from rear axel to COG along this section of the vehicles center line. 
-                "lr" 	: 1.757,  # Distance from front axel to COG along this section of the vehicles center line. 
+                "lf" 	: 2.213,  # Distance from rear axel to COG along this section of the vehicles center line. 
+                "lr" 	: 2.213,  # Distance from front axel to COG along this section of the vehicles center line. 
 
                 "veh_l": 5.426,   # The vehicles length [m]
                 "veh_w": 2.163,   # The vehicles width [m]
@@ -76,8 +76,8 @@ class Vehicle:
                 {
                     "mass" 	: 2000.0, # Mass of this section of the vehicle [kg]
                     "Iz" 	: 5200.0, # The rotation inertia in the z axis (yaw) [kg*m^2] of this section of the vehicle
-                    "lf" 	: 1.463,  # Distance from rear axel to COG along this section of the vehicles center line. 
-                    "lr" 	: 1.757,  # Distance from front axel to COG along this section of the vehicles center line. 
+                    "lf" 	: 2.213,  # Distance from rear axel to COG along this section of the vehicles center line. 
+                    "lr" 	: 2.213,  # Distance from front axel to COG along this section of the vehicles center line. 
 
                     "veh_l": 5.426,   # The vehicles length [m]
                     "veh_w": 2.163,   # The vehicles width [m]
@@ -126,8 +126,8 @@ class Vehicle:
             # TODO
             # Set phi from a parameter input
             start_phi = 0.0 
-            start_xpos = self.start_pos[0] - self.params[prev_t_num]["lr"]*math.cos(self.state[prev_t_num]["phi"]) - self.params[t_num]["lf"]*math.cos(start_phi)
-            start_ypos = self.start_pos[0] - self.params[prev_t_num]["lr"]*math.sin(self.state[prev_t_num]["phi"]) - self.params[t_num]["lf"]*math.sin(start_phi)
+            start_xpos = self.state[prev_t_num]["x"] - self.params[prev_t_num]["lr"]*math.cos(self.state[prev_t_num]["phi"]) - self.params[t_num]["lf"]*math.cos(start_phi)
+            start_ypos = self.state[prev_t_num]["y"] - self.params[prev_t_num]["lr"]*math.sin(self.state[prev_t_num]["phi"]) - self.params[t_num]["lf"]*math.sin(start_phi)
             self.state.append(
                 {
                     "x": start_xpos, # X position of the center of gravity of this section of the vehicle.
@@ -253,7 +253,8 @@ class Vehicle:
         total_mass = float(sum(mass_list))
         # The value x[bdx-1]["phi"] - x[bdx]["phi"] is effectively the steering angle of each trailer (the cab has a steering angle of delta).
         # Create an array storing the real steerinG angle of the front cab and the effective steering angle of each trailer. 
-        delta_arr = np.array([x[i-1]["phi"] - x[i]["phi"] if i != 0 else x[i]["delta"] for i in range(self.num_bodies)])
+        #delta_arr = np.array([x[i-1]["phi"] - x[i]["phi"] if i != 0 else x[i]["delta"] for i in range(self.num_bodies)])
+        delta_arr = np.array([x[i]["delta"] for i in range(self.num_bodies)])
 
         for bdx in range(self.num_bodies):
             self.f_[bdx*self.N_PB+0] = x[bdx]["vx"]*math.cos(x[bdx]["phi"]) - x[bdx]["vy"]*math.sin(x[bdx]["phi"]) # The rate of change of the X position of the center of gravity of this section of the vehicle.

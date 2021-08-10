@@ -104,7 +104,7 @@ def blitRotate(surface, rect_color, rect_state):
     image_orig = pygame.Surface((pos[2] , pos[3] ))  
     # for making transparent background while rotating an image  
     image_orig.set_colorkey(WHITE)  
-    # fill the rectangle / surface with green color  
+    # fill the rectangle / surface with the desired color  
     image_orig.fill(rect_color)  
     # creating a copy of orignal image for smooth rotation  
     image = image_orig.copy()  
@@ -137,7 +137,7 @@ def get_wheel_rect_states(veh, b_index, veh_rect_state):
             Each wheel rect state stores (x,y, length, width, rectangle_angle) in screen coordinates and angle in degrees. East is zero, clockwise is positive.
     """
     rotation_angle = veh.state[b_index]["phi"] * 180.0 / math.pi  # Convert from radians to degrees.
-    rect_x = veh_rect_state[b_index]
+    rect_x = veh_rect_state[0]
     rect_y = veh_rect_state[1]
     half_width_x_offset = rect_w/2.0 * math.cos(math.pi/2.0 - veh.state[b_index]["phi"])
     half_width_y_offset = rect_w/2.0 * math.sin(math.pi/2.0 - veh.state[b_index]["phi"])
