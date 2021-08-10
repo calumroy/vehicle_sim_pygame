@@ -24,7 +24,7 @@ class Vehicle:
         self.start_pos = (start_pos[0], start_pos[1])
 
         # Number of trailers
-        self.num_trailers = 2
+        self.num_trailers = 6
         # The number of rigid bodies in the model. There is a drivers cab of the truck plus the number of trailers.
         self.num_bodies = self.num_trailers + 1
         # Number of state vars per rigid body (per trailer/cab)
