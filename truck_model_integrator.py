@@ -302,14 +302,16 @@ class Vehicle:
         Return: 
             x_next_constrained(list of dicts): Representing all the next state variables but after apply physical constraints.
         """
-        # Make sure each trailer stays connected to the preceeding trailer.
+        # Make sure each trailer stays connected to the preceeding trailer. This constraint ensures that any model inaccuracy don't accumulate
+        # causing trailers to become disconnected. 
         for bdx in range(self.num_trailers):
             t_num = bdx + 1
             prev_t_num = bdx
 
             x_next[t_num]["x"] = x_next[prev_t_num]["x"] - self.params[prev_t_num]["lr"]*math.cos(x_next[prev_t_num]["phi"]) - self.params[t_num]["lf"]*math.cos(x_next[t_num]["phi"])
             x_next[t_num]["y"] = x_next[prev_t_num]["y"] - self.params[prev_t_num]["lr"]*math.sin(x_next[prev_t_num]["phi"]) - self.params[t_num]["lf"]*math.sin(x_next[t_num]["phi"])
-
+            
+            # Since we have moved the position of the trailers update the heading so there is no sideways slip.
             x_next[t_num]["phi"] = math.atan2(x_next[t_num]["y"] - x_old[t_num]["y"] + self.params[t_num]["lr"]*math.sin(x_old[t_num]["phi"]),
                                               x_next[t_num]["x"] - x_old[t_num]["x"] + self.params[t_num]["lr"]*math.cos(x_old[t_num]["phi"]))
         return x_next
