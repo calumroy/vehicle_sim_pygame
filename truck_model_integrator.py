@@ -57,7 +57,10 @@ class Vehicle:
 
                 "g"   : 9.81,      # Gravity acceleration.
                 
+                # Number of tires(If 2 then only rear tires otherwise rear and front)
+                "num_tires": 4,
                 # Tire parameters (front)
+                "num_tires": 4,
                 "Bf"	: 11.0, 
                 "Cf" 	: 1.4,
                 "Df" 	: 0.45,
@@ -84,6 +87,8 @@ class Vehicle:
 
                     "g"   : 9.81,      # Gravity acceleration.
                     
+                    # Number of tires(If 2 then only rear tires otherwise rear and front)
+                    "num_tires": 2,
                     # Tire parameters (front)
                     "Bf"	: 11.0, 
                     "Cf" 	: 1.4,
@@ -253,8 +258,8 @@ class Vehicle:
         total_mass = float(sum(mass_list))
         # The value x[bdx-1]["phi"] - x[bdx]["phi"] is effectively the steering angle of each trailer (the cab has a steering angle of delta).
         # Create an array storing the real steerinG angle of the front cab and the effective steering angle of each trailer. 
-        #delta_arr = np.array([x[i-1]["phi"] - x[i]["phi"] if i != 0 else x[i]["delta"] for i in range(self.num_bodies)])
-        delta_arr = np.array([x[i]["delta"] for i in range(self.num_bodies)])
+        delta_arr = np.array([x[i-1]["phi"] - x[i]["phi"] if i != 0 else x[i]["delta"] for i in range(self.num_bodies)])
+        #delta_arr = np.array([x[i]["delta"] for i in range(self.num_bodies)])
 
         for bdx in range(self.num_bodies):
             self.f_[bdx*self.N_PB+0] = x[bdx]["vx"]*math.cos(x[bdx]["phi"]) - x[bdx]["vy"]*math.sin(x[bdx]["phi"]) # The rate of change of the X position of the center of gravity of this section of the vehicle.
@@ -279,7 +284,8 @@ class Vehicle:
                 # vx' = Fx*cos(delta[1:dbx])/total_mass
                 self.f_[bdx*self.N_PB+3] = 1.0/total_mass * (u["Fx"] * np.product(np.cos(delta_arr[1:bdx+1])))
                 # delta' (steering rate) for a trailer = prev_trailer_heading' - current_trailer_heading'
-                self.f_[bdx*self.N_PB+6] = (self.f_[(bdx-1)*self.N_PB+2] - self.f_[(bdx)*self.N_PB+2])
+                #self.f_[bdx*self.N_PB+6] = (self.f_[(bdx-1)*self.N_PB+2] - self.f_[(bdx)*self.N_PB+2])
+                self.f_[bdx*self.N_PB+6] = (x[bdx-1]["r"] - x[bdx]["r"])
                 # vy' = [delta'*Vx/cos^2(delta) + tan(delta)*vx'] * ( Lr / (Lr + Lf)) + Fx*sin(delta[1:dbx])/total_mass
                 self.f_[bdx*self.N_PB+4] = (self.f_[bdx*self.N_PB+6] * x[bdx]["vx"] / math.cos(x[bdx]["delta"])**2 + self.f_[bdx*self.N_PB+3] * math.tan(x[bdx]["delta"])) * (param[bdx]["lr"]/(param[bdx]["lr"] + param[bdx]["lf"])) + 1.0/total_mass * (u["Fx"]*np.product(np.sin(delta_arr[1:bdx+1])))
                 # r' = [delta'*Vx/cos^2(delta) + tan(delta)*vx'] * ( 1 / (Lr + Lf))

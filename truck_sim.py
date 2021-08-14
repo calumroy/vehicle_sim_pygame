@@ -133,8 +133,9 @@ def get_wheel_rect_states(veh, b_index, veh_rect_state):
                E.g use b_index of zero to retunr the wheel rectangles for the fron cab of the vehicle. Use 1 for the first trailers wheels.
     - veh_rect_state: The rectangle state representing the veh stored as (x,y,width,length) in screen coordinates.
     
-    return: A list storing the wheel rectangle states. (Front left, Front right, Rear Left, Rear Right) 
+    return: A list storing the wheel rectangle states. (Rear Left, Rear Right, Front left, Front right) 
             Each wheel rect state stores (x,y, length, width, rectangle_angle) in screen coordinates and angle in degrees. East is zero, clockwise is positive.
+            If the vehicle state contains a wheel count of less then 4 then only the num_tires of wheel states are returned.
     """
     rotation_angle = veh.state[b_index]["phi"] * 180.0 / math.pi  # Convert from radians to degrees.
     rect_x = veh_rect_state[0]
@@ -160,7 +161,8 @@ def get_wheel_rect_states(veh, b_index, veh_rect_state):
     wheel_rear_right_angle = rotation_angle # In degrees.
     wheel_rear_right_state = (wheel_rear_right_xy[0], wheel_rear_right_xy[1], rect_l / 4.0, rect_w / 4.0, wheel_rear_right_angle)
 
-    return (wheel_front_left_state, wheel_front_right_state, wheel_rear_left_state, wheel_rear_right_state)
+    wheel_states = (wheel_rear_left_state, wheel_rear_right_state, wheel_front_left_state, wheel_front_right_state)
+    return wheel_states[0:veh.params[b_index]["num_tires"]]
 
 def recenter_vehicle():
     veh_to_pixel_offset_x = -veh.state[0]["x"] * pixel_to_meters_scale + float(display_size[0]/2.0)
@@ -279,10 +281,8 @@ while not done:
         # Remember the rectangles are drawn with the position being the center of the rectangle.
         wheel_states[dbx] = get_wheel_rect_states(veh, dbx, rect_state)
 
-        blitRotate(screen, BLACK, wheel_states[dbx][0])
-        blitRotate(screen, BLACK, wheel_states[dbx][1])
-        blitRotate(screen, BLACK, wheel_states[dbx][2])
-        blitRotate(screen, BLACK, wheel_states[dbx][3])
+        for idx, wheel in enumerate(wheel_states[dbx]):
+            blitRotate(screen, BLACK, wheel_states[dbx][idx])
 
     # --- Go ahead and update the screen with what we've drawn.
     pygame.display.flip()
