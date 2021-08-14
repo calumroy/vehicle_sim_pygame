@@ -293,7 +293,7 @@ class Vehicle:
 
         return self.f_
 
-    def apply_contraints(self, x_next):
+    def apply_contraints(self, x_old, x_next):
         """
         Apply any constraints to the state space. 
 
@@ -306,8 +306,12 @@ class Vehicle:
         for bdx in range(self.num_trailers):
             t_num = bdx + 1
             prev_t_num = bdx
+
             x_next[t_num]["x"] = x_next[prev_t_num]["x"] - self.params[prev_t_num]["lr"]*math.cos(x_next[prev_t_num]["phi"]) - self.params[t_num]["lf"]*math.cos(x_next[t_num]["phi"])
             x_next[t_num]["y"] = x_next[prev_t_num]["y"] - self.params[prev_t_num]["lr"]*math.sin(x_next[prev_t_num]["phi"]) - self.params[t_num]["lf"]*math.sin(x_next[t_num]["phi"])
+
+            x_next[t_num]["phi"] = math.atan2(x_next[t_num]["y"] - x_old[t_num]["y"] + self.params[t_num]["lr"]*math.sin(x_old[t_num]["phi"]),
+                                              x_next[t_num]["x"] - x_old[t_num]["x"] + self.params[t_num]["lr"]*math.cos(x_old[t_num]["phi"]))
         return x_next
 
     def RK4(self, x, u, ts):
@@ -332,7 +336,7 @@ class Vehicle:
         # Add additional hard constraints to the state vect.
         # E.g All trailers must stay attached to the preceeding trailer.
         new_state = self.vectorToState(x_next)
-        self.apply_contraints(new_state)
+        self.apply_contraints(self.state, new_state)
         return new_state
 
     def simTimeStep(self, x, u, ts):
