@@ -257,7 +257,7 @@ class Vehicle:
         mass_list = [param[i]["mass"] for i in range(self.num_bodies)]
         total_mass = float(sum(mass_list))
         # The value x[bdx-1]["phi"] - x[bdx]["phi"] is effectively the steering angle of each trailer (the cab has a steering angle of delta).
-        # Create an array storing the real steerinG angle of the front cab and the effective steering angle of each trailer. 
+        # Create an array storing the real steering angle of the front cab and the effective steering angle of each trailer. 
         delta_arr = np.array([x[i-1]["phi"] - x[i]["phi"] if i != 0 else x[i]["delta"] for i in range(self.num_bodies)])
         #delta_arr = np.array([x[i]["delta"] for i in range(self.num_bodies)])
 
