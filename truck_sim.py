@@ -8,6 +8,7 @@ import pygame
 import random
 from collections import deque
 import math
+import os
 import time
 import truck_model_integrator as mi
 #from cython_libs import model_integrator as mi
@@ -72,7 +73,11 @@ game_timer = simtimer.SimTimer()
 start_pos = (float(display_size[0]/2.0),-1.0*float(display_size[1]/2.0))
 # Convert the start pos to coordinates for the vehicle
 start_pos = (start_pos[0] / pixel_to_meters_scale, start_pos[1] / pixel_to_meters_scale)
-veh = mi.Vehicle(start_pos) 
+
+# Get the parameter file we are using for the simulator
+FILE_PATH = os.path.dirname(os.path.abspath(__file__))
+param_file = FILE_PATH + '/config/truck_6_trailer.json'
+veh = mi.Vehicle(start_pos, param_file) 
 
 def print_veh_state(veh):
     print("  Vehicle input controls: \n\t\t Fx = {0} \t\t ddelta = {1}".format(veh.control_input["Fx"], veh.control_input["ddelta"]))

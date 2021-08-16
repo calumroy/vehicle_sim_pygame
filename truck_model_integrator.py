@@ -1,5 +1,6 @@
 import math
 import numpy as np
+import commentjson
 
 class TireForces:
     def __init__(self, F_x, F_y):
@@ -19,7 +20,7 @@ class Vehicle:
         and trailers.
     """
     # start_pos is a tuple (x,y) a 2d position
-    def __init__(self, start_pos):
+    def __init__(self, start_pos, param_file):
 
         self.start_pos = (start_pos[0], start_pos[1])
 
@@ -43,65 +44,67 @@ class Vehicle:
         self.uk_ = np.array([0.0 for i in range(self.NU)])
         self.f_ = np.array([0.0 for i in range(self.NX)])
 
-        self.params = list()
+        with open(param_file) as js_file:
+            truck_trailer_params = commentjson.loads(js_file.read())
+
+        self.params = truck_trailer_params["parameters"]
         # The drivers cab is classified at trailer zero. The following params all relate to just just the cab.
-        self.params.append( 
-            {
-                "mass" 	: 2000.0, # Mass of this section of the vehicle [kg]
-                "Iz" 	: 5200.0, # The rotation inertia in the z axis (yaw) [kg*m^2] of this section of the vehicle
-                "lf" 	: 2.213,  # Distance from rear axel to COG along this section of the vehicles center line. 
-                "lr" 	: 2.213,  # Distance from front axel to COG along this section of the vehicles center line. 
+        # self.params.append( 
+        #     {
+        #         "mass" 	: 2000.0, # Mass of this section of the vehicle [kg]
+        #         "Iz" 	: 5200.0, # The rotation inertia in the z axis (yaw) [kg*m^2] of this section of the vehicle
+        #         "lf" 	: 2.213,  # Distance from rear axel to COG along this section of the vehicles center line. 
+        #         "lr" 	: 2.213,  # Distance from front axel to COG along this section of the vehicles center line. 
 
-                "veh_l": 5.426,   # The vehicles length [m]
-                "veh_w": 2.163,   # The vehicles width [m]
+        #         "veh_l": 5.426,   # The vehicles length [m]
+        #         "veh_w": 2.163,   # The vehicles width [m]
 
-                "g"   : 9.81,      # Gravity acceleration.
+        #         "g"   : 9.81,      # Gravity acceleration.
                 
-                # Number of tires(If 2 then only rear tires otherwise rear and front)
-                "num_tires": 4,
-                # Tire parameters (front)
-                "num_tires": 4,
-                "Bf"	: 11.0, 
-                "Cf" 	: 1.4,
-                "Df" 	: 0.45,
-                # Tire parameters (rear)
-                "Br" 	: 11.0,
-                "Cr" 	: 1.4,
-                "Dr" 	: 0.5,  
-                # Friction characteritic params
-                "Cr0" : 0.0518,  # Zero offset friciton force. 
-                "Cr2" : 0.00035, # quadratic friciton multiplier on the vehicle velocity. 
-            }
-        )
-        # Add to the params dictionary the state variables for each trailer. 
-        for bdx in range(self.num_trailers):
-            self.params.append(
-                {
-                    "mass" 	: 2000.0, # Mass of this section of the vehicle [kg]
-                    "Iz" 	: 5200.0, # The rotation inertia in the z axis (yaw) [kg*m^2] of this section of the vehicle
-                    "lf" 	: 2.213,  # Distance from rear axel to COG along this section of the vehicles center line. 
-                    "lr" 	: 2.213,  # Distance from front axel to COG along this section of the vehicles center line. 
+        #         # Number of tires(If 2 then only rear tires otherwise rear and front)
+        #         "num_tires": 4,
+        #         # Tire parameters (front)
+        #         "Bf"	: 11.0, 
+        #         "Cf" 	: 1.4,
+        #         "Df" 	: 0.45,
+        #         # Tire parameters (rear)
+        #         "Br" 	: 11.0,
+        #         "Cr" 	: 1.4,
+        #         "Dr" 	: 0.5,  
+        #         # Friction characteritic params
+        #         "Cr0" : 0.0518,  # Zero offset friciton force. 
+        #         "Cr2" : 0.00035, # quadratic friciton multiplier on the vehicle velocity. 
+        #     }
+        # )
+        # # Add to the params dictionary the state variables for each trailer. 
+        # for bdx in range(self.num_trailers):
+        #     self.params.append(
+        #         {
+        #             "mass" 	: 2000.0, # Mass of this section of the vehicle [kg]
+        #             "Iz" 	: 5200.0, # The rotation inertia in the z axis (yaw) [kg*m^2] of this section of the vehicle
+        #             "lf" 	: 2.213,  # Distance from rear axel to COG along this section of the vehicles center line. 
+        #             "lr" 	: 2.213,  # Distance from front axel to COG along this section of the vehicles center line. 
 
-                    "veh_l": 5.426,   # The vehicles length [m]
-                    "veh_w": 2.163,   # The vehicles width [m]
+        #             "veh_l": 5.426,   # The vehicles length [m]
+        #             "veh_w": 2.163,   # The vehicles width [m]
 
-                    "g"   : 9.81,      # Gravity acceleration.
+        #             "g"   : 9.81,      # Gravity acceleration.
                     
-                    # Number of tires(If 2 then only rear tires otherwise rear and front)
-                    "num_tires": 2,
-                    # Tire parameters (front)
-                    "Bf"	: 11.0, 
-                    "Cf" 	: 1.4,
-                    "Df" 	: 0.45,
-                    # Tire parameters (rear)
-                    "Br" 	: 11.0,
-                    "Cr" 	: 1.4,
-                    "Dr" 	: 0.5,  
-                    # Friction characteritic params
-                    "Cr0" : 0.0518,  # Zero offset friciton force. 
-                    "Cr2" : 0.00035, # quadratic friciton multiplier on the vehicle velocity. 
-                }
-            )
+        #             # Number of tires(If 2 then only rear tires otherwise rear and front)
+        #             "num_tires": 2,
+        #             # Tire parameters (front)
+        #             "Bf"	: 11.0, 
+        #             "Cf" 	: 1.4,
+        #             "Df" 	: 0.45,
+        #             # Tire parameters (rear)
+        #             "Br" 	: 11.0,
+        #             "Cr" 	: 1.4,
+        #             "Dr" 	: 0.5,  
+        #             # Friction characteritic params
+        #             "Cr0" : 0.0518,  # Zero offset friciton force. 
+        #             "Cr2" : 0.00035, # quadratic friciton multiplier on the vehicle velocity. 
+        #         }
+        #     )
 
         self.control_input = {
             "Fx": 0.0,  # Force in the longitudinal direction on rear wheels

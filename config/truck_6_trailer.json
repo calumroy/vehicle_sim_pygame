@@ -1,0 +1,180 @@
+{
+    "parameters": [
+        {
+        "mass" 	: 2000.0, // Mass of this section of the vehicle [kg]
+        "Iz" 	: 5200.0, // The rotation inertia in the z axis (yaw) [kg*m^2] of this section of the vehicle
+        "lf" 	: 2.213,  // Distance from rear axel to COG along this section of the vehicles center line. 
+        "lr" 	: 2.213,  // Distance from front axel to COG along this section of the vehicles center line. 
+
+        "veh_l": 5.426,   // The vehicles length [m]
+        "veh_w": 2.163,   // The vehicles width [m]
+
+        "g"   : 9.81,      // Gravity acceleration.
+        
+        // Number of tires(If 2 then only rear tires otherwise rear and front)
+        "num_tires": 4,
+        // Tire parameters (front)
+        "num_tires": 4,
+        "Bf"	: 11.0, 
+        "Cf" 	: 1.4,
+        "Df" 	: 0.45,
+        // Tire parameters (rear)
+        "Br" 	: 11.0,
+        "Cr" 	: 1.4,
+        "Dr" 	: 0.5,  
+        // Friction characteritic params
+        "Cr0" : 0.0518,  // Zero offset friciton force. 
+        "Cr2" : 0.00035, // quadratic friciton multiplier on the vehicle velocity.
+        },
+        {
+            "mass" 	: 2000.0, // Mass of this section of the vehicle [kg]
+            "Iz" 	: 5200.0, // The rotation inertia in the z axis (yaw) [kg*m^2] of this section of the vehicle
+            "lf" 	: 2.213,  // Distance from rear axel to COG along this section of the vehicles center line. 
+            "lr" 	: 2.213,  // Distance from front axel to COG along this section of the vehicles center line. 
+
+            "veh_l": 5.426,   // The vehicles length [m]
+            "veh_w": 2.163,   // The vehicles width [m]
+
+            "g"   : 9.81,      // Gravity acceleration.
+            
+            // Number of tires(If 2 then only rear tires otherwise rear and front)
+            "num_tires": 2,
+            // Tire parameters (front)
+            "Bf"	: 11.0, 
+            "Cf" 	: 1.4,
+            "Df" 	: 0.45,
+            // Tire parameters (rear)
+            "Br" 	: 11.0,
+            "Cr" 	: 1.4,
+            "Dr" 	: 0.5,  
+            // Friction characteritic params
+            "Cr0" : 0.0518,  // Zero offset friciton force. 
+            "Cr2" : 0.00035, // quadratic friciton multiplier on the vehicle velocity.
+        },
+        {
+            "mass" 	: 2000.0, // Mass of this section of the vehicle [kg]
+            "Iz" 	: 5200.0, // The rotation inertia in the z axis (yaw) [kg*m^2] of this section of the vehicle
+            "lf" 	: 2.213,  // Distance from rear axel to COG along this section of the vehicles center line. 
+            "lr" 	: 2.213,  // Distance from front axel to COG along this section of the vehicles center line. 
+
+            "veh_l": 5.426,   // The vehicles length [m]
+            "veh_w": 2.163,   // The vehicles width [m]
+
+            "g"   : 9.81,      // Gravity acceleration.
+            
+            // Number of tires(If 2 then only rear tires otherwise rear and front)
+            "num_tires": 2,
+            // Tire parameters (front)
+            "Bf"	: 11.0, 
+            "Cf" 	: 1.4,
+            "Df" 	: 0.45,
+            // Tire parameters (rear)
+            "Br" 	: 11.0,
+            "Cr" 	: 1.4,
+            "Dr" 	: 0.5,  
+            // Friction characteritic params
+            "Cr0" : 0.0518,  // Zero offset friciton force. 
+            "Cr2" : 0.00035, // quadratic friciton multiplier on the vehicle velocity.
+        },
+        {
+            "mass" 	: 2000.0, // Mass of this section of the vehicle [kg]
+            "Iz" 	: 5200.0, // The rotation inertia in the z axis (yaw) [kg*m^2] of this section of the vehicle
+            "lf" 	: 2.213,  // Distance from rear axel to COG along this section of the vehicles center line. 
+            "lr" 	: 2.213,  // Distance from front axel to COG along this section of the vehicles center line. 
+
+            "veh_l": 5.426,   // The vehicles length [m]
+            "veh_w": 2.163,   // The vehicles width [m]
+
+            "g"   : 9.81,      // Gravity acceleration.
+            
+            // Number of tires(If 2 then only rear tires otherwise rear and front)
+            "num_tires": 2,
+            // Tire parameters (front)
+            "Bf"	: 11.0, 
+            "Cf" 	: 1.4,
+            "Df" 	: 0.45,
+            // Tire parameters (rear)
+            "Br" 	: 11.0,
+            "Cr" 	: 1.4,
+            "Dr" 	: 0.5,  
+            // Friction characteritic params
+            "Cr0" : 0.0518,  // Zero offset friciton force. 
+            "Cr2" : 0.00035, // quadratic friciton multiplier on the vehicle velocity.
+        },
+        {
+            "mass" 	: 2000.0, // Mass of this section of the vehicle [kg]
+            "Iz" 	: 5200.0, // The rotation inertia in the z axis (yaw) [kg*m^2] of this section of the vehicle
+            "lf" 	: 2.213,  // Distance from rear axel to COG along this section of the vehicles center line. 
+            "lr" 	: 2.213,  // Distance from front axel to COG along this section of the vehicles center line. 
+
+            "veh_l": 5.426,   // The vehicles length [m]
+            "veh_w": 2.163,   // The vehicles width [m]
+
+            "g"   : 9.81,      // Gravity acceleration.
+            
+            // Number of tires(If 2 then only rear tires otherwise rear and front)
+            "num_tires": 2,
+            // Tire parameters (front)
+            "Bf"	: 11.0, 
+            "Cf" 	: 1.4,
+            "Df" 	: 0.45,
+            // Tire parameters (rear)
+            "Br" 	: 11.0,
+            "Cr" 	: 1.4,
+            "Dr" 	: 0.5,  
+            // Friction characteritic params
+            "Cr0" : 0.0518,  // Zero offset friciton force. 
+            "Cr2" : 0.00035, // quadratic friciton multiplier on the vehicle velocity.
+        },
+        {
+            "mass" 	: 2000.0, // Mass of this section of the vehicle [kg]
+            "Iz" 	: 5200.0, // The rotation inertia in the z axis (yaw) [kg*m^2] of this section of the vehicle
+            "lf" 	: 2.213,  // Distance from rear axel to COG along this section of the vehicles center line. 
+            "lr" 	: 2.213,  // Distance from front axel to COG along this section of the vehicles center line. 
+
+            "veh_l": 5.426,   // The vehicles length [m]
+            "veh_w": 2.163,   // The vehicles width [m]
+
+            "g"   : 9.81,      // Gravity acceleration.
+            
+            // Number of tires(If 2 then only rear tires otherwise rear and front)
+            "num_tires": 2,
+            // Tire parameters (front)
+            "Bf"	: 11.0, 
+            "Cf" 	: 1.4,
+            "Df" 	: 0.45,
+            // Tire parameters (rear)
+            "Br" 	: 11.0,
+            "Cr" 	: 1.4,
+            "Dr" 	: 0.5,  
+            // Friction characteritic params
+            "Cr0" : 0.0518,  // Zero offset friciton force. 
+            "Cr2" : 0.00035, // quadratic friciton multiplier on the vehicle velocity.
+        },
+        {
+            "mass" 	: 2000.0, // Mass of this section of the vehicle [kg]
+            "Iz" 	: 5200.0, // The rotation inertia in the z axis (yaw) [kg*m^2] of this section of the vehicle
+            "lf" 	: 2.213,  // Distance from rear axel to COG along this section of the vehicles center line. 
+            "lr" 	: 2.213,  // Distance from front axel to COG along this section of the vehicles center line. 
+
+            "veh_l": 5.426,   // The vehicles length [m]
+            "veh_w": 2.163,   // The vehicles width [m]
+
+            "g"   : 9.81,      // Gravity acceleration.
+            
+            // Number of tires(If 2 then only rear tires otherwise rear and front)
+            "num_tires": 2,
+            // Tire parameters (front)
+            "Bf"	: 11.0, 
+            "Cf" 	: 1.4,
+            "Df" 	: 0.45,
+            // Tire parameters (rear)
+            "Br" 	: 11.0,
+            "Cr" 	: 1.4,
+            "Dr" 	: 0.5,  
+            // Friction characteritic params
+            "Cr0" : 0.0518,  // Zero offset friciton force. 
+            "Cr2" : 0.00035, // quadratic friciton multiplier on the vehicle velocity.
+        }
+    ]
+}
